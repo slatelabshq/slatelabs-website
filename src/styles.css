@@ -214,4 +214,11 @@
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1 !important; transform: none !important; }
+  .glow-primary, .glow-subtle {
+    transition: none !important;
+    box-shadow: none !important;
+  }
+  .glow-primary:hover, .glow-subtle:hover {
+    box-shadow: none !important;
+  }
 }

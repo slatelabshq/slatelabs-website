@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
+import { Reveal } from "@/components/Reveal";
 import { projects } from "@/lib/work-data";
 
 export const Route = createFileRoute("/work")({

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
+import { Reveal } from "@/components/Reveal";
 import workIleEko from "@/assets/work-ileeko.jpg";
 
 export const Route = createFileRoute("/ile-eko")({

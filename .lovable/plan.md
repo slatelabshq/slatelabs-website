@@ -1,35 +1,34 @@
-# Button Glow Hover Animation
+## Integrate Slate Labs Logos
 
-Add subtle, premium glowing hover effects to all interactive buttons across the site.
+Replace the current text-only "Slate Labs" wordmark with the official brand assets the user uploaded.
 
-## What We're Building
+### Assets to add
+- `src/assets/slate-logo-wordmark.png` — primary logo (mark + "Slate Labs" wordmark). Use in header and footer.
+- `src/assets/slate-logo-mark.png` — icon-only mark. Use as favicon and anywhere a compact mark fits (mobile header collapsed, OG fallback, 404 page).
 
-### 1. Primary Button Glow (`CtaButton` variant="primary")
-- On hover: soft Clay-colored box-shadow glow emanating from the button
-- Shadow: `0 0 0 0 rgba(197, 85, 61, 0)` → `0 0 24px 4px rgba(197, 85, 61, 0.25)`
-- Transition: 300ms with `--ease-out-soft`
-- Background already transitions to `--primary` (Clay); glow reinforces the warm accent
+Copy both from `user-uploads://` into `src/assets/` and import as ES6 modules.
 
-### 2. Secondary Button Glow (`CtaButton` variant="secondary")
-- On hover: soft ambient border glow
-- Shadow: `0 0 20px 2px rgba(17, 17, 17, 0.06)` — subtle, not colored
-- Complements the existing `hover:bg-surface` + `hover:border-foreground/20`
+### Where they get applied
 
-### 3. Contact Form Submit Button
-- Convert to use `CtaButton` component (or apply same glow class)
-- Ensures consistency across all CTAs
+1. **`SiteHeader.tsx`** — Replace the text `Slate Labs` in the home link with an `<img>` of the primary wordmark logo. Height ~24px (h-6) to fit the pill nav; mark-only on very small screens if needed. Add descriptive `alt="Slate Labs"`.
 
-### 4. Animation Utilities in `styles.css`
-- Add reusable `.glow-primary` and `.glow-subtle` utility classes
-- Uses `transition: box-shadow 300ms var(--ease-out-soft)`
-- Respects `prefers-reduced-motion` (instant transition)
+2. **`SiteFooter.tsx`** — Replace the text wordmark in the footer brand block with the primary logo, slightly larger (h-7 / h-8). Keep the tagline beneath it.
 
-## Files to Modify
-- `src/styles.css` — add glow utility classes
-- `src/components/CtaButton.tsx` — apply glow classes to both variants
-- `src/routes/contact.tsx` — replace inline `<button>` with `CtaButton` or matching glow styles
+3. **`__root.tsx`** —
+   - Add `<link rel="icon">` pointing to the mark-only logo (copy to `public/favicon.png` as well so it's served at root).
+   - Use the primary wordmark as `og:image` for default social sharing.
 
-## Design Notes
-- Glow must feel premium, not gaming/LED — low opacity, large blur radius, small spread
-- No animated pulsing on hover (that would be distracting); just a steady glow state transition
-- The existing `active:translate-y-px` micro-interaction stays intact
+4. **`routes/__root.tsx` Not-Found / Error pages** — Add the mark above the "404" heading for brand presence (optional, small `h-10`).
+
+### Notes
+- Logos are dark slate (#3B4451-ish) on transparent background — they read well on the current cream `--background`. No color treatment needed.
+- Keep existing hover/animation behavior on the header link; just swap inner content.
+- No new dependencies, no layout restructuring.
+
+### Files touched
+- `src/assets/slate-logo-wordmark.png` (new, copied)
+- `src/assets/slate-logo-mark.png` (new, copied)
+- `public/favicon.png` (new, copied from mark)
+- `src/components/SiteHeader.tsx`
+- `src/components/SiteFooter.tsx`
+- `src/routes/__root.tsx`

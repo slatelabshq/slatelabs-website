@@ -14,8 +14,8 @@ export function CtaButton({ to, href, hash, variant = "primary", children }: Pro
     "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium active:translate-y-px focus-visible:outline-none";
   const styles =
     variant === "primary"
-      ? "bg-foreground text-background hover:bg-primary"
-      : "border border-border text-foreground hover:bg-surface hover:border-foreground/20";
+      ? "bg-foreground text-background hover:bg-primary glow-primary"
+      : "border border-border text-foreground hover:bg-surface hover:border-foreground/20 glow-subtle";
 
   if (to) {
     return (

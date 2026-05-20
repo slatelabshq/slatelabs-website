@@ -108,7 +108,7 @@ function Contact() {
                   <div className="md:col-span-2 mt-2">
                     <button
                       type="submit"
-                      className="rounded-full bg-foreground text-background px-7 py-3.5 text-sm font-medium hover:bg-primary transition-colors"
+                      className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-7 py-3.5 text-sm font-medium hover:bg-primary glow-primary active:translate-y-px focus-visible:outline-none"
                     >
                       Send message
                     </button>

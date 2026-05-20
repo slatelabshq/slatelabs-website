@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
-import { projects } from "@/lib/work-data";
+import { projects, type CaseStudyDetail } from "@/lib/work-data";
 
 export const Route = createFileRoute("/work/$slug")({
   loader: ({ params }) => {
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/work/$slug")({
 
 function CaseStudy() {
   const { project } = Route.useLoaderData();
-  const d = project.detail!;
+  const d = project.detail as CaseStudyDetail;
   const others = projects.filter((p) => p.slug !== project.slug);
 
   return (

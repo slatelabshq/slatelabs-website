@@ -35,7 +35,7 @@ export function SiteHeader() {
         </div>
         <Link
           to="/contact"
-          className="hidden md:inline-flex rounded-full bg-foreground text-background px-4 py-2 text-sm font-medium hover:bg-primary transition-colors"
+          className="hidden md:inline-flex rounded-full bg-foreground text-background px-4 py-2 text-sm font-medium hover:bg-primary glow-primary transition-colors"
         >
           Get started
         </Link>

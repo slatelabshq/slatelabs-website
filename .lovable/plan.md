@@ -1,10 +1,12 @@
-Add explicit `prefers-reduced-motion` overrides for the glow utility classes in `src/styles.css`.
+Apply existing `glow-primary` / `glow-subtle` utilities to the pill/button-style CTA links that visually match `CtaButton` but were written as inline `<Link>`/`<a>` tags.
 
-The existing blanket `@media (prefers-reduced-motion: reduce)` rule shortens all transitions to 0.01ms, but the glow classes deserve targeted treatment so the effect is intentionally disabled rather than just flickering instantly.
+Targets (button-shaped, currently missing glow):
+- `src/routes/__root.tsx` line 27 — error boundary "Go home" primary CTA → add `glow-primary`
+- `src/routes/__root.tsx` line 50 — 404 "Go home" primary CTA → add `glow-primary`
+- `src/routes/__root.tsx` line 56 — 404 "Contact us" bordered CTA → add `glow-subtle`
+- `src/components/SiteHeader.tsx` line 38 — header "Start a project" primary pill → add `glow-primary`
 
-Changes:
-- Inside the existing `@media (prefers-reduced-motion: reduce)` block, add rules for `.glow-primary` and `.glow-subtle` that:
-  1. Remove the box-shadow transition entirely (`transition: none`).
-  2. Strip the hover glow so no shadow appears at all, avoiding any visual jump.
+Out of scope (inline text links, not button-shaped — glow would look out of place):
+- Footer nav links, work-card story-link, contact aside links, "View case" links
 
-This is a single-file, zero-dependency change scoped to `src/styles.css` only.
+No new utilities or components needed; only className additions.

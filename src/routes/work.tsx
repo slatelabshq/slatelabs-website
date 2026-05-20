@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
+import { Reveal } from "@/components/Reveal";
 import { projects } from "@/lib/work-data";
 
 export const Route = createFileRoute("/work")({
@@ -58,30 +59,31 @@ function Work() {
 
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {visible.map((p) => (
-            <Link
-              key={p.slug}
-              to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
-              params={{ slug: p.slug }}
-              className="group block"
-            >
-              <div className="aspect-[4/3] overflow-hidden rounded-[2rem] mb-6">
-                <img
-                  src={p.image}
-                  alt={p.client}
-                  loading="lazy"
-                  width={1280}
-                  height={960}
-                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                />
-              </div>
-              <div className="text-xs text-muted mb-2">{p.category}</div>
-              <h2 className="text-2xl md:text-3xl font-medium tracking-tight mb-2">{p.title}</h2>
-              <p className="text-muted">{p.oneLiner}</p>
-              <span className="mt-4 inline-block text-sm font-medium group-hover:text-primary">
-                {p.slug === "ile-eko" ? "Learn more" : "View case study"} →
-              </span>
-            </Link>
+          {visible.map((p, i) => (
+            <Reveal key={p.slug} delay={(i % 2) * 80}>
+              <Link
+                to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
+                params={{ slug: p.slug }}
+                className="group block"
+              >
+                <div className="aspect-[4/3] overflow-hidden rounded-[2rem] mb-6">
+                  <img
+                    src={p.image}
+                    alt={p.client}
+                    loading="lazy"
+                    width={1280}
+                    height={960}
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                  />
+                </div>
+                <div className="text-xs text-muted mb-2">{p.category}</div>
+                <h2 className="text-2xl md:text-3xl font-medium tracking-tight mb-2">{p.title}</h2>
+                <p className="text-muted">{p.oneLiner}</p>
+                <span className="mt-4 inline-block text-sm font-medium group-hover:text-primary story-link">
+                  {p.slug === "ile-eko" ? "Learn more" : "View case study"} →
+                </span>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </Section>

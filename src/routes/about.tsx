@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -87,12 +88,12 @@ function About() {
         <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-16">Meet the founders.</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {team.map((m, i) => (
-            <div key={m.name} className="rounded-3xl bg-surface p-8">
+            <Reveal key={m.name} delay={i * 80} className="rounded-3xl bg-surface p-8 hover-lift">
               <div className="text-sm text-primary mb-6">0{i + 1}</div>
               <h3 className="text-xl font-medium tracking-tight mb-1">{m.name}</h3>
               <div className="text-sm text-muted mb-6">{m.role}</div>
               <p className="text-muted leading-relaxed">{m.bio}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Section>
@@ -101,12 +102,12 @@ function About() {
         <Eyebrow>How we work</Eyebrow>
         <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-16">Our process.</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {process.map((p) => (
-            <div key={p.n} className="rounded-3xl bg-surface p-8">
+          {process.map((p, i) => (
+            <Reveal key={p.n} delay={i * 70} className="rounded-3xl bg-surface p-8 hover-lift">
               <div className="text-sm text-primary mb-4">{p.n}</div>
               <h3 className="text-lg font-medium tracking-tight mb-3">{p.title}</h3>
               <p className="text-muted leading-relaxed text-sm">{p.body}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </Section>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
+import { Reveal } from "@/components/Reveal";
 import { featuredProjects } from "@/lib/work-data";
 
 export const Route = createFileRoute("/")({
@@ -47,14 +48,14 @@ function Home() {
       <header className="px-6 pt-32 pb-24">
         <div className="max-w-6xl mx-auto text-center">
           <Eyebrow>Lagos, Nigeria</Eyebrow>
-          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-[-0.03em] text-balance mb-8 animate-reveal">
+          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-[-0.03em] text-balance mb-8 animate-reveal" style={{ animationDelay: "60ms" }}>
             Building brands & platforms on a{" "}
             <span className="text-primary">clean slate.</span>
           </h1>
-          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed mb-10 animate-reveal">
+          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed mb-10 animate-reveal" style={{ animationDelay: "180ms" }}>
             Creative and technical excellence for businesses ready to start fresh and grow exponentially.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-3 animate-reveal" style={{ animationDelay: "300ms" }}>
             <CtaButton to="/work" variant="primary">See our work</CtaButton>
             <CtaButton to="/contact" variant="secondary">Let's talk</CtaButton>
           </div>
@@ -70,11 +71,11 @@ function Home() {
               { v: "45%", l: "Car sales lift — Vida Rosa" },
               { v: "8,000+", l: "Followers grown organically" },
               { v: "Lagos", l: "HQ base" },
-            ].map((m) => (
-              <div key={m.l} className="text-center md:text-left">
+            ].map((m, i) => (
+              <Reveal key={m.l} delay={i * 80} className="text-center md:text-left">
                 <div className="text-3xl md:text-4xl font-medium tracking-tight">{m.v}</div>
                 <div className="text-sm text-muted mt-2">{m.l}</div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -92,18 +93,19 @@ function Home() {
           <span className="text-sm text-muted">01 — 03</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {services.map((s) => (
-            <Link
-              key={s.n}
-              to="/services"
-              hash={s.hash}
-              className="group block rounded-3xl bg-surface p-8 hover:bg-foreground hover:text-background transition-colors duration-300"
-            >
-              <div className="text-sm text-primary mb-6">{s.n}</div>
-              <h3 className="text-2xl font-medium mb-3 tracking-tight">{s.title}</h3>
-              <p className="text-muted group-hover:text-background/60 leading-relaxed mb-8">{s.body}</p>
-              <span className="text-sm font-medium">Learn more →</span>
-            </Link>
+          {services.map((s, i) => (
+            <Reveal key={s.n} delay={i * 80}>
+              <Link
+                to="/services"
+                hash={s.hash}
+                className="group block rounded-3xl bg-surface p-8 hover:bg-foreground hover:text-background hover-lift h-full"
+              >
+                <div className="text-sm text-primary mb-6">{s.n}</div>
+                <h3 className="text-2xl font-medium mb-3 tracking-tight">{s.title}</h3>
+                <p className="text-muted group-hover:text-background/60 leading-relaxed mb-8">{s.body}</p>
+                <span className="text-sm font-medium">Learn more →</span>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </Section>
@@ -118,47 +120,45 @@ function Home() {
           {featuredProjects.map((p, i) => {
             const reversed = i % 2 === 1;
             return (
-              <Link
-                key={p.slug}
-                to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
-                params={{ slug: p.slug }}
-                className="group block"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                  <div className={`md:col-span-7 ${reversed ? "md:order-2" : ""}`}>
-                    <div className="w-full aspect-[4/3] overflow-hidden rounded-[2rem]">
-                      <img
-                        src={p.image}
-                        alt={p.client}
-                        loading="lazy"
-                        width={1280}
-                        height={960}
-                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                      />
+              <Reveal key={p.slug}>
+                <Link
+                  to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
+                  params={{ slug: p.slug }}
+                  className="group block"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div className={`md:col-span-7 ${reversed ? "md:order-2" : ""}`}>
+                      <div className="w-full aspect-[4/3] overflow-hidden rounded-[2rem]">
+                        <img
+                          src={p.image}
+                          alt={p.client}
+                          loading="lazy"
+                          width={1280}
+                          height={960}
+                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                        />
+                      </div>
+                    </div>
+                    <div className={`md:col-span-5 ${reversed ? "md:order-1" : ""}`}>
+                      <div className="inline-flex items-center gap-2 text-xs text-muted mb-4">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        Case study 0{i + 1}
+                      </div>
+                      <h3 className="text-3xl md:text-4xl font-medium mb-4 tracking-tight">
+                        {p.title}
+                      </h3>
+                      <p className="text-muted mb-6 leading-relaxed">{p.oneLiner}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {p.tags.map((t) => (
+                          <span key={t} className="px-3 py-1 rounded-full bg-surface text-xs text-muted">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  <div className={`md:col-span-5 ${reversed ? "md:order-1" : ""}`}>
-                    <div className="inline-flex items-center gap-2 text-xs text-muted mb-4">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      Case study 0{i + 1}
-                    </div>
-                    <h3 className="text-3xl md:text-4xl font-medium mb-4 tracking-tight">
-                      {p.title}
-                    </h3>
-                    <p className="text-muted mb-6 leading-relaxed">{p.oneLiner}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {p.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="px-3 py-1 rounded-full bg-surface text-xs text-muted"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Link>
+                </Link>
+              </Reveal>
             );
           })}
         </div>
@@ -192,13 +192,13 @@ function Home() {
               </p>
             </div>
             <div className="space-y-10">
-              {differentiators.map((d) => (
-                <div key={d.n}>
+              {differentiators.map((d, i) => (
+                <Reveal key={d.n} delay={i * 80}>
                   <h3 className="text-sm font-medium mb-2 text-primary">
                     {d.n} — {d.title}
                   </h3>
                   <p className="text-background/70 leading-relaxed">{d.body}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>

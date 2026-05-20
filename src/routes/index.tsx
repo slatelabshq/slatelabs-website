@@ -192,13 +192,13 @@ function Home() {
               </p>
             </div>
             <div className="space-y-10">
-              {differentiators.map((d) => (
-                <div key={d.n}>
+              {differentiators.map((d, i) => (
+                <Reveal key={d.n} delay={i * 80}>
                   <h3 className="text-sm font-medium mb-2 text-primary">
                     {d.n} — {d.title}
                   </h3>
                   <p className="text-background/70 leading-relaxed">{d.body}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>

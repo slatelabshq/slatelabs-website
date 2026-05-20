@@ -13,19 +13,18 @@ const nav = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
-    <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        <Link to="/" className="text-xl font-extrabold tracking-tighter uppercase">
-          Slate Labs<span className="text-primary">.</span>
+    <header className="sticky top-4 z-50 px-4">
+      <nav className="max-w-5xl mx-auto bg-background/80 backdrop-blur-md border border-border rounded-full px-3 py-2 flex items-center justify-between shadow-[0_1px_2px_rgba(17,17,17,0.04)]">
+        <Link to="/" className="pl-3 pr-2 text-base font-semibold tracking-tight">
+          Slate Labs
         </Link>
-        <div className="hidden md:flex gap-8 text-xs font-medium uppercase tracking-widest">
-          {nav.map((n) => (
+        <div className="hidden md:flex items-center gap-1 text-sm">
+          {nav.slice(1).map((n) => (
             <Link
               key={n.to}
               to={n.to}
-              className="hover:text-primary transition-colors"
-              activeProps={{ className: "text-primary" }}
-              activeOptions={{ exact: n.to === "/" }}
+              className="px-3 py-1.5 rounded-full text-muted hover:text-foreground hover:bg-surface transition-colors"
+              activeProps={{ className: "text-foreground bg-surface" }}
             >
               {n.label}
             </Link>
@@ -33,28 +32,28 @@ export function SiteHeader() {
         </div>
         <Link
           to="/contact"
-          className="hidden md:inline-flex px-5 py-2 text-xs font-bold uppercase tracking-widest bg-foreground text-background hover:bg-primary transition-colors"
+          className="hidden md:inline-flex rounded-full bg-foreground text-background px-4 py-2 text-sm font-medium hover:bg-primary transition-colors"
         >
-          Get Started
+          Get started
         </Link>
         <button
           aria-label="Open menu"
-          className="md:hidden text-xs font-bold uppercase tracking-widest"
+          className="md:hidden rounded-full px-4 py-2 text-sm font-medium bg-surface"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? "Close" : "Menu"}
         </button>
-      </div>
+      </nav>
       {open && (
-        <div className="md:hidden border-t border-border bg-background">
-          <div className="px-6 py-4 flex flex-col gap-3 text-sm font-medium uppercase tracking-widest">
+        <div className="md:hidden max-w-5xl mx-auto mt-2 bg-background border border-border rounded-3xl p-4">
+          <div className="flex flex-col gap-1 text-sm">
             {nav.map((n) => (
               <Link
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="py-1 hover:text-primary"
-                activeProps={{ className: "text-primary" }}
+                className="px-3 py-2 rounded-xl hover:bg-surface"
+                activeProps={{ className: "bg-surface text-foreground" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
                 {n.label}
@@ -63,13 +62,13 @@ export function SiteHeader() {
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 px-5 py-3 text-xs font-bold uppercase tracking-widest bg-foreground text-background text-center"
+              className="mt-2 rounded-full bg-foreground text-background px-4 py-3 text-center text-sm font-medium"
             >
-              Get Started
+              Get started
             </Link>
           </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 }

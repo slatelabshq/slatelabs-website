@@ -1,55 +1,88 @@
-# Slate Labs Website — Build Plan
+## Minimalist Redesign — Slate Labs
 
-All copy is provided in the two PDFs. The site is a marketing/agency site with one product sub-page (Ile Eko) and a contact form. Fully doable in this stack (TanStack Start + Tailwind).
+Shift the site away from the current sharp, editorial/brutalist look (hard right angles, uppercase-everywhere, italic serif accents, offset-shadow buttons, dense bordered grids) toward a calm, premium minimalism with a soft curved language.
 
-## Routes (one file per page, SSR + SEO metadata)
+### Design tokens (src/styles.css)
 
-```
-src/routes/
-  __root.tsx              shared header + footer, global meta
-  index.tsx               / — Homepage
-  about.tsx               /about
-  services.tsx            /services (#brand-foundations, #digital-platforms, #intelligent-systems)
-  work.tsx                /work — portfolio grid + filters
-  work.$slug.tsx          /work/44db, /work/vida-rosa — case study template
-  ile-eko.tsx             /ile-eko — product page
-  contact.tsx             /contact — form
-```
+**Palette** — 2 primaries + warm neutrals:
+- Ink `#111111` (foreground)
+- Canvas `#FAFAF7` (background — warm off-white)
+- Mist `#F2F1EC` (card / subtle surface)
+- Accent Clay `#C5553D` (single accent, used sparingly — replaces current high-saturation orange)
+- Muted `#6B6B68` (secondary text)
+- Hairline `rgba(17,17,17,0.08)` (borders)
 
-Each route gets its own `head()` with unique title / description / og tags.
+Drop the `.dark` theme reshuffle for now; keep light-mode only for visual focus (dark can return later).
 
-## Page sections (from the PDFs)
+**Typography** — Inter only (drop Playfair italic accents):
+- Display: Inter, weight 500, tracking `-0.03em`, sizes clamp `2.5rem → 5.5rem`
+- H2: Inter 500, `-0.02em`, `2rem → 3rem`
+- Body: Inter 400, `1rem → 1.125rem`, line-height 1.6
+- Eyebrow: Inter 500, `0.75rem`, tracking `0.08em` (not 0.3em), sentence case — NOT uppercase
+- Remove `text-balance` uppercase headlines and italic serif callouts; emphasis via weight/color only.
 
-- **Home:** Hero, What We Build (3 service cards), Featured Work (3 projects), Why Slate Labs (4 differentiators), Trusted By logo marquee, metrics, final CTA.
-- **About:** Hero, Mission, Our Story, Meet the Founders (Joseph, SK, Kenny), Our Process, Our Philosophy, CTA.
-- **Services:** Hero + 3 detailed service sections (anchor-linked), comparison table vs. traditional agencies, FAQ, CTA.
-- **Work:** Hero, filter chips (All / Brand / Platforms / Systems), 3 project cards, CTA.
-- **Case Study (dynamic):** Hero, Quick Facts, Key Results, Challenge, Solution, Results, Testimonial, Deliverables, Gallery, More Work. Content for 44DB and Vida Rosa stored in a local data file.
-- **Ile Eko:** Hero, Problem Statement, Solution Overview, 6 Features, How It Works (4 steps), Pricing (3 tiers, "Contact for pricing"), FAQ, CTA.
-- **Contact:** Hero, form (Name, Email, Company, Project Type, Budget, Message), direct contact info, social links.
+**Radii** — curved language:
+- `--radius-sm: 12px` (chips, inputs)
+- `--radius: 20px` (buttons, small cards)
+- `--radius-lg: 28px` (cards, image frames)
+- `--radius-xl: 40px` (hero panels, pricing tiers)
+- `--radius-full: 9999px` (pills, nav CTA)
 
-## Form handling
+**Motion** — keep `--ease-out-expo`, add subtle `transition: all 250ms`. Remove the offset-shadow hover on buttons.
 
-Contact form posts to a `createServerFn` that validates with Zod and emails `hello@slatelabs.co`. Email delivery needs **Lovable Cloud + a provider (Resend)** — I'll enable Cloud and ask you for a Resend key when we get there. For an initial pass we can just store submissions in a Cloud table and show them in your dashboard.
+### Component changes
 
-## Design direction
+**SiteHeader**
+- Float a pill-shaped nav: `rounded-full`, Mist background, hairline border, `mx-auto` with `max-w` constraint, `top-4` offset (not flush).
+- Wordmark in normal case (`Slate Labs`), no trailing dot accent.
+- Nav links: sentence case, weight 500, no tracking-widest.
+- CTA: rounded-full pill, Ink bg, Canvas text, no offset shadow.
 
-Copy has a confident, editorial, "clean slate" tone. Before coding I'll generate 3 rendered design directions so you can pick the look (typography, palette, layout density, motion). Hard part is choosing between editorial-minimal, bold-brutalist, or premium-studio.
+**SiteFooter**
+- Drop uppercase tracking. Single row layout: brand + 3 link columns + email signup. Hairline divider only at bottom.
 
-## What I still need from you
+**CtaButton**
+- `rounded-full`, `px-7 py-3.5`, no offset border shadow. Primary: Ink/Canvas. Secondary: transparent + hairline border. Hover: accent fill or subtle bg tint, no translate.
 
-1. **Logo files** for Slate Labs, 44DB, Vida Rosa, Ile Eko (or I'll typeset wordmarks as placeholders).
-2. **Founder photos** + the bios/fun-facts that are blank in the PDF (Joseph, SK, Kenny).
-3. **Case study imagery** for 44DB and Vida Rosa (Instagram screenshots, campaign visuals).
-4. **Ile Eko dashboard screenshot** for the hero (or I'll generate a realistic mockup).
-5. Confirm: should /work/ile-eko exist as a case study too, or only the /ile-eko product page?
+**Section / Eyebrow**
+- Eyebrow no longer uppercase + 0.3em tracking; small medium-weight label with a leading dot.
 
-## Build order
+### Page-level changes
 
-1. Enable Lovable Cloud (for contact form + future demo bookings).
-2. Generate 3 design directions → you pick one.
-3. Build shared header/footer + design tokens.
-4. Build Home → Services → Work + case study template → Ile Eko → About → Contact.
-5. Wire contact form to Cloud, add SEO meta per route, generate placeholder imagery for anything you haven't supplied.
+**Home**
+- Hero: remove right-side card panel and italic serif "clean slate." Headline becomes Inter 500, sentence case, single accent word in Clay. Two pill CTAs. Generous top padding (`pt-40`).
+- Metrics strip: remove dividers + borders. Convert to 4 floating cards in a Mist rounded-3xl panel, no uppercase labels.
+- Services: replace bordered top-rule grid with 3 rounded-2xl Mist cards, generous padding, single accent number, no italic serif.
+- Featured work: keep alternating layout but images get `rounded-3xl`, drop the bordered tag chips for rounded-full pills, remove "Case Study 0X" italic serif label (use a small Clay dot + label).
+- Logo marquee: lower opacity, normal case, no extreme letter-spacing.
+- "Why Slate Labs" dark section: keep dark but switch bg to Ink, headline non-italic, content in a single rounded-3xl panel with internal padding instead of full-bleed.
+- Final CTA: smaller headline (not 8xl), remove serif italic accent, two pill CTAs centered.
 
-Ready to start with the design directions whenever you give the go.
+**Ile Eko, About, Services, Work, Contact**
+- Apply same primitives: rounded image frames (`rounded-3xl`), rounded cards, pill chips/tags, sentence-case eyebrows, no italic serif accents, no offset borders.
+- Pricing tiers: `rounded-3xl`, hairline borders, highlighted tier uses Clay border + Mist bg (no inversion).
+- FAQ: rounded chevron buttons, generous py spacing, no `+` rotate gimmick — use a chevron icon.
+- Contact form inputs: `rounded-xl`, Mist bg, no borders until focus.
+
+### Files to edit
+
+- `src/styles.css` — replace tokens, palette, radii, drop serif font import usage
+- `src/components/SiteHeader.tsx` — floating pill nav
+- `src/components/SiteFooter.tsx` — calmer layout, no uppercase
+- `src/components/CtaButton.tsx` — pill button, no offset shadow
+- `src/components/Section.tsx` — adjust Eyebrow
+- `src/routes/index.tsx` — hero/metrics/services/work/dark section/final CTA rework
+- `src/routes/about.tsx` — apply primitives
+- `src/routes/services.tsx` — apply primitives, soften comparison table
+- `src/routes/work.tsx` and `src/routes/work.$slug.tsx` — rounded media, pill filters/tags
+- `src/routes/ile-eko.tsx` — rounded cards, pricing tier restyle, FAQ chevrons
+- `src/routes/contact.tsx` — rounded form inputs
+
+### Out of scope
+
+- No new routes, no copy rewrite (only de-uppercase where needed), no new images, no backend changes.
+- Founder photos, real logos, dashboard mockup still pending from user — keep existing placeholders.
+
+### Open question
+
+This is a significant visual shift away from the previously-approved "Architectural editorial" direction. Confirm you want me to fully replace that look with the minimalist/rounded language above, or whether you'd prefer me to generate 2–3 rendered minimalist variants first so you can pick one before I implement.

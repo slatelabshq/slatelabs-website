@@ -8,16 +8,9 @@ export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
       { title: "Work — Slate Labs" },
-      {
-        name: "description",
-        content:
-          "Selected work from Slate Labs: 44DB music collective, Vida Rosa luxury auto, and Ile Eko learning platform.",
-      },
+      { name: "description", content: "Selected work from Slate Labs: 44DB music collective, Vida Rosa luxury auto, and Ile Eko learning platform." },
       { property: "og:title", content: "Work — Slate Labs" },
-      {
-        property: "og:description",
-        content: "Building brands and platforms on a clean slate—one successful project at a time.",
-      },
+      { property: "og:description", content: "Building brands and platforms on a clean slate—one successful project at a time." },
       { property: "og:url", content: "/work" },
     ],
     links: [{ rel: "canonical", href: "/work" }],
@@ -33,38 +26,38 @@ function Work() {
 
   return (
     <>
-      <header className="px-6 pt-32 pb-24">
-        <div className="max-w-7xl mx-auto">
+      <header className="px-6 pt-32 pb-16">
+        <div className="max-w-5xl mx-auto text-center">
           <Eyebrow>Portfolio</Eyebrow>
-          <h1 className="text-5xl md:text-[120px] font-extrabold leading-[0.9] tracking-tighter mb-12">
-            Our <span className="font-serif italic font-medium text-primary">Work.</span>
+          <h1 className="text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-8 text-balance">
+            Our <span className="text-primary">work.</span>
           </h1>
-          <p className="max-w-2xl text-lg md:text-xl text-muted leading-relaxed">
+          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed">
             Building brands and platforms on a clean slate—one successful project at a time.
           </p>
         </div>
       </header>
 
-      <Section className="bg-card border-y border-border !py-10">
-        <div className="flex flex-wrap gap-3">
+      <div className="px-6 pb-8">
+        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-2">
           {filters.map((f) => (
             <button
               key={f}
               onClick={() => setActive(f)}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border transition-colors ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                 active === f
-                  ? "bg-foreground text-background border-foreground"
-                  : "border-border hover:border-foreground"
+                  ? "bg-foreground text-background"
+                  : "bg-surface text-muted hover:text-foreground"
               }`}
             >
               {f}
             </button>
           ))}
         </div>
-      </Section>
+      </div>
 
       <Section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {visible.map((p) => (
             <Link
               key={p.slug}
@@ -72,22 +65,20 @@ function Work() {
               params={{ slug: p.slug }}
               className="group block"
             >
-              <div className="aspect-[4/3] overflow-hidden border border-border mb-6">
+              <div className="aspect-[4/3] overflow-hidden rounded-[2rem] mb-6">
                 <img
                   src={p.image}
                   alt={p.client}
                   loading="lazy"
                   width={1280}
                   height={960}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
                 />
               </div>
-              <div className="text-xs uppercase tracking-widest text-muted mb-2">{p.category}</div>
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tighter mb-2">
-                {p.title}
-              </h2>
+              <div className="text-xs text-muted mb-2">{p.category}</div>
+              <h2 className="text-2xl md:text-3xl font-medium tracking-tight mb-2">{p.title}</h2>
               <p className="text-muted">{p.oneLiner}</p>
-              <span className="mt-4 inline-block text-xs font-bold uppercase tracking-widest group-hover:text-primary">
+              <span className="mt-4 inline-block text-sm font-medium group-hover:text-primary">
                 {p.slug === "ile-eko" ? "Learn more" : "View case study"} →
               </span>
             </Link>
@@ -95,13 +86,12 @@ function Work() {
         </div>
       </Section>
 
-      <Section className="bg-foreground text-background">
-        <div className="text-center">
-          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-12">
-            Want to be our next <br />
-            <span className="font-serif italic text-primary">success story?</span>
+      <Section>
+        <div className="bg-foreground text-background rounded-[2.5rem] p-10 md:p-20 text-center">
+          <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-10 text-balance">
+            Want to be our next <span className="text-primary">success story?</span>
           </h2>
-          <CtaButton to="/contact" variant="primary">Let's Build Together</CtaButton>
+          <CtaButton to="/contact" variant="primary">Let's build together</CtaButton>
         </div>
       </Section>
     </>

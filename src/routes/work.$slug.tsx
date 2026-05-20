@@ -38,16 +38,12 @@ function CaseStudy() {
     <>
       <header className="px-6 pt-32 pb-12">
         <div className="max-w-7xl mx-auto">
-          <Link
-            to="/work"
-            className="text-xs font-bold uppercase tracking-widest text-muted hover:text-primary"
-          >
-            ← All Work
-          </Link>
-          <div className="mt-8 text-primary font-serif italic font-bold text-xl">
+          <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
+          <div className="mt-8 inline-flex items-center gap-2 text-sm text-primary">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             {project.category}
           </div>
-          <h1 className="mt-4 text-5xl md:text-8xl font-extrabold leading-[0.9] tracking-tighter mb-12">
+          <h1 className="mt-4 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-12 text-balance">
             {project.title}
           </h1>
         </div>
@@ -55,50 +51,42 @@ function CaseStudy() {
 
       <div className="px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="aspect-[16/9] overflow-hidden border border-border">
-            <img
-              src={project.image}
-              alt={project.client}
-              width={1280}
-              height={960}
-              className="w-full h-full object-cover"
-            />
+          <div className="aspect-[16/9] overflow-hidden rounded-[2.5rem]">
+            <img src={project.image} alt={project.client} width={1280} height={960} className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
 
       {/* Quick facts + metrics */}
       <Section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-          <div>
-            <Eyebrow>Quick Facts</Eyebrow>
-            <dl className="space-y-4 text-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-surface rounded-3xl p-10">
+            <Eyebrow>Quick facts</Eyebrow>
+            <dl className="space-y-4 text-base">
               <div className="flex justify-between border-b border-border pb-3">
-                <dt className="text-muted uppercase text-xs tracking-widest">Client</dt>
+                <dt className="text-muted">Client</dt>
                 <dd className="font-medium">{project.client}</dd>
               </div>
               <div className="flex justify-between border-b border-border pb-3">
-                <dt className="text-muted uppercase text-xs tracking-widest">Industry</dt>
+                <dt className="text-muted">Industry</dt>
                 <dd className="font-medium">{d.industry}</dd>
               </div>
               <div className="flex justify-between border-b border-border pb-3">
-                <dt className="text-muted uppercase text-xs tracking-widest">Date</dt>
+                <dt className="text-muted">Date</dt>
                 <dd className="font-medium">{d.date}</dd>
               </div>
-              <div className="flex flex-col gap-2 border-b border-border pb-3">
-                <dt className="text-muted uppercase text-xs tracking-widest">Services</dt>
+              <div className="flex flex-col gap-2 pb-3">
+                <dt className="text-muted">Services</dt>
                 <dd className="font-medium">{d.services.join(" · ")}</dd>
               </div>
             </dl>
           </div>
-          <div>
-            <Eyebrow>Key Results</Eyebrow>
+          <div className="bg-surface rounded-3xl p-10">
+            <Eyebrow>Key results</Eyebrow>
             <div className="space-y-6">
               {d.metrics.map((m) => (
-                <div key={m.label} className="border-t border-border pt-4">
-                  <div className="text-4xl md:text-5xl font-extrabold tracking-tighter">
-                    {m.value}
-                  </div>
+                <div key={m.label} className="border-t border-border pt-4 first:border-0 first:pt-0">
+                  <div className="text-3xl md:text-4xl font-medium tracking-tight">{m.value}</div>
                   <div className="text-sm text-muted mt-1">{m.label}</div>
                 </div>
               ))}
@@ -108,11 +96,11 @@ function CaseStudy() {
       </Section>
 
       {/* Challenge */}
-      <Section className="bg-card border-y border-border">
+      <Section>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-4">
-            <Eyebrow>The Challenge</Eyebrow>
-            <h2 className="text-4xl font-extrabold tracking-tighter">The Problem.</h2>
+            <Eyebrow>The challenge</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-medium tracking-tight">The problem.</h2>
           </div>
           <p className="md:col-span-8 text-lg text-muted leading-relaxed">{d.challenge}</p>
         </div>
@@ -122,14 +110,14 @@ function CaseStudy() {
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-4">
-            <Eyebrow>Our Solution</Eyebrow>
-            <h2 className="text-4xl font-extrabold tracking-tighter">What We Built.</h2>
+            <Eyebrow>Our solution</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-medium tracking-tight">What we built.</h2>
           </div>
-          <div className="md:col-span-8 space-y-10">
+          <div className="md:col-span-8 space-y-8">
             {d.solution.map((s) => (
-              <div key={s.heading}>
-                <h3 className="text-2xl font-bold uppercase tracking-tight mb-3">{s.heading}</h3>
-                <p className="text-muted leading-relaxed text-lg">{s.body}</p>
+              <div key={s.heading} className="rounded-3xl bg-surface p-8">
+                <h3 className="text-xl font-medium tracking-tight mb-3">{s.heading}</h3>
+                <p className="text-muted leading-relaxed">{s.body}</p>
               </div>
             ))}
           </div>
@@ -137,24 +125,27 @@ function CaseStudy() {
       </Section>
 
       {/* Results */}
-      <Section className="bg-foreground text-background">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-          <div className="md:col-span-4">
-            <div className="text-xs font-bold uppercase tracking-[0.3em] mb-8 text-primary">
-              The Impact
+      <Section>
+        <div className="bg-foreground text-background rounded-[2.5rem] p-10 md:p-20">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+            <div className="md:col-span-4">
+              <div className="inline-flex items-center gap-2 text-sm text-primary mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                The impact
+              </div>
+              <h2 className="text-3xl md:text-4xl font-medium tracking-tight">The results.</h2>
             </div>
-            <h2 className="text-4xl font-extrabold tracking-tighter">The Results.</h2>
-          </div>
-          <div className="md:col-span-8 space-y-8">
-            <p className="text-2xl font-serif italic leading-snug">{d.results}</p>
-            <ul className="space-y-3">
-              {d.numbers.map((n) => (
-                <li key={n} className="flex gap-3 text-background/80">
-                  <span className="text-primary">→</span>
-                  <span>{n}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="md:col-span-8 space-y-8">
+              <p className="text-xl md:text-2xl font-medium leading-snug tracking-tight">{d.results}</p>
+              <ul className="space-y-3">
+                {d.numbers.map((n) => (
+                  <li key={n} className="flex gap-3 text-background/80">
+                    <span className="text-primary">→</span>
+                    <span>{n}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </Section>
@@ -162,10 +153,10 @@ function CaseStudy() {
       {/* Deliverables */}
       <Section>
         <Eyebrow>Deliverables</Eyebrow>
-        <h2 className="text-4xl font-extrabold tracking-tighter mb-12">What We Created.</h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-12">What we created.</h2>
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {d.deliverables.map((dv) => (
-            <li key={dv} className="flex gap-3 border-t border-border pt-4 text-lg">
+            <li key={dv} className="flex gap-3 rounded-2xl bg-surface p-5">
               <span className="text-primary">—</span>
               <span>{dv}</span>
             </li>
@@ -174,9 +165,9 @@ function CaseStudy() {
       </Section>
 
       {/* More work */}
-      <Section className="bg-card border-y border-border">
-        <Eyebrow>Explore More Projects</Eyebrow>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <Section>
+        <Eyebrow>Explore more projects</Eyebrow>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {others.map((p) => (
             <Link
               key={p.slug}
@@ -184,17 +175,17 @@ function CaseStudy() {
               params={{ slug: p.slug }}
               className="group block"
             >
-              <div className="aspect-[4/3] overflow-hidden border border-border mb-6">
+              <div className="aspect-[4/3] overflow-hidden rounded-[2rem] mb-6">
                 <img
                   src={p.image}
                   alt={p.client}
                   loading="lazy"
                   width={1280}
                   height={960}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
                 />
               </div>
-              <h3 className="text-2xl font-extrabold tracking-tighter">{p.title}</h3>
+              <h3 className="text-2xl font-medium tracking-tight">{p.title}</h3>
               <p className="text-muted mt-2">{p.oneLiner}</p>
             </Link>
           ))}
@@ -203,10 +194,10 @@ function CaseStudy() {
 
       <Section>
         <div className="text-center">
-          <h2 className="text-5xl md:text-7xl font-extrabold tracking-tighter mb-12">
-            Ready for your <span className="font-serif italic text-primary">clean slate?</span>
+          <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-10 text-balance">
+            Ready for your <span className="text-primary">clean slate?</span>
           </h2>
-          <CtaButton to="/contact" variant="primary">Let's Talk</CtaButton>
+          <CtaButton to="/contact" variant="primary">Let's talk</CtaButton>
         </div>
       </Section>
     </>

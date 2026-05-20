@@ -11,31 +11,22 @@ type Props = {
 
 export function CtaButton({ to, href, hash, variant = "primary", children }: Props) {
   const base =
-    "group relative inline-flex items-center justify-center px-8 py-4 text-xs font-bold uppercase tracking-widest transition-all duration-300";
+    "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium transition-all duration-250 ease-[cubic-bezier(0.16,1,0.3,1)]";
   const styles =
     variant === "primary"
       ? "bg-foreground text-background hover:bg-primary"
-      : "border border-foreground text-foreground hover:bg-foreground hover:text-background";
-
-  const content = (
-    <>
-      {children}
-      {variant === "primary" && (
-        <div className="absolute -bottom-1 -right-1 w-full h-full border border-foreground -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
-      )}
-    </>
-  );
+      : "border border-border text-foreground hover:bg-surface hover:border-foreground/20";
 
   if (to) {
     return (
       <Link to={to} hash={hash} className={`${base} ${styles}`}>
-        {content}
+        {children}
       </Link>
     );
   }
   return (
     <a href={href} className={`${base} ${styles}`}>
-      {content}
+      {children}
     </a>
   );
 }

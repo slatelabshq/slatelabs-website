@@ -19,7 +19,8 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 
   --radius-sm: 0.75rem;
   --radius: 1.25rem;
@@ -28,7 +29,6 @@
 }
 
 :root {
-  /* Ink / Canvas / Mist / Clay */
   --background: #FAFAF7;
   --foreground: #111111;
   --card: #FFFFFF;
@@ -62,19 +62,132 @@
     background: var(--primary);
     color: var(--primary-foreground);
   }
+  a, button {
+    transition: color 200ms var(--ease-out-soft),
+                background-color 200ms var(--ease-out-soft),
+                border-color 200ms var(--ease-out-soft),
+                transform 200ms var(--ease-out-soft),
+                opacity 200ms var(--ease-out-soft);
+  }
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--background), 0 0 0 4px rgba(17, 17, 17, 0.2);
+    border-radius: 9999px;
+  }
 }
 
+/* ===== Keyframes ===== */
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to   { opacity: 1; transform: scale(1); }
 }
 @keyframes marquee {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to   { transform: translateX(-50%); }
 }
+@keyframes soft-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(197, 85, 61, 0.18); }
+  50%      { box-shadow: 0 0 0 6px rgba(197, 85, 61, 0); }
+}
+
+/* ===== Utilities ===== */
 .animate-reveal {
-  animation: slide-up 0.8s var(--ease-out-expo) both;
+  animation: slide-up 600ms var(--ease-out-soft) both;
+}
+.animate-fade-in {
+  animation: fade-in 400ms var(--ease-out-soft) both;
+}
+.animate-fade-in-up {
+  animation: fade-in-up 500ms var(--ease-out-soft) both;
+}
+.animate-scale-in {
+  animation: scale-in 400ms var(--ease-out-soft) both;
 }
 .animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee 50s linear infinite;
+}
+.animate-soft-pulse {
+  animation: soft-pulse 3s ease-in-out infinite;
+}
+
+/* Reveal-on-scroll wrapper state */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 600ms var(--ease-out-soft), transform 600ms var(--ease-out-soft);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover micro-interactions */
+.hover-lift {
+  transition: transform 250ms var(--ease-out-soft), box-shadow 250ms var(--ease-out-soft);
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -18px rgba(17, 17, 17, 0.18);
+}
+
+.story-link {
+  position: relative;
+  display: inline-block;
+}
+.story-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 300ms var(--ease-out-soft);
+}
+.story-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Smooth <details> open via interpolate-size where supported */
+@supports (interpolate-size: allow-keywords) {
+  :root { interpolate-size: allow-keywords; }
+  details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: block-size 350ms var(--ease-out-soft),
+                content-visibility 350ms var(--ease-out-soft) allow-discrete,
+                opacity 300ms var(--ease-out-soft);
+  }
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
 }

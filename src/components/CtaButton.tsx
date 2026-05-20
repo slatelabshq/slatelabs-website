@@ -11,7 +11,7 @@ type Props = {
 
 export function CtaButton({ to, href, hash, variant = "primary", children }: Props) {
   const base =
-    "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium transition-all duration-250 ease-[cubic-bezier(0.16,1,0.3,1)]";
+    "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium active:translate-y-px focus-visible:outline-none";
   const styles =
     variant === "primary"
       ? "bg-foreground text-background hover:bg-primary"

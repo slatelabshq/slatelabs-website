@@ -10,7 +10,7 @@ export function Section({
   as?: "section" | "div" | "header" | "footer";
 }) {
   return (
-    <As className={`px-6 py-24 ${className}`}>
+    <As className={`px-6 py-28 ${className}`}>
       <div className="max-w-7xl mx-auto">{children}</div>
     </As>
   );
@@ -18,8 +18,9 @@ export function Section({
 
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <h2 className="text-xs font-bold uppercase tracking-[0.3em] mb-8 text-primary">
-      {children}
-    </h2>
+    <div className="inline-flex items-center gap-2 text-xs font-medium text-muted mb-6">
+      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+      <span>{children}</span>
+    </div>
   );
 }

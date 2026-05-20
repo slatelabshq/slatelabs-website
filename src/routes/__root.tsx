@@ -16,17 +16,15 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="font-serif italic text-7xl text-primary">404</h1>
-        <h2 className="mt-4 text-xl font-extrabold uppercase tracking-tight text-foreground">
-          Page not found
-        </h2>
+        <h1 className="text-7xl font-medium tracking-tight text-primary">404</h1>
+        <h2 className="mt-4 text-xl font-medium tracking-tight text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted">
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center px-6 py-3 text-xs font-bold uppercase tracking-widest bg-foreground text-background hover:bg-primary transition-colors"
+            className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium bg-foreground text-background hover:bg-primary transition-colors"
           >
             Go home
           </Link>
@@ -42,25 +40,20 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-extrabold uppercase tracking-tight text-foreground">
-          This page didn't load
-        </h1>
+        <h1 className="text-xl font-medium tracking-tight text-foreground">This page didn't load</h1>
         <p className="mt-2 text-sm text-muted">
           Something went wrong on our end. Try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
-            className="inline-flex items-center justify-center px-6 py-3 text-xs font-bold uppercase tracking-widest bg-foreground text-background hover:bg-primary transition-colors"
+            onClick={() => { router.invalidate(); reset(); }}
+            className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium bg-foreground text-background hover:bg-primary transition-colors"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center border border-foreground px-6 py-3 text-xs font-bold uppercase tracking-widest hover:bg-foreground hover:text-background transition-colors"
+            className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-medium hover:bg-surface transition-colors"
           >
             Go home
           </a>
@@ -92,7 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Playfair+Display:ital,wght@1,500;1,600;1,700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap",
       },
     ],
     scripts: [

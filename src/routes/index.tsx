@@ -26,54 +26,16 @@ export const Route = createFileRoute("/")({
 });
 
 const differentiators = [
-  {
-    n: "01",
-    title: "A Fresh Perspective",
-    body:
-      "We don't do quick fixes or generic templates. Every project starts with a clean slate; we take time to understand what's not working, then build a tailored solution designed for your specific goals.",
-  },
-  {
-    n: "02",
-    title: "Creative Meets Technical",
-    body:
-      "Most agencies are either creative or technical. We're both. Your brand strategy and your platform development are aligned from day one—no miscommunication between vendors, no fragmented vision.",
-  },
-  {
-    n: "03",
-    title: "Proven Track Record",
-    body:
-      "From growing a music collective by 6,900% in one month to increasing car sales by 45% through social media, we don't just talk strategy—we deliver measurable results.",
-  },
-  {
-    n: "04",
-    title: "We Listen, We Don't Judge",
-    body:
-      "Your challenges are opportunities. We listen, understand your story, and find solutions that help you evolve. You get direct access to the founders, not account managers reading from scripts.",
-  },
+  { n: "01", title: "A fresh perspective", body: "We don't do quick fixes or generic templates. Every project starts with a clean slate—we understand what's not working, then build for your specific goals." },
+  { n: "02", title: "Creative meets technical", body: "Most agencies are either creative or technical. We're both. Brand strategy and platform development are aligned from day one." },
+  { n: "03", title: "Proven track record", body: "From growing a music collective by 6,900% in one month to lifting car sales by 45% via social, we deliver measurable results." },
+  { n: "04", title: "We listen, we don't judge", body: "Your challenges are opportunities. You get direct access to the founders—no scripts, no account managers." },
 ];
 
 const services = [
-  {
-    n: "01",
-    title: "Brand Foundations",
-    body:
-      "We build brands that stand out and stick. From strategy and visual identity to social media management and content creation, your brand gets a fresh start with a foundation built to last.",
-    hash: "brand-foundations",
-  },
-  {
-    n: "02",
-    title: "Digital Platforms",
-    body:
-      "Custom websites, web applications, and SaaS products that scale with your business. We don't use templates—every platform is tailored to your specific needs and built for growth.",
-    hash: "digital-platforms",
-  },
-  {
-    n: "03",
-    title: "Intelligent Systems",
-    body:
-      "AI automation and workflow optimization that multiply your capacity. We build systems that work smarter, not harder, so your business can scale without adding headcount.",
-    hash: "intelligent-systems",
-  },
+  { n: "01", title: "Brand foundations", body: "Strategy, identity, and content that make your brand stand out and stick.", hash: "brand-foundations" },
+  { n: "02", title: "Digital platforms", body: "Custom websites, web apps, and SaaS products built to scale with your business.", hash: "digital-platforms" },
+  { n: "03", title: "Intelligent systems", body: "AI automation and workflows that multiply your team's capacity.", hash: "intelligent-systems" },
 ];
 
 const logos = ["44DB", "Vida Rosa", "Ile Eko", "BREAKTIME", "Lagos Schools", "Partners"];
@@ -82,67 +44,65 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <header className="relative px-6 pt-32 pb-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
+      <header className="px-6 pt-32 pb-24">
+        <div className="max-w-6xl mx-auto text-center">
           <Eyebrow>Lagos, Nigeria</Eyebrow>
-          <h1 className="text-5xl md:text-[120px] font-extrabold leading-[0.9] tracking-tighter text-balance max-w-5xl mb-12 animate-reveal">
-            Building brands & <br />platforms on a{" "}
-            <span className="font-serif italic font-medium text-primary">clean slate.</span>
+          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-[-0.03em] text-balance mb-8 animate-reveal">
+            Building brands & platforms on a{" "}
+            <span className="text-primary">clean slate.</span>
           </h1>
-          <p className="max-w-xl text-lg md:text-xl text-muted leading-relaxed mb-10 animate-reveal">
-            Creative + technical excellence for businesses ready to start fresh and grow
-            exponentially.
+          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed mb-10 animate-reveal">
+            Creative and technical excellence for businesses ready to start fresh and grow exponentially.
           </p>
-          <div className="flex flex-wrap gap-6">
-            <CtaButton to="/work" variant="primary">See Our Work</CtaButton>
-            <CtaButton to="/contact" variant="secondary">Let's Talk</CtaButton>
+          <div className="flex flex-wrap justify-center gap-3">
+            <CtaButton to="/work" variant="primary">See our work</CtaButton>
+            <CtaButton to="/contact" variant="secondary">Let's talk</CtaButton>
           </div>
         </div>
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-card/60 -z-0 border-l border-border hidden md:block" />
       </header>
 
-      {/* Metrics strip */}
-      <div className="border-y border-border bg-card">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
-          {[
-            { v: "69,526", l: "IG views / month — 44DB" },
-            { v: "45%", l: "Car sales lift — Vida Rosa" },
-            { v: "8,000+", l: "Followers grown organically" },
-            { v: "Lagos", l: "HQ base" },
-          ].map((m) => (
-            <div key={m.l} className="p-8 text-center">
-              <div className="text-3xl font-extrabold">{m.v}</div>
-              <div className="text-[10px] uppercase tracking-widest text-muted mt-1">{m.l}</div>
-            </div>
-          ))}
+      {/* Metrics */}
+      <div className="px-6">
+        <div className="max-w-7xl mx-auto bg-surface rounded-[2.5rem] p-8 md:p-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { v: "69,526", l: "IG views / month — 44DB" },
+              { v: "45%", l: "Car sales lift — Vida Rosa" },
+              { v: "8,000+", l: "Followers grown organically" },
+              { v: "Lagos", l: "HQ base" },
+            ].map((m) => (
+              <div key={m.l} className="text-center md:text-left">
+                <div className="text-3xl md:text-4xl font-medium tracking-tight">{m.v}</div>
+                <div className="text-sm text-muted mt-2">{m.l}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Services */}
-      <Section className="bg-card">
-        <div className="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-4">
-          <h2 className="text-4xl font-extrabold tracking-tight">What We Build.</h2>
-          <div className="h-px flex-1 bg-border mx-8 hidden md:block" />
+      <Section>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <Eyebrow>What we build</Eyebrow>
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight max-w-xl">
+              Three integrated practices. One studio.
+            </h2>
+          </div>
           <span className="text-sm text-muted">01 — 03</span>
         </div>
-        <p className="max-w-2xl text-lg text-muted mb-16">
-          From brand identity to intelligent systems, we give your business a clean slate and the
-          tools to grow exponentially.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((s) => (
             <Link
               key={s.n}
               to="/services"
               hash={s.hash}
-              className="group block border-t border-border pt-6 hover:border-primary transition-colors"
+              className="group block rounded-3xl bg-surface p-8 hover:bg-foreground hover:text-background transition-colors duration-300"
             >
-              <div className="text-primary font-bold mb-4 italic font-serif text-xl">{s.n}/</div>
-              <h3 className="text-2xl font-bold mb-4 uppercase tracking-tight">{s.title}</h3>
-              <p className="text-muted leading-relaxed mb-6">{s.body}</p>
-              <span className="text-xs font-bold uppercase tracking-widest group-hover:text-primary">
-                Learn more →
-              </span>
+              <div className="text-sm text-primary mb-6">{s.n}</div>
+              <h3 className="text-2xl font-medium mb-3 tracking-tight">{s.title}</h3>
+              <p className="text-muted group-hover:text-background/60 leading-relaxed mb-8">{s.body}</p>
+              <span className="text-sm font-medium">Learn more →</span>
             </Link>
           ))}
         </div>
@@ -150,11 +110,11 @@ function Home() {
 
       {/* Featured work */}
       <Section>
-        <Eyebrow>Selected Work</Eyebrow>
-        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-16">
-          Work That Speaks For Itself.
+        <Eyebrow>Selected work</Eyebrow>
+        <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-16 max-w-xl">
+          Work that speaks for itself.
         </h2>
-        <div className="space-y-32">
+        <div className="space-y-24">
           {featuredProjects.map((p, i) => {
             const reversed = i % 2 === 1;
             return (
@@ -164,32 +124,33 @@ function Home() {
                 params={{ slug: p.slug }}
                 className="group block"
               >
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                   <div className={`md:col-span-7 ${reversed ? "md:order-2" : ""}`}>
-                    <div className="w-full aspect-[4/3] overflow-hidden border border-border">
+                    <div className="w-full aspect-[4/3] overflow-hidden rounded-[2rem]">
                       <img
                         src={p.image}
                         alt={p.client}
                         loading="lazy"
                         width={1280}
                         height={960}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
                       />
                     </div>
                   </div>
-                  <div className={`md:col-span-5 pb-8 ${reversed ? "md:order-1" : ""}`}>
-                    <span className="text-primary font-bold italic font-serif">
-                      Case Study 0{i + 1}
-                    </span>
-                    <h3 className="text-3xl md:text-4xl font-extrabold mt-4 mb-6 tracking-tighter">
+                  <div className={`md:col-span-5 ${reversed ? "md:order-1" : ""}`}>
+                    <div className="inline-flex items-center gap-2 text-xs text-muted mb-4">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      Case study 0{i + 1}
+                    </div>
+                    <h3 className="text-3xl md:text-4xl font-medium mb-4 tracking-tight">
                       {p.title}
                     </h3>
-                    <p className="text-muted mb-6 text-lg">{p.oneLiner}</p>
+                    <p className="text-muted mb-6 leading-relaxed">{p.oneLiner}</p>
                     <div className="flex flex-wrap gap-2">
                       {p.tags.map((t) => (
                         <span
                           key={t}
-                          className="px-3 py-1 border border-border text-[10px] uppercase font-bold tracking-widest"
+                          className="px-3 py-1 rounded-full bg-surface text-xs text-muted"
                         >
                           {t}
                         </span>
@@ -202,18 +163,15 @@ function Home() {
           })}
         </div>
         <div className="mt-20 flex justify-center">
-          <CtaButton to="/work" variant="secondary">View Full Portfolio</CtaButton>
+          <CtaButton to="/work" variant="secondary">View full portfolio</CtaButton>
         </div>
       </Section>
 
       {/* Logo marquee */}
-      <div className="py-10 border-y border-border bg-card overflow-hidden">
+      <div className="py-12 overflow-hidden">
         <div className="flex items-center gap-16 animate-marquee whitespace-nowrap w-max">
           {[...logos, ...logos, ...logos].map((l, i) => (
-            <span
-              key={i}
-              className="text-xl font-bold opacity-30 px-8 uppercase tracking-[0.4em]"
-            >
+            <span key={i} className="text-lg font-medium text-muted/40 px-8">
               {l}
             </span>
           ))}
@@ -221,27 +179,28 @@ function Home() {
       </div>
 
       {/* Why Slate Labs */}
-      <Section className="bg-foreground text-background">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
-          <div>
-            <h2 className="text-5xl font-extrabold tracking-tighter leading-tight mb-8">
-              We don't renovate.<br />
-              We build from <span className="text-primary">zero.</span>
-            </h2>
-            <p className="text-background/60 text-lg leading-relaxed">
-              Most agencies try to fix what's broken. We believe in the power of the blank page to
-              unlock true growth.
-            </p>
-          </div>
-          <div className="space-y-12">
-            {differentiators.map((d) => (
-              <div key={d.n}>
-                <h3 className="text-xs font-bold uppercase tracking-widest mb-3 text-primary">
-                  {d.n} / {d.title}
-                </h3>
-                <p className="text-background/70 leading-relaxed">{d.body}</p>
-              </div>
-            ))}
+      <Section>
+        <div className="bg-foreground text-background rounded-[2.5rem] p-10 md:p-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight leading-tight mb-6">
+                We don't renovate.<br />
+                We build from <span className="text-primary">zero.</span>
+              </h2>
+              <p className="text-background/60 leading-relaxed max-w-md">
+                Most agencies try to fix what's broken. We believe in the power of the blank page to unlock true growth.
+              </p>
+            </div>
+            <div className="space-y-10">
+              {differentiators.map((d) => (
+                <div key={d.n}>
+                  <h3 className="text-sm font-medium mb-2 text-primary">
+                    {d.n} — {d.title}
+                  </h3>
+                  <p className="text-background/70 leading-relaxed">{d.body}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </Section>
@@ -249,17 +208,15 @@ function Home() {
       {/* Final CTA */}
       <Section>
         <div className="text-center">
-          <h2 className="text-5xl md:text-8xl font-extrabold tracking-tighter mb-8">
-            Ready for your <br />
-            <span className="font-serif italic text-primary">clean slate?</span>
+          <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-6 text-balance">
+            Ready for your <span className="text-primary">clean slate?</span>
           </h2>
-          <p className="text-muted text-lg mb-12 max-w-xl mx-auto">
-            Let's build something remarkable together. Fresh start. Clear vision. Exponential
-            growth.
+          <p className="text-muted text-lg mb-10 max-w-xl mx-auto">
+            Let's build something remarkable together. Fresh start. Clear vision. Exponential growth.
           </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <CtaButton to="/contact" variant="primary">Get Started</CtaButton>
-            <CtaButton to="/services" variant="secondary">See Our Services</CtaButton>
+          <div className="flex flex-wrap justify-center gap-3">
+            <CtaButton to="/contact" variant="primary">Get started</CtaButton>
+            <CtaButton to="/services" variant="secondary">See our services</CtaButton>
           </div>
         </div>
       </Section>

@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import logoWordmark from "@/assets/slate-logo-wordmark.png";
 
 export function SiteFooter() {
   return (
@@ -6,8 +7,8 @@ export function SiteFooter() {
       <div className="max-w-7xl mx-auto bg-surface rounded-[2.5rem] p-10 md:p-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
           <div className="col-span-2">
-            <Link to="/" className="text-xl font-semibold tracking-tight">
-              Slate Labs
+            <Link to="/" className="inline-flex items-center" aria-label="Slate Labs — Home">
+              <img src={logoWordmark} alt="Slate Labs" className="h-8 w-auto" />
             </Link>
             <p className="mt-4 text-sm text-muted max-w-xs leading-relaxed">
               Building brands & platforms on a clean slate. Lagos, Nigeria.

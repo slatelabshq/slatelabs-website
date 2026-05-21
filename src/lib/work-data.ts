@@ -87,6 +87,7 @@ export const projects: Project[] = [
   },
   {
     slug: "vida-rosa",
+    color: "#7a1f3d",
     client: "Vida Rosa",
     title: "Vida Rosa — Luxury Auto Social Management",
     category: "Brand Foundations",
@@ -136,6 +137,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ile-eko",
+    color: "#1f4d3a",
     client: "Ile Eko",
     title: "Ile Eko — Learning Management System",
     category: "Digital Platforms",
@@ -145,6 +147,7 @@ export const projects: Project[] = [
   },
   {
     slug: "morgan-oxford",
+    color: "#142850",
     client: "Morgan Oxford Education",
     title: "Morgan Oxford — Education CRM",
     category: "Intelligent Systems",

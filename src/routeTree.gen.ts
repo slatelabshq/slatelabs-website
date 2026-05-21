@@ -15,6 +15,7 @@ import { Route as IleEkoRouteImport } from './routes/ile-eko'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkMorganOxfordRouteImport } from './routes/work.morgan-oxford'
 import { Route as Work44dbRouteImport } from './routes/work.44db'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 
@@ -48,6 +49,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkMorganOxfordRoute = WorkMorganOxfordRouteImport.update({
+  id: '/morgan-oxford',
+  path: '/morgan-oxford',
+  getParentRoute: () => WorkRoute,
+} as any)
 const Work44dbRoute = Work44dbRouteImport.update({
   id: '/44db',
   path: '/44db',
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/work': typeof WorkRouteWithChildren
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
+  '/work/morgan-oxford': typeof WorkMorganOxfordRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/work': typeof WorkRouteWithChildren
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
+  '/work/morgan-oxford': typeof WorkMorganOxfordRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/work': typeof WorkRouteWithChildren
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
+  '/work/morgan-oxford': typeof WorkMorganOxfordRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/work'
     | '/work/$slug'
     | '/work/44db'
+    | '/work/morgan-oxford'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/work'
     | '/work/$slug'
     | '/work/44db'
+    | '/work/morgan-oxford'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/work'
     | '/work/$slug'
     | '/work/44db'
+    | '/work/morgan-oxford'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -176,6 +188,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/morgan-oxford': {
+      id: '/work/morgan-oxford'
+      path: '/morgan-oxford'
+      fullPath: '/work/morgan-oxford'
+      preLoaderRoute: typeof WorkMorganOxfordRouteImport
+      parentRoute: typeof WorkRoute
+    }
     '/work/44db': {
       id: '/work/44db'
       path: '/44db'
@@ -196,11 +215,13 @@ declare module '@tanstack/react-router' {
 interface WorkRouteChildren {
   WorkSlugRoute: typeof WorkSlugRoute
   Work44dbRoute: typeof Work44dbRoute
+  WorkMorganOxfordRoute: typeof WorkMorganOxfordRoute
 }
 
 const WorkRouteChildren: WorkRouteChildren = {
   WorkSlugRoute: WorkSlugRoute,
   Work44dbRoute: Work44dbRoute,
+  WorkMorganOxfordRoute: WorkMorganOxfordRoute,
 }
 
 const WorkRouteWithChildren = WorkRoute._addFileChildren(WorkRouteChildren)
@@ -216,3 +237,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

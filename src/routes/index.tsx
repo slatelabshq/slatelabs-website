@@ -112,60 +112,70 @@ function Home() {
 
       {/* Featured work */}
       <Section>
-        <Eyebrow>Selected work</Eyebrow>
-        <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-16 max-w-xl">
-          Work that speaks for itself.
-        </h2>
-        <div className="space-y-24">
-          {featuredProjects.map((p, i) => {
-            const reversed = i % 2 === 1;
-            return (
-              <Reveal key={p.slug} delay={i * 120}>
-                <Link
-                  to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
-                  params={{ slug: p.slug }}
-                  className="group block"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                    <div className={`md:col-span-7 ${reversed ? "md:order-2" : ""}`}>
-                      <div className="w-full aspect-[4/3] overflow-hidden rounded-[2rem]">
-                        <img
-                          src={p.image}
-                          alt={p.client}
-                          loading="lazy"
-                          width={1280}
-                          height={960}
-                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-                        />
-                      </div>
-                    </div>
-                    <div className={`md:col-span-5 ${reversed ? "md:order-1" : ""}`}>
-                      <div className="inline-flex items-center gap-2 text-xs text-muted mb-4">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                        Case study 0{i + 1}
-                      </div>
-                      <h3 className="text-3xl md:text-4xl font-medium mb-4 tracking-tight">
-                        {p.title}
-                      </h3>
-                      <p className="text-muted mb-6 leading-relaxed">{p.oneLiner}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {p.tags.map((t) => (
-                          <span key={t} className="px-3 py-1 rounded-full bg-surface text-xs text-muted">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
+        <div className="mb-20">
+          <Eyebrow>Selected work</Eyebrow>
+          <h2 className="text-4xl md:text-6xl font-light tracking-tight max-w-2xl">
+            Work that speaks for itself.
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-20 md:gap-x-12 lg:gap-x-16 items-start">
+          {featuredProjects.map((p, i) => (
+            <Reveal key={p.slug} delay={i * 120} className={i === 1 ? "md:mt-24" : ""}>
+              <Link
+                to="/work/$slug"
+                params={{ slug: p.slug }}
+                className="group block space-y-8"
+              >
+                <div className="overflow-hidden bg-surface aspect-[4/5] relative rounded-sm">
+                  <img
+                    src={p.image}
+                    alt={p.client}
+                    loading="lazy"
+                    width={800}
+                    height={1000}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+                  />
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <span className="text-foreground/80 text-[10px] font-medium uppercase tracking-widest">
+                      {p.client}
+                    </span>
+                    <div className="h-px w-8 bg-border" />
+                    <div className="flex gap-2">
+                      {p.tags.slice(0, 2).map((t) => (
+                        <span key={t} className="text-[9px] text-muted uppercase tracking-tighter">
+                          {t}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </Link>
-              </Reveal>
-            );
-          })}
+                  <h3 className="text-2xl text-foreground font-light tracking-tight underline-offset-8 group-hover:underline decoration-border">
+                    {p.title.includes("—") ? p.title.split("—")[1].trim() : p.title}
+                  </h3>
+                  <p className="text-muted text-sm leading-relaxed">{p.oneLiner}</p>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
         </div>
-        <div className="mt-20 flex justify-center">
-          <CtaButton to="/work" variant="secondary">View full portfolio</CtaButton>
+
+        <div className="mt-32 pt-12 border-t border-border flex justify-center">
+          <Link
+            to="/work"
+            className="group flex items-center gap-4 text-foreground transition-all duration-300"
+          >
+            <span className="text-[11px] font-bold tracking-[0.3em] uppercase">View full portfolio</span>
+            <span className="w-10 h-10 border border-border rounded-full flex items-center justify-center group-hover:bg-foreground group-hover:border-foreground transition-all">
+              <svg className="w-4 h-4 text-muted group-hover:text-background" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </Link>
         </div>
       </Section>
+
 
       {/* Logo marquee */}
       <div className="py-12 overflow-hidden">

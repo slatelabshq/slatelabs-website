@@ -19,28 +19,10 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const team: { name: string; role: string; bio: string; funFact: string; photo?: string; initials?: string }[] = [
-  {
-    name: "Joseph Awujoola-Kalohun",
-    role: "Creative Director & Brand Strategist",
-    bio: "I bring the creative vision and strategic thinking. From content writing to videography to social media management, I've built brands that break through the noise. At Slate Labs, I lead brand development, content strategy, and creative direction—making sure every project has a story that resonates and a look that lasts.",
-    funFact: "Coming soon ✨",
-    photo: photoJoseph,
-  },
-  {
-    name: "Olasukanmi Festus Adeyeye",
-    role: "Lead Developer & Technical Architect",
-    bio: "SK is the technical backbone of Slate Labs. With experience building platforms, SaaS products, and scalable systems, he leads all development work—from custom websites to complex applications like Ile Eko. He's the reason our platforms don't just look good, they work flawlessly.",
-    funFact: "Coming soon ✨",
-    initials: "SK",
-  },
-  {
-    name: "Kehinde Abiola",
-    role: "Head of Operations & Strategy",
-    bio: "Kenny keeps everything running smoothly. From project management to client relations to making sure deadlines are met without sacrificing quality—he's the operational force that turns vision into execution. He ensures every project is delivered on time, on budget, and beyond expectations.",
-    funFact: "Coming soon ✨",
-    photo: photoKehinde,
-  },
+const team: { name: string; role: string; bio: string; photo?: string; initials?: string }[] = [
+  { name: "Joseph Awujoola-Kalohun", role: "Creative Director & Brand Strategist", bio: "Joseph leads brand strategy and creative direction—translating client stories into visual systems and social presence that move audiences.", photo: photoJoseph },
+  { name: "Olasukanmi Adeyeye (SK)", role: "CTO & Platform Engineer", bio: "SK architects and ships the platforms. From SaaS products to bespoke web applications, he turns ambitious briefs into working systems.", initials: "SK" },
+  { name: "Kehinde Abiola", role: "COO — Head of Operations & Strategy", bio: "Kenny runs operations and strategy—keeping engagements on time, on budget, and aligned with the outcomes that matter to clients.", photo: photoKehinde },
 ];
 
 const philosophy = [
@@ -104,30 +86,22 @@ function About() {
       </Section>
 
       <Section>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-4">
-            Meet the <span className="text-primary">Founders</span>
-          </h2>
-          <p className="text-muted">The team behind every clean slate.</p>
-        </div>
+        <Eyebrow>The team</Eyebrow>
+        <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-16">Meet the founders.</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {team.map((m, i) => (
-            <Reveal
-              key={m.name}
-              delay={i * 90}
-              className="rounded-3xl bg-surface p-8 hover-lift flex flex-col items-center text-center"
-            >
-              <div className="w-24 h-24 rounded-full overflow-hidden bg-background ring-2 ring-primary/60 mb-6 flex items-center justify-center">
+            <Reveal key={m.name} delay={i * 90} className="rounded-3xl bg-surface p-8 hover-lift">
+              <div className="aspect-square w-full rounded-2xl overflow-hidden bg-background mb-6 flex items-center justify-center">
                 {m.photo ? (
                   <img src={m.photo} alt={m.name} className="w-full h-full object-cover" loading="lazy" />
                 ) : (
-                  <span className="text-2xl font-medium tracking-tight text-muted">{m.initials}</span>
+                  <span className="text-5xl font-medium tracking-tight text-muted">{m.initials}</span>
                 )}
               </div>
-              <h3 className="text-xl font-semibold tracking-tight mb-1">{m.name}</h3>
-              <div className="text-sm text-primary/80 mb-6">{m.role}</div>
-              <p className="text-muted leading-relaxed mb-8">{m.bio}</p>
-              <p className="mt-auto text-sm italic text-muted/80">Fun Fact: {m.funFact}</p>
+              <div className="text-sm text-primary mb-3">0{i + 1}</div>
+              <h3 className="text-xl font-medium tracking-tight mb-1">{m.name}</h3>
+              <div className="text-sm text-muted mb-6">{m.role}</div>
+              <p className="text-muted leading-relaxed">{m.bio}</p>
             </Reveal>
           ))}
         </div>

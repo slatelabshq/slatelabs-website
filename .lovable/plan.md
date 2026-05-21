@@ -1,3 +1,5 @@
-Hide the "Explore more projects" section on the Vida Rosa case study page.
+Replace the Vida Rosa image with the uploaded showroom photo.
 
-In `src/routes/work.$slug.tsx`, wrap the `/* More work */` section so it only renders when `project.slug !== "vida-rosa"`. All other case studies continue to show it.
+Steps:
+1. Copy `user-uploads://image-3.png` to `src/assets/work-vidarosa.jpg` (overwrite existing).
+2. No code changes needed — `src/lib/work-data.ts` already imports `@/assets/work-vidarosa.jpg`.

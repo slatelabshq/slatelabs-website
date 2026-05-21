@@ -4,6 +4,9 @@ import { Leaf, Palette, Globe, LayoutTemplate, Sprout } from "lucide-react";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects } from "@/lib/work-data";
+import brillantaBusinessCard from "@/assets/brillanta-business-card.png";
+import brillantaIdCard from "@/assets/brillanta-id-card.png";
+import brillantaSocial from "@/assets/brillanta-social.jpg";
 
 const project = projects.find((p) => p.slug === "brillanta")!;
 
@@ -43,9 +46,9 @@ type Design =
   | { label: string; kind: "image"; src: string };
 
 const designs: Design[] = [
-  { label: "Company Profile", kind: "gradient", gradient: "linear-gradient(135deg, #0F1A14 0%, #1F4D2B 55%, #2E6A3B 100%)" },
-  { label: "Website Mockup", kind: "gradient", gradient: "linear-gradient(135deg, #1F4D2B 0%, #4A2C18 55%, #C9A24C 100%)" },
-  { label: "Business Card", kind: "gradient", gradient: "linear-gradient(135deg, #4A2C18 0%, #C9A24C 60%, #F2E8D5 100%)" },
+  { label: "Staff ID Card", kind: "image", src: brillantaIdCard },
+  { label: "Social Media", kind: "image", src: brillantaSocial },
+  { label: "Business Card", kind: "image", src: brillantaBusinessCard },
 ];
 
 // Scope the green/gold accent to this page only — does not touch global tokens.

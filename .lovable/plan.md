@@ -1,33 +1,16 @@
-## Replace 44DB hero cover image with uploaded logo
+## Add team photos to About page
 
 ### What
-Replace the current 16:9 cover photo hero on the 44DB case study page with the uploaded 44DB logo displayed as a centered icon badge, matching the Morgan Oxford Education case study pattern.
+Add the uploaded headshots for Joseph and Kehinde to the "Meet the founders" cards on `/about`. SK has no photo — keep his card photoless (or use an initials placeholder).
 
 ### Changes
-1. **Copy uploaded logo** into `src/assets/44db-logo.png`
-2. **Update `src/routes/work.44db.tsx`:**
-   - Import the logo asset
-   - Restyle the hero from a wide image layout to a centered text layout:
-     - Remove the large `aspect-[16/9]` `<img>` block
-     - Add a centered logo container (rounded dark tile ~112×144px, similar to MOE's `w-28 h-32 rounded-3xl`)
-     - Keep "Music Collective" category tag
-     - Keep the H1 title below the logo
-     - Center-align everything in a `max-w-5xl mx-auto text-center` container
+1. Copy uploads to assets:
+   - `user-uploads://Untitled_design_7.png` → `src/assets/team-joseph.png`
+   - `user-uploads://Untitled_design_5.png` → `src/assets/team-kehinde.png`
+2. In `src/routes/about.tsx`:
+   - Import both images
+   - Add an optional `photo` field to each `team` entry (Joseph + Kehinde get one; SK left undefined)
+   - Update the team card markup to render the photo at the top of each card as a square (rounded-2xl, aspect-square, object-cover, full width of card) above the existing `0X` number, name, role, and bio
+   - For the card without a photo (SK), render a same-sized placeholder tile with his initials "SK" centered in the brand surface color so all three cards stay the same height
 
-### Layout reference (from `work.morgan-oxford.tsx`)
-```
-<header className="px-6 pt-32 pb-12">
-  <div className="max-w-5xl mx-auto text-center">
-    <Link to="/work">← All work</Link>
-    <div className="mt-12 flex justify-center">
-      <div className="w-28 h-32 rounded-3xl ...">
-        <Logo />
-      </div>
-    </div>
-    <div className="mt-8 text-xs ... uppercase">Category</div>
-    <h1 className="mt-6 text-5xl md:text-7xl ...">Title</h1>
-  </div>
-</header>
-```
-
-The rest of the case study (Brief, Palette, Deliverables, Results, CTA) stays unchanged.
+No other sections change.

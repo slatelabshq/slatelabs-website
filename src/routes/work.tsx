@@ -105,7 +105,8 @@ function Work() {
                 </div>
               </Link>
             </Reveal>
-          ))}
+            );
+          })}
         </div>
       </Section>
 

@@ -4,9 +4,10 @@ import workIleEko from "@/assets/work-ileeko.jpg";
 import workMorganOxford from "@/assets/work-morgan-oxford.jpg";
 import workFlyTrinity from "@/assets/work-fly-trinity.jpg";
 import workBrillanta from "@/assets/work-brillanta.jpg";
+import workNellyBaradi from "@/assets/work-nelly-baradi.jpg";
 
 export type Project = {
-  slug: "44db" | "vida-rosa" | "ile-eko" | "morgan-oxford" | "fly-trinity" | "brillanta";
+  slug: "44db" | "vida-rosa" | "ile-eko" | "morgan-oxford" | "fly-trinity" | "brillanta" | "nelly-baradi";
   client: string;
   title: string;
   category: "Brand Foundations" | "Digital Platforms" | "Intelligent Systems";

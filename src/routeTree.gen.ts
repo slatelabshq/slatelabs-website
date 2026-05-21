@@ -17,6 +17,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WorkMorganOxfordRouteImport } from './routes/work.morgan-oxford'
 import { Route as WorkFlyTrinityRouteImport } from './routes/work.fly-trinity'
+import { Route as WorkBrillantaRouteImport } from './routes/work.brillanta'
 import { Route as Work44dbRouteImport } from './routes/work.44db'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 
@@ -60,6 +61,11 @@ const WorkFlyTrinityRoute = WorkFlyTrinityRouteImport.update({
   path: '/fly-trinity',
   getParentRoute: () => WorkRoute,
 } as any)
+const WorkBrillantaRoute = WorkBrillantaRouteImport.update({
+  id: '/brillanta',
+  path: '/brillanta',
+  getParentRoute: () => WorkRoute,
+} as any)
 const Work44dbRoute = Work44dbRouteImport.update({
   id: '/44db',
   path: '/44db',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/work': typeof WorkRouteWithChildren
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
+  '/work/brillanta': typeof WorkBrillantaRoute
   '/work/fly-trinity': typeof WorkFlyTrinityRoute
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/work': typeof WorkRouteWithChildren
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
+  '/work/brillanta': typeof WorkBrillantaRoute
   '/work/fly-trinity': typeof WorkFlyTrinityRoute
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/work': typeof WorkRouteWithChildren
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
+  '/work/brillanta': typeof WorkBrillantaRoute
   '/work/fly-trinity': typeof WorkFlyTrinityRoute
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/work'
     | '/work/$slug'
     | '/work/44db'
+    | '/work/brillanta'
     | '/work/fly-trinity'
     | '/work/morgan-oxford'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/work'
     | '/work/$slug'
     | '/work/44db'
+    | '/work/brillanta'
     | '/work/fly-trinity'
     | '/work/morgan-oxford'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/work'
     | '/work/$slug'
     | '/work/44db'
+    | '/work/brillanta'
     | '/work/fly-trinity'
     | '/work/morgan-oxford'
   fileRoutesById: FileRoutesById
@@ -214,6 +226,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkFlyTrinityRouteImport
       parentRoute: typeof WorkRoute
     }
+    '/work/brillanta': {
+      id: '/work/brillanta'
+      path: '/brillanta'
+      fullPath: '/work/brillanta'
+      preLoaderRoute: typeof WorkBrillantaRouteImport
+      parentRoute: typeof WorkRoute
+    }
     '/work/44db': {
       id: '/work/44db'
       path: '/44db'
@@ -234,6 +253,7 @@ declare module '@tanstack/react-router' {
 interface WorkRouteChildren {
   WorkSlugRoute: typeof WorkSlugRoute
   Work44dbRoute: typeof Work44dbRoute
+  WorkBrillantaRoute: typeof WorkBrillantaRoute
   WorkFlyTrinityRoute: typeof WorkFlyTrinityRoute
   WorkMorganOxfordRoute: typeof WorkMorganOxfordRoute
 }
@@ -241,6 +261,7 @@ interface WorkRouteChildren {
 const WorkRouteChildren: WorkRouteChildren = {
   WorkSlugRoute: WorkSlugRoute,
   Work44dbRoute: Work44dbRoute,
+  WorkBrillantaRoute: WorkBrillantaRoute,
   WorkFlyTrinityRoute: WorkFlyTrinityRoute,
   WorkMorganOxfordRoute: WorkMorganOxfordRoute,
 }

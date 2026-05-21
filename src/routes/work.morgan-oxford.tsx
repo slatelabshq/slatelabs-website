@@ -139,9 +139,9 @@ function MorganOxfordCaseStudy() {
         </h2>
         <div data-website-mockup className="space-y-4">
           <figure className="bg-surface rounded-3xl p-4 border border-border">
-            <div className="aspect-video rounded-2xl overflow-hidden border border-border/40 bg-muted">
+            <a href="https://moe-website-beta.vercel.app/" className="block aspect-video rounded-2xl overflow-hidden border border-border/40 bg-muted hover:opacity-90 transition-opacity">
               <img src={websiteHero} alt="Morgan Oxford website hero — Placed with purpose, supported all the way." loading="lazy" className="w-full h-full object-cover object-top" />
-            </div>
+            </a>
             <figcaption className="px-2 pt-4 pb-2 text-center text-sm font-medium">morganoxford.com — Hero</figcaption>
           </figure>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -151,14 +151,15 @@ function MorganOxfordCaseStudy() {
               { src: websiteDestinations, alt: "Morgan Oxford study destinations — United Kingdom, United States, Canada.", caption: "Study destinations" },
             ].map((tile) => (
               <figure key={tile.caption} className="bg-surface rounded-3xl p-4 border border-border">
-                <div className="aspect-video rounded-2xl overflow-hidden border border-border/40 bg-muted">
+                <a href="https://moe-website-beta.vercel.app/" className="block aspect-video rounded-2xl overflow-hidden border border-border/40 bg-muted hover:opacity-90 transition-opacity">
                   <img src={tile.src} alt={tile.alt} loading="lazy" className="w-full h-full object-cover object-top" />
-                </div>
+                </a>
                 <figcaption className="px-2 pt-4 pb-2 text-center text-sm font-medium">{tile.caption}</figcaption>
               </figure>
             ))}
           </div>
         </div>
+
 
       </Section>
 

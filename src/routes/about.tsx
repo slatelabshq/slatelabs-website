@@ -130,7 +130,6 @@ function About() {
               <p className="mt-auto text-sm italic text-muted/80">Fun Fact: {m.funFact}</p>
             </Reveal>
           ))}
-          ))}
         </div>
       </Section>
 

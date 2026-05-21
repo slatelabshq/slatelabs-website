@@ -202,6 +202,15 @@ export const projects: Project[] = [
         "Staff training sessions and internal documentation",
       ],
     },
+  {
+    slug: "fly-trinity",
+    color: "#3C096C",
+    client: "Fly Trinity Airways",
+    title: "Fly Trinity Airways — Brand Identity",
+    category: "Brand Foundations",
+    oneLiner: "Crafting a premium airline brand identity from ground to sky.",
+    image: workFlyTrinity,
+    tags: ["Brand Strategy", "Visual Identity", "Collateral"],
   },
 ];
 

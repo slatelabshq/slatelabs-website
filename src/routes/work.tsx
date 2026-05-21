@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
@@ -48,8 +48,13 @@ export const Route = createFileRoute("/work")({
 const filters = ["All", "Brand Foundations", "Digital Platforms", "Intelligent Systems"] as const;
 
 function Work() {
+  const { pathname } = useLocation();
+  const isIndex = pathname === "/work" || pathname === "/work/";
   const [active, setActive] = useState<(typeof filters)[number]>("All");
   const visible = active === "All" ? projects : projects.filter((p) => p.category === active);
+
+  if (!isIndex) return <Outlet />;
+
 
   return (
     <>

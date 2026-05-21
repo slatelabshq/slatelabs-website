@@ -1,12 +1,8 @@
-## Fix 44DB Case Study Link
+Root cause: `/work/44db` is registered as a child route of `/work`, but `src/routes/work.tsx` renders the portfolio listing without an `<Outlet />`, so the matched 44DB child route has nowhere to appear.
 
-The new `src/routes/work.44db.tsx` page exists and is registered, but the portfolio card on `/work` links to `/work/$slug` with `slug=44db`, which routes to the old dynamic case study template (`work.$slug.tsx`) instead of the new dedicated page.
-
-### Change
-**File: `src/routes/work.tsx`** — update the `<Link>` in the cards map:
-- Currently: `to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}` with `params={{ slug: p.slug }}`
-- Change to also special-case 44db: `to="/work/44db"` (no params) when `p.slug === "44db"`, ile-eko → `/ile-eko`, otherwise → `/work/$slug` with params.
-
-Simplest implementation: switch to a helper that returns the correct `<Link>` props per slug, or use a small inline conditional.
-
-No other files affected.
+Plan:
+1. Update `src/routes/work.tsx` to import `Outlet` and `useLocation` from `@tanstack/react-router`.
+2. In the `Work` component, detect whether the current path is exactly `/work`.
+3. If the path is not exactly `/work`, render only `<Outlet />` so `/work/44db` and other nested case-study pages show their own page content instead of the portfolio grid.
+4. Keep the existing `/work` portfolio listing, filters, hover cyan glow, and links unchanged.
+5. Do not edit `src/routeTree.gen.ts`; it is already generated correctly and will remain managed by TanStack Router.

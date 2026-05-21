@@ -1,13 +1,15 @@
 ## What I'll do
 
-Replace the static cover image on `/work/brillanta` (the cocoa/grain still life sitting in the 16:9 frame under the hero) with the uploaded `brillanta_website_banner.mp4`, played as an autoplay background-style hero video.
+Add the uploaded website mockup as a fourth tile in the "Bringing the brand to life" gallery on `/work/brillanta`, so the section now reads: **Staff ID Card · Social Media · Business Card · Website**.
 
 ## Files
 
-1. Copy `user-uploads://brillanta_website_banner.mp4` → `public/brillanta-banner.mp4` (videos belong in `public/` so they stream directly without being bundled by Vite).
+1. Copy `user-uploads://Gemini_Generated_Image_jr6bpojr6bpojr6b.png` → `src/assets/brillanta-website.png`.
 
 2. Edit `src/routes/work.brillanta.tsx`:
-   - In the cover block (currently `<img src={project.image} ... />` inside the `aspect-[16/9]` frame), swap the `<img>` for a `<video>` with `src="/brillanta-banner.mp4"`, `autoPlay`, `muted`, `loop`, `playsInline`, `preload="metadata"`, and `className="w-full h-full object-cover"`. Add `poster={project.image}` so the still image shows while the video loads / on browsers that block autoplay.
-   - Leave `project.image` untouched so the `/work` card thumbnail and the `og:image` social preview keep using the still (video can't be an OG image).
+   - Import the new asset as `brillantaWebsite`.
+   - Add a fourth entry to the `designs` array: `{ label: "Website", kind: "image", src: brillantaWebsite }`.
+   - Change the gallery grid from `md:grid-cols-3` to `md:grid-cols-2 lg:grid-cols-4` so four tiles fit cleanly.
+   - The website mockup is a landscape composition, so keep `aspect-[4/5]` on the tile (image will `object-cover` and crop sensibly) — consistent visual rhythm with the other three.
 
-No other changes — palette, brief, deliverables, gallery, CTA all stay.
+No other changes.

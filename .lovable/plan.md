@@ -1,31 +1,11 @@
-### Scope
-Add Nelly Baradi's platform links as accessible icon buttons inside the **Results** section of her case-study page.
+Swap the AI-generated hero on the Nelly Baradi case study for her real portrait.
 
-### Links to add
-| Platform | URL |
-|---|---|
-| Instagram | https://www.instagram.com/nellybaradi |
-| X (Twitter) | https://x.com/nellybaradii |
-| TikTok | https://www.tiktok.com/@nellybaradi_ |
-| Hypalabs (Linktree) | https://hypalabs.lnk.to/HighMe |
-| Spotify | https://open.spotify.com/artist/77bRctbyJcjkQcyEa5wrQr |
-| Apple Music | https://music.apple.com/us/artist/nelly-baradi/1494289729 |
-| Audiomack | https://audiomack.com/nelly-baradi |
+### Steps
+1. Copy `user-uploads://image-2.png` → `src/assets/work-nelly-baradi.jpg` (overwrite the existing file so all imports keep working — `work-data.ts` and the OG image reference stay unchanged).
+2. In `src/routes/work.nelly-baradi.tsx`, update the hero image:
+   - Change `aspect-[16/10]` → `aspect-[4/5]` (portrait orientation suits the new photo).
+   - Constrain to `max-w-2xl mx-auto` so the tall portrait doesn't dominate the page.
+   - Use `object-cover object-top` to keep her face in frame.
+   - Update `alt` to "Nelly Baradi — portrait" (more accurate than the previous campaign-art alt).
 
-### Implementation
-1. **Import brand icons** (`react-icons/fa6`) into `src/routes/work.nelly-baradi.tsx`:
-   - `FaInstagram`, `FaXTwitter`, `FaTiktok`, `FaSpotify`, `FaApple`
-   - Keep `ExternalLink` from `lucide-react` for Hypalabs / Audiomack.
-2. **Add icon button row** at the bottom of the black results band, below the metrics grid and results paragraph.
-   - Heading: "Follow the artist"
-   - Each link is an `<a>` with:
-     - `target="_blank" rel="noopener noreferrer"`
-     - `aria-label` naming the platform (e.g. "Nelly Baradi on Instagram")
-     - Circular button style: `rounded-full`, `border border-primary/20`, dark surface matching the results cards, hover state with `hover:bg-primary/10 hover:border-primary/40`
-   - Icon size: 20px, primary color.
-3. **No changes** to `work-data.ts` or other routes.
-
-### Design tokens
-- Uses existing `--primary` color for icons and hover.
-- Dark surface (`bg-[#111111]`) matches the result metric cards.
-- Consistent border radius and spacing with the rest of the page.
+No changes to data, copy, or other routes.

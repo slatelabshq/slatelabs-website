@@ -99,14 +99,14 @@ function NellyBaradiCaseStudy() {
           </p>
         </div>
 
-        <div className="mt-16 max-w-6xl mx-auto">
-          <div className="aspect-[16/10] overflow-hidden rounded-[2.5rem]">
+        <div className="mt-16 max-w-2xl mx-auto">
+          <div className="aspect-[4/5] overflow-hidden rounded-[2.5rem]">
             <img
               src={project.image}
-              alt="Nelly Baradi — Slate Labs artist campaign"
-              width={1280}
-              height={800}
-              className="w-full h-full object-cover"
+              alt="Nelly Baradi — portrait"
+              width={1024}
+              height={1280}
+              className="w-full h-full object-cover object-top"
             />
           </div>
         </div>

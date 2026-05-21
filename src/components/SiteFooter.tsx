@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
           <div className="col-span-2">
             <Link to="/" className="inline-flex items-center" aria-label="Slate Labs — Home">
-              <img src={logoWordmark} alt="Slate Labs" className="h-8 w-auto" />
+              <img src={logoWordmark} alt="Slate Labs" className="h-7 md:h-9 w-auto" />
             </Link>
             <p className="mt-4 text-sm text-muted max-w-xs leading-relaxed">
               Building brands & platforms on a clean slate. Lagos, Nigeria.

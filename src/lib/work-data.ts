@@ -225,6 +225,67 @@ export const projects: Project[] = [
     image: workBrillanta,
     tags: ["Brand Identity", "Website Design", "Collateral"],
   },
+  {
+    slug: "nelly-baradi",
+    color: "#0a1a3a",
+    client: "Nelly Baradi",
+    title: "Nelly Baradi — Artist Campaign & Creative Direction",
+    category: "Brand Foundations",
+    oneLiner: "The voice behind the voice — now centre stage.",
+    image: workNellyBaradi,
+    tags: ["Creative Direction", "Music Marketing", "Social Media"],
+    detail: {
+      industry: "Music — Afropop / R&B",
+      date: "March – April 2026",
+      services: ["Creative Direction", "Social Media Management", "Music Marketing", "Content Production"],
+      metrics: [
+        { value: "250K+", label: "YouTube views in 11 days" },
+        { value: "+436%", label: "Instagram organic views (28d)" },
+        { value: "+41%", label: "Spotify monthly listener growth" },
+      ],
+      challenge:
+        "Nelly Baradi spent years as the best-kept secret in Nigerian music — the voice behind records by Seyi Vibez, Mohbad, Peruzzi, Timaya, Oxlade, Fola, and Bella Shmurda. With her solo single 'High Me' (March 2026), she was ready to step into her own light. The challenge: reintroduce a uniquely talented artist to industry and audience alike, build a coherent voice and visual world from scratch, and turn a release moment into a movement.",
+      solution: [
+        {
+          heading: "Creative Direction",
+          body: "Defined how Nelly looks and sounds to the world — artist identity, aesthetic direction, and the content strategy that governs every touchpoint.",
+        },
+        {
+          heading: "Social Media Management",
+          body: "Built her full brand voice guide — conversational, understated, lowercase, Nigerian cadence — and executed across Instagram, X, and TikTok in active collaboration with the artist.",
+        },
+        {
+          heading: "Music Marketing — High Me",
+          body: "End-to-end release campaign in partnership with The 7th Management: 4-phase X rollout, press release, Meta and YouTube paid media, DSP editorial coordination, and influencer activations.",
+        },
+        {
+          heading: "Content Production",
+          body: "Multiple rounds of lifestyle and performance content, designed to feel intimate, authentic, and worth watching twice.",
+        },
+      ],
+      results:
+        "11 days post-release, 'High Me' had crossed 250K+ YouTube views and 300K+ Instagram views across the promotional period. Her X account grew from 3 followers to 136 — entirely from Slate Labs–written copy — and Spotify monthly listeners climbed 41% with the campaign still in active phase.",
+      numbers: [
+        "YouTube: 250K+ total views on visualizer",
+        "Instagram: 300K+ views (promo), +436% organic views, +590% interactions, +184% new follows (28d)",
+        "Meta Paid: 230K reach, 210K engagements, 334K total post views",
+        "X (Twitter): 3 → 136 followers (+4,433%), 50K+ views in 14 days",
+        "Spotify: 2,394 → 3,382 monthly listeners (+41%)",
+        "1,300+ link clicks to streaming platforms",
+      ],
+      deliverables: [
+        "Full campaign strategy, narrative, and artist brief",
+        "Brand voice guide and tone-of-voice system",
+        "4-phase X (Twitter) rollout — all copy written in-house",
+        "Press release written and distributed on release day",
+        "Paid media campaigns across Meta and YouTube",
+        "Playlist pitching and DSP editorial coordination",
+        "Influencer and media activations (AlbumTalks, HypeTrybe, DebutHub)",
+        "Lifestyle and performance content production",
+        "Live event activations — Mainland Block Party, Tempo Lagos, Play with MIA",
+      ],
+    },
+  },
 ];
 
 export const featuredProjects = projects;

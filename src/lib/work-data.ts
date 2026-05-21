@@ -1,9 +1,10 @@
 import work44db from "@/assets/work-44db.jpg";
 import workVidaRosa from "@/assets/work-vidarosa.jpg";
 import workIleEko from "@/assets/work-ileeko.jpg";
+import workMorganOxford from "@/assets/work-morgan-oxford.jpg";
 
 export type Project = {
-  slug: "44db" | "vida-rosa" | "ile-eko";
+  slug: "44db" | "vida-rosa" | "ile-eko" | "morgan-oxford";
   client: string;
   title: string;
   category: "Brand Foundations" | "Digital Platforms" | "Intelligent Systems";

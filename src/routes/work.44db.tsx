@@ -3,6 +3,7 @@ import { FileText, Palette, LayoutTemplate, Music, TrendingUp, BarChart3 } from 
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects } from "@/lib/work-data";
+import logo44db from "@/assets/44db-logo.png";
 
 const project = projects.find((p) => p.slug === "44db")!;
 
@@ -46,25 +47,24 @@ function FortyFourDBCaseStudy() {
     <>
       {/* Hero */}
       <header className="px-6 pt-32 pb-12">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-5xl mx-auto text-center">
           <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
-          <div className="mt-8 inline-flex items-center gap-2 text-sm text-primary">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+
+          <div className="mt-12 flex justify-center">
+            <div className="w-32 h-32 rounded-3xl border border-border bg-surface/60 backdrop-blur flex items-center justify-center overflow-hidden">
+              <img src={logo44db} alt="44DB logo" className="w-24 h-24 object-contain" />
+            </div>
+          </div>
+
+          <div className="mt-8 text-xs font-medium tracking-[0.2em] text-primary uppercase">
             {project.category}
           </div>
-          <h1 className="mt-4 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-12 text-balance">
+
+          <h1 className="mt-6 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] text-balance">
             {project.title}
           </h1>
         </div>
       </header>
-
-      <div className="px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="aspect-[16/9] overflow-hidden rounded-[2.5rem]">
-            <img src={project.image} alt={project.client} width={1280} height={720} className="w-full h-full object-cover" />
-          </div>
-        </div>
-      </div>
 
       {/* The Brief */}
       <Section>

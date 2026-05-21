@@ -5,6 +5,7 @@ import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects } from "@/lib/work-data";
 import flyTrinityBusinessCard from "@/assets/fly-trinity-business-card.png";
+import flyTrinitySocial from "@/assets/fly-trinity-social.jpg";
 
 const project = projects.find((p) => p.slug === "fly-trinity")!;
 

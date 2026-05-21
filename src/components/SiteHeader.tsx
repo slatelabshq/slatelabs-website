@@ -16,12 +16,12 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-4 z-50 px-4">
-      <nav className="max-w-5xl mx-auto bg-background/80 backdrop-blur-md border border-border rounded-full px-3 py-2 flex items-center justify-between shadow-[0_1px_2px_rgba(17,17,17,0.04)]">
-        <Link to="/" className="pl-3 pr-2 flex items-center" aria-label="Slate Labs — Home">
-          <img src={logoWordmark} alt="Slate Labs" className="hidden sm:block h-6 w-auto" />
-          <img src={logoMark} alt="Slate Labs" className="sm:hidden h-6 w-auto" />
+      <nav className="max-w-5xl mx-auto bg-background/80 backdrop-blur-md border border-border rounded-full px-3 py-2 md:py-2.5 flex items-center justify-between shadow-[0_1px_2px_rgba(17,17,17,0.04)]">
+        <Link to="/" className="pl-4 pr-3 flex items-center" aria-label="Slate Labs — Home">
+          <img src={logoWordmark} alt="Slate Labs" className="hidden md:block h-6 lg:h-7 w-auto" />
+          <img src={logoMark} alt="Slate Labs" className="md:hidden h-7 w-auto" />
         </Link>
-        <div className="hidden md:flex items-center gap-1 text-sm">
+        <div className="hidden md:flex md:ml-2 items-center gap-1 text-sm">
           {nav.slice(1).map((n) => (
             <Link
               key={n.to}

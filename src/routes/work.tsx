@@ -59,11 +59,17 @@ function Work() {
 
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {visible.map((p, i) => (
+          {visible.map((p, i) => {
+            const linkProps =
+              p.slug === "ile-eko"
+                ? ({ to: "/ile-eko" } as const)
+                : p.slug === "44db"
+                  ? ({ to: "/work/44db" } as const)
+                  : ({ to: "/work/$slug", params: { slug: p.slug } } as const);
+            return (
             <Reveal key={p.slug} delay={(i % 2) * 120}>
               <Link
-                to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
-                params={{ slug: p.slug }}
+                {...linkProps}
                 className="group block"
               >
                 <div

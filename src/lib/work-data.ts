@@ -202,6 +202,7 @@ export const projects: Project[] = [
         "Staff training sessions and internal documentation",
       ],
     },
+  },
   {
     slug: "fly-trinity",
     color: "#3C096C",

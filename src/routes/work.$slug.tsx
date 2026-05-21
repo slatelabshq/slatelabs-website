@@ -38,7 +38,6 @@ function CaseStudy() {
 
   return (
     <>
-      <header className="px-6 pt-32 pb-12">
       {project.slug === "vida-rosa" ? (
         <header className="px-6 pt-32 pb-12">
           <div className="max-w-5xl mx-auto text-center">

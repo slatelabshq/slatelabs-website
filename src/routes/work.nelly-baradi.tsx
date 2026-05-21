@@ -197,6 +197,33 @@ function NellyBaradiCaseStudy() {
           </div>
 
           <p className="mt-12 text-lg md:text-xl text-background/70 leading-relaxed max-w-3xl">{d.results}</p>
+
+          {/* Platform links */}
+          <div className="mt-16 pt-12 border-t border-primary/15">
+            <div className="text-xs font-medium tracking-[0.2em] uppercase text-primary mb-6">Follow the artist</div>
+            <div className="flex flex-wrap gap-3">
+              {[
+                { href: "https://www.instagram.com/nellybaradi", label: "Nelly Baradi on Instagram", Icon: FaInstagram },
+                { href: "https://x.com/nellybaradii", label: "Nelly Baradi on X", Icon: FaXTwitter },
+                { href: "https://www.tiktok.com/@nellybaradi_", label: "Nelly Baradi on TikTok", Icon: FaTiktok },
+                { href: "https://open.spotify.com/artist/77bRctbyJcjkQcyEa5wrQr", label: "Nelly Baradi on Spotify", Icon: FaSpotify },
+                { href: "https://music.apple.com/us/artist/nelly-baradi/1494289729", label: "Nelly Baradi on Apple Music", Icon: FaApple },
+                { href: "https://audiomack.com/nelly-baradi", label: "Nelly Baradi on Audiomack", Icon: Headphones },
+                { href: "https://hypalabs.lnk.to/HighMe", label: "Stream 'High Me' on all platforms", Icon: ExternalLink },
+              ].map(({ href, label, Icon }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-12 h-12 rounded-full border border-primary/20 bg-[#111111] flex items-center justify-center text-primary transition-colors hover:bg-primary/10 hover:border-primary/40"
+                >
+                  <Icon className="w-5 h-5" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
       </Section>
 

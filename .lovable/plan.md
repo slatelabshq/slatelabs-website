@@ -1,13 +1,21 @@
-Redesign the Vida Rosa hero to match the Morgan Oxford style (centered icon, eyebrow, large centered title with accent, subtitle).
+# Update contact & social info across site
 
-In `src/routes/work.$slug.tsx`, replace the current left-aligned `<header>` with a conditional:
+Replace outdated email, Instagram, and add TikTok references across three files.
 
-- If `project.slug === "vida-rosa"`: render a centered hero matching Morgan Oxford —
-  - `← All work` link
-  - Icon block (rounded card with `Car` icon from `lucide-react`)
-  - Eyebrow: `Brand Foundations · Social Management` (uppercase, primary, tracked)
-  - Title: `Vida Rosa —` on line 1, `Luxury Auto Social Management` in primary on line 2
-  - Subtitle: `Turning Instagram into a premium sales channel.` (project.oneLiner)
-- Otherwise: keep the existing left-aligned header unchanged.
+## Files changed
 
-The full-width hero image below the header stays as-is for all case studies.
+### `src/routes/contact.tsx`
+- Change mailto link from `hello@slatelabs.co` to `hello@slatelabshq.com`
+- Change sidebar email link from `hello@slatelabs.co` to `hello@slatelabshq.com`
+- Change Instagram link from `slatelabs.co` to `slatelabs.hq`
+- Add TikTok — `slatelabs.hq` in "Other ways to connect"
+
+### `src/components/SiteFooter.tsx`
+- Change Instagram link from `slatelabs.co` to `slatelabs.hq`
+- Change email from `hello@slatelabs.co` to `hello@slatelabshq.com`
+- Add TikTok link below Instagram in "Connect" column
+
+### `src/routes/__root.tsx`
+- Update JSON-LD schema email from `hello@slatelabs.co` to `hello@slatelabshq.com`
+- Update JSON-LD schema `sameAs` Instagram from `slatelabs.co` to `slatelabs.hq`
+- Add TikTok URL to `sameAs` array

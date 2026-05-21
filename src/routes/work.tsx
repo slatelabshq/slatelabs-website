@@ -104,6 +104,10 @@ function Work() {
                 <Link to="/work/morgan-oxford" className="group block">
                   <WorkCard p={p} />
                 </Link>
+              ) : p.slug === "fly-trinity" ? (
+                <Link to="/work/fly-trinity" className="group block">
+                  <WorkCard p={p} />
+                </Link>
               ) : (
                 <Link to="/work/$slug" params={{ slug: p.slug }} className="group block">
                   <WorkCard p={p} />

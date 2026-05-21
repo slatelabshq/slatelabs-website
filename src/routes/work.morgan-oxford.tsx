@@ -10,9 +10,9 @@ export const Route = createFileRoute("/work/morgan-oxford")({
   head: () => ({
     meta: [
       { title: "Morgan Oxford Education — Custom CRM — Slate Labs" },
-      { name: "description", content: "Bespoke CRM built to orchestrate global student recruitment at scale for Morgan Oxford Education." },
+      { name: "description", content: "Bespoke CRM built to orchestrate global student recruitment at scale for Morgan Oxford Education, paired with a full website revamp." },
       { property: "og:title", content: "Morgan Oxford Education — Custom CRM — Slate Labs" },
-      { property: "og:description", content: "Bespoke CRM built to orchestrate global student recruitment at scale." },
+      { property: "og:description", content: "Bespoke CRM built to orchestrate global student recruitment at scale, paired with a full website revamp." },
       { property: "og:type", content: "article" },
       { property: "og:url", content: "/work/morgan-oxford" },
       { property: "og:image", content: project.image },
@@ -37,6 +37,7 @@ const solutions = [
   { icon: BarChart3, title: "Operations Dashboard", desc: "Real-time analytics covering recruitment conversion rates, counsellor workloads, and regional performance — giving leadership full operational visibility." },
   { icon: Network, title: "Automated Workflow System", desc: "Smart automations handle follow-up reminders, document checklists, and application deadlines — reducing manual overhead and human error significantly." },
   { icon: ShieldCheck, title: "Data Security & Compliance", desc: "GDPR-compliant data handling with role-based access controls, audit trails, and encrypted storage to protect sensitive student and university data." },
+  { icon: Globe, title: "Website Revamp", desc: "A full rebuild of MorganOxford.com — a modern, fast, conversion-focused site that mirrors the consultancy's premium positioning and routes prospective students straight into the CRM pipeline." },
 ];
 
 function MorganOxfordCaseStudy() {
@@ -122,6 +123,27 @@ function MorganOxfordCaseStudy() {
               <p className="text-muted leading-relaxed">{desc}</p>
             </div>
           ))}
+        </div>
+      </Section>
+
+      {/* The Website */}
+      <Section>
+        <Eyebrow>The website</Eyebrow>
+        <h2 className="text-4xl md:text-6xl font-medium tracking-[-0.03em] mb-12 text-balance">
+          A new front door for <span className="text-primary">global students.</span>
+        </h2>
+        <div data-website-mockup className="bg-surface rounded-3xl p-4 border border-border">
+          <div
+            className="aspect-video rounded-2xl flex items-end p-6"
+            style={{ background: "linear-gradient(135deg, #1A2235 0%, #2A3347 55%, #00D9FF 100%)" }}
+          >
+            <div className="text-background/90 text-xs font-medium tracking-[0.2em] uppercase">
+              Placeholder
+            </div>
+          </div>
+          <div className="px-2 pt-4 pb-2 text-center">
+            <div className="text-sm font-medium">morganoxford.com — Revamp</div>
+          </div>
         </div>
       </Section>
 

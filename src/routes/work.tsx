@@ -59,54 +59,23 @@ function Work() {
 
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {visible.map((p, i) => {
-            const linkProps =
-              p.slug === "ile-eko"
-                ? ({ to: "/ile-eko" } as const)
-                : p.slug === "44db"
-                  ? ({ to: "/work/44db" } as const)
-                  : ({ to: "/work/$slug", params: { slug: p.slug } } as const);
-            return (
+          {visible.map((p, i) => (
             <Reveal key={p.slug} delay={(i % 2) * 120}>
-              <Link
-                {...linkProps}
-                className="group block"
-              >
-                <div
-                  className="relative overflow-hidden rounded-[2rem] p-8 md:p-10 min-h-[420px] md:min-h-[480px] flex flex-col justify-end text-white transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 bg-[#0A0A0A] shadow-[0_0_0_0_rgba(0,217,255,0)] group-hover:shadow-[0_0_60px_-5px_rgba(0,217,255,0.45)]"
-                >
-                  {/* decorative outlines */}
-                  <svg className="absolute top-8 left-8 w-8 h-8 text-primary/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M12 2l2 8 8 2-8 2-2 8-2-8-8-2 8-2z" />
-                  </svg>
-                  <svg className="absolute top-10 right-10 w-10 h-10 text-primary/25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path d="M4 15a4 4 0 014-4 5 5 0 019.9 1A3 3 0 0119 18H7a3 3 0 01-3-3z" />
-                  </svg>
-                  <svg className="absolute bottom-24 right-12 w-8 h-8 text-primary/25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M12 3v18M3 12h18" />
-                  </svg>
-
-                  <div className="relative">
-                    <div className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-6">
-                      {p.category}
-                    </div>
-                    <h2 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] leading-[0.95] mb-4">
-                      {p.client}
-                    </h2>
-                    <p className="text-white/60 text-base md:text-lg max-w-md mb-8">
-                      {p.oneLiner}
-                    </p>
-                    <span className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all">
-                      {p.slug === "ile-eko" ? "Learn more" : "View case study"}
-                      <span aria-hidden>→</span>
-                    </span>
-                  </div>
-                </div>
-              </Link>
+              {p.slug === "ile-eko" ? (
+                <Link to="/ile-eko" className="group block">
+                  <WorkCard p={p} />
+                </Link>
+              ) : p.slug === "44db" ? (
+                <Link to="/work/44db" className="group block">
+                  <WorkCard p={p} />
+                </Link>
+              ) : (
+                <Link to="/work/$slug" params={{ slug: p.slug }} className="group block">
+                  <WorkCard p={p} />
+                </Link>
+              )}
             </Reveal>
-            );
-          })}
+          ))}
         </div>
       </Section>
 

@@ -66,22 +66,38 @@ function Work() {
                 params={{ slug: p.slug }}
                 className="group block"
               >
-                <div className="aspect-[4/3] overflow-hidden rounded-[2rem] mb-6">
-                  <img
-                    src={p.image}
-                    alt={p.client}
-                    loading="lazy"
-                    width={1280}
-                    height={960}
-                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-                  />
+                <div
+                  className="relative overflow-hidden rounded-[2rem] p-8 md:p-10 min-h-[420px] md:min-h-[480px] flex flex-col justify-end text-white transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1"
+                  style={{ backgroundColor: p.color }}
+                >
+                  {/* decorative outlines */}
+                  <svg className="absolute top-8 left-8 w-8 h-8 opacity-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M12 2l2 8 8 2-8 2-2 8-2-8-8-2 8-2z" />
+                  </svg>
+                  <svg className="absolute top-10 right-10 w-10 h-10 opacity-15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <path d="M4 15a4 4 0 014-4 5 5 0 019.9 1A3 3 0 0119 18H7a3 3 0 01-3-3z" />
+                  </svg>
+                  <svg className="absolute bottom-24 right-12 w-8 h-8 opacity-15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 3v18M3 12h18" />
+                  </svg>
+
+                  <div className="relative">
+                    <div className="text-xs font-semibold tracking-[0.2em] uppercase text-white/60 mb-6">
+                      {p.category}
+                    </div>
+                    <h2 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] leading-[0.95] mb-4">
+                      {p.client}
+                    </h2>
+                    <p className="text-white/70 text-base md:text-lg max-w-md mb-8">
+                      {p.oneLiner}
+                    </p>
+                    <span className="inline-flex items-center gap-2 text-sm font-medium text-white group-hover:gap-3 transition-all">
+                      {p.slug === "ile-eko" ? "Learn more" : "View case study"}
+                      <span aria-hidden>→</span>
+                    </span>
+                  </div>
                 </div>
-                <div className="text-xs text-muted mb-2">{p.category}</div>
-                <h2 className="text-2xl md:text-3xl font-medium tracking-tight mb-2">{p.title}</h2>
-                <p className="text-muted">{p.oneLiner}</p>
-                <span className="mt-4 inline-block text-sm font-medium group-hover:text-primary story-link">
-                  {p.slug === "ile-eko" ? "Learn more" : "View case study"} →
-                </span>
               </Link>
             </Reveal>
           ))}

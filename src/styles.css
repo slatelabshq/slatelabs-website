@@ -36,8 +36,9 @@
   --surface: #F2F1EC;
   --muted: #6B6B68;
   --muted-foreground: #6B6B68;
-  --primary: #00D9FF;
-  --primary-foreground: #FAFAF7;
+  --primary: #0099BF;
+  --primary-foreground: #0A0F12;
+  --primary-glow: #00D9FF;
   --border: rgba(17, 17, 17, 0.08);
 }
 

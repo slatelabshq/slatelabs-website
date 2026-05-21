@@ -160,7 +160,7 @@ function MorganOxfordCaseStudy() {
             <div className="md:px-8">
               <div className="text-xs font-medium tracking-[0.2em] text-primary uppercase mb-4">Service Delivered</div>
               <div className="text-2xl md:text-3xl font-medium tracking-[-0.02em] leading-tight">
-                Custom CRM System
+                Custom CRM System + Website Revamp
               </div>
             </div>
             <div className="md:pl-8">

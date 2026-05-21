@@ -1,4 +1,4 @@
-import work44db from "@/assets/work-44db.jpg";
+import work44db from "@/assets/44db-logo.png";
 import workVidaRosa from "@/assets/work-vidarosa.jpg";
 import workIleEko from "@/assets/work-ileeko.jpg";
 import workMorganOxford from "@/assets/work-morgan-oxford.jpg";

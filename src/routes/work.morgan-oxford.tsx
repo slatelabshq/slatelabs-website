@@ -7,6 +7,7 @@ import websiteHero from "@/assets/morgan-oxford-website-hero.png";
 import websiteStats from "@/assets/morgan-oxford-website-stats.png";
 import websiteFramework from "@/assets/morgan-oxford-website-framework.png";
 import websiteDestinations from "@/assets/morgan-oxford-website-destinations.png";
+import crmWelcome from "@/assets/morgan-oxford-crm-welcome.png";
 
 const project = projects.find((p) => p.slug === "morgan-oxford")!;
 
@@ -129,6 +130,20 @@ function MorganOxfordCaseStudy() {
             </div>
           ))}
         </div>
+      </Section>
+
+      {/* The CRM */}
+      <Section>
+        <Eyebrow>The CRM</Eyebrow>
+        <h2 className="text-4xl md:text-6xl font-medium tracking-[-0.03em] mb-12 text-balance">
+          One workspace, <span className="text-primary">every student.</span>
+        </h2>
+        <figure className="bg-surface rounded-3xl p-4 border border-border">
+          <div className="block aspect-video rounded-2xl overflow-hidden border border-border/40 bg-background">
+            <img src={crmWelcome} alt="Morgan Oxford CRM welcome screen — internal platform for authorised users." loading="lazy" className="w-full h-full object-cover object-top" />
+          </div>
+          <figcaption className="px-2 pt-4 pb-2 text-center text-sm font-medium">Morgan Oxford CRM — Welcome</figcaption>
+        </figure>
       </Section>
 
       {/* The Website */}

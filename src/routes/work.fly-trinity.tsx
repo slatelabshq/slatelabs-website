@@ -166,14 +166,27 @@ function FlyTrinityCaseStudy() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {designs.map((d) => (
             <div key={d.label} className="bg-surface rounded-3xl p-4 border border-border">
-              <div
-                className="aspect-[4/5] rounded-2xl flex items-end p-6"
-                style={{ background: d.gradient }}
-              >
-                <div className="text-background/90 text-xs font-medium tracking-[0.2em] uppercase">
-                  Preview
+              {d.kind === "image" ? (
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden">
+                  <img
+                    src={d.src}
+                    alt={d.label}
+                    loading="lazy"
+                    width={800}
+                    height={1000}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </div>
+              ) : (
+                <div
+                  className="aspect-[4/5] rounded-2xl flex items-end p-6"
+                  style={{ background: d.gradient }}
+                >
+                  <div className="text-background/90 text-xs font-medium tracking-[0.2em] uppercase">
+                    Preview
+                  </div>
+                </div>
+              )}
               <div className="px-2 pt-4 pb-2 text-center">
                 <div className="text-sm font-medium">{d.label}</div>
               </div>

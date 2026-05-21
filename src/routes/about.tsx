@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { Reveal } from "@/components/Reveal";
+import photoJoseph from "@/assets/team-joseph.png";
+import photoKehinde from "@/assets/team-kehinde.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -17,10 +19,10 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const team = [
-  { name: "Joseph Awujoola-Kalohun", role: "Creative Director & Brand Strategist", bio: "Joseph leads brand strategy and creative direction—translating client stories into visual systems and social presence that move audiences." },
-  { name: "Olasukanmi Adeyeye (SK)", role: "CTO & Platform Engineer", bio: "SK architects and ships the platforms. From SaaS products to bespoke web applications, he turns ambitious briefs into working systems." },
-  { name: "Kehinde Abiola", role: "COO — Head of Operations & Strategy", bio: "Kenny runs operations and strategy—keeping engagements on time, on budget, and aligned with the outcomes that matter to clients." },
+const team: { name: string; role: string; bio: string; photo?: string; initials?: string }[] = [
+  { name: "Joseph Awujoola-Kalohun", role: "Creative Director & Brand Strategist", bio: "Joseph leads brand strategy and creative direction—translating client stories into visual systems and social presence that move audiences.", photo: photoJoseph },
+  { name: "Olasukanmi Adeyeye (SK)", role: "CTO & Platform Engineer", bio: "SK architects and ships the platforms. From SaaS products to bespoke web applications, he turns ambitious briefs into working systems.", initials: "SK" },
+  { name: "Kehinde Abiola", role: "COO — Head of Operations & Strategy", bio: "Kenny runs operations and strategy—keeping engagements on time, on budget, and aligned with the outcomes that matter to clients.", photo: photoKehinde },
 ];
 
 const philosophy = [
@@ -89,7 +91,14 @@ function About() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {team.map((m, i) => (
             <Reveal key={m.name} delay={i * 90} className="rounded-3xl bg-surface p-8 hover-lift">
-              <div className="text-sm text-primary mb-6">0{i + 1}</div>
+              <div className="aspect-square w-full rounded-2xl overflow-hidden bg-background mb-6 flex items-center justify-center">
+                {m.photo ? (
+                  <img src={m.photo} alt={m.name} className="w-full h-full object-cover" loading="lazy" />
+                ) : (
+                  <span className="text-5xl font-medium tracking-tight text-muted">{m.initials}</span>
+                )}
+              </div>
+              <div className="text-sm text-primary mb-3">0{i + 1}</div>
               <h3 className="text-xl font-medium tracking-tight mb-1">{m.name}</h3>
               <div className="text-sm text-muted mb-6">{m.role}</div>
               <p className="text-muted leading-relaxed">{m.bio}</p>

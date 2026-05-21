@@ -3,9 +3,10 @@ import workVidaRosa from "@/assets/work-vidarosa.jpg";
 import workIleEko from "@/assets/work-ileeko.jpg";
 import workMorganOxford from "@/assets/work-morgan-oxford.jpg";
 import workFlyTrinity from "@/assets/work-fly-trinity.jpg";
+import workBrillanta from "@/assets/work-brillanta.jpg";
 
 export type Project = {
-  slug: "44db" | "vida-rosa" | "ile-eko" | "morgan-oxford" | "fly-trinity";
+  slug: "44db" | "vida-rosa" | "ile-eko" | "morgan-oxford" | "fly-trinity" | "brillanta";
   client: string;
   title: string;
   category: "Brand Foundations" | "Digital Platforms" | "Intelligent Systems";
@@ -212,6 +213,16 @@ export const projects: Project[] = [
     oneLiner: "Crafting a premium airline brand identity from ground to sky.",
     image: workFlyTrinity,
     tags: ["Brand Strategy", "Visual Identity", "Collateral"],
+  },
+  {
+    slug: "brillanta",
+    color: "#1F4D2B",
+    client: "Brillanta Afrique",
+    title: "Brillanta Afrique — Brand & Web Identity",
+    category: "Brand Foundations",
+    oneLiner: "A premium identity for an Africa-rooted agriculture & energy trader.",
+    image: workBrillanta,
+    tags: ["Brand Identity", "Website Design", "Collateral"],
   },
 ];
 

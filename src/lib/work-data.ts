@@ -288,4 +288,7 @@ export const projects: Project[] = [
   },
 ];
 
-export const featuredProjects = projects;
+const featuredSlugs: Project["slug"][] = ["44db", "nelly-baradi", "morgan-oxford"];
+export const featuredProjects = featuredSlugs
+  .map((slug) => projects.find((p) => p.slug === slug)!)
+  .filter(Boolean);

@@ -60,7 +60,7 @@ function Work() {
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {visible.map((p, i) => (
-            <Reveal key={p.slug} delay={(i % 2) * 80}>
+            <Reveal key={p.slug} delay={(i % 2) * 120}>
               <Link
                 to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
                 params={{ slug: p.slug }}

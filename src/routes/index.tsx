@@ -48,14 +48,14 @@ function Home() {
       <header className="px-6 pt-32 pb-24">
         <div className="max-w-6xl mx-auto text-center">
           <Eyebrow>Lagos, Nigeria</Eyebrow>
-          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-[-0.03em] text-balance mb-8 animate-reveal" style={{ animationDelay: "100ms" }}>
+          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-[-0.03em] text-balance mb-8 animate-reveal" style={{ animationDelay: "0ms" }}>
             Building brands & platforms on a{" "}
             <span className="text-primary">clean slate.</span>
           </h1>
-          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed mb-10 animate-reveal" style={{ animationDelay: "250ms" }}>
+          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed mb-10 animate-reveal" style={{ animationDelay: "140ms" }}>
             Creative and technical excellence for businesses ready to start fresh and grow exponentially.
           </p>
-          <div className="flex flex-wrap justify-center gap-3 animate-reveal" style={{ animationDelay: "400ms" }}>
+          <div className="flex flex-wrap justify-center gap-3 animate-reveal" style={{ animationDelay: "280ms" }}>
             <CtaButton to="/work" variant="primary">See our work</CtaButton>
             <CtaButton to="/contact" variant="secondary">Let's talk</CtaButton>
           </div>
@@ -72,7 +72,7 @@ function Home() {
               { v: "8,000+", l: "Followers grown organically" },
               { v: "Lagos", l: "HQ base" },
             ].map((m, i) => (
-              <Reveal key={m.l} delay={i * 80} className="text-center md:text-left">
+              <Reveal key={m.l} delay={i * 90} className="text-center md:text-left">
                 <div className="text-3xl md:text-4xl font-medium tracking-tight">{m.v}</div>
                 <div className="text-sm text-muted mt-2">{m.l}</div>
               </Reveal>
@@ -94,7 +94,7 @@ function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((s, i) => (
-            <Reveal key={s.n} delay={i * 80}>
+            <Reveal key={s.n} delay={i * 90}>
               <Link
                 to="/services"
                 hash={s.hash}
@@ -120,7 +120,7 @@ function Home() {
           {featuredProjects.map((p, i) => {
             const reversed = i % 2 === 1;
             return (
-              <Reveal key={p.slug}>
+              <Reveal key={p.slug} delay={i * 120}>
                 <Link
                   to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
                   params={{ slug: p.slug }}
@@ -193,7 +193,7 @@ function Home() {
             </div>
             <div className="space-y-10">
               {differentiators.map((d, i) => (
-                <Reveal key={d.n} delay={i * 80}>
+                <Reveal key={d.n} delay={i * 100}>
                   <h3 className="text-sm font-medium mb-2 text-primary">
                     {d.n} — {d.title}
                   </h3>

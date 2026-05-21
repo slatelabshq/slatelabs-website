@@ -126,7 +126,7 @@ function IleEko() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {benefits.map((b, i) => (
-            <Reveal key={b.title} delay={i * 70} className="rounded-3xl bg-surface p-8 hover-lift">
+            <Reveal key={b.title} delay={i * 80} className="rounded-3xl bg-surface p-8 hover-lift">
               <h3 className="text-lg font-medium tracking-tight mb-3">{b.title}</h3>
               <p className="text-muted leading-relaxed text-sm">{b.body}</p>
             </Reveal>
@@ -142,7 +142,7 @@ function IleEko() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {features.map((f, i) => (
-            <Reveal key={f.n} delay={(i % 3) * 70} className="rounded-3xl bg-surface p-8 hover-lift">
+            <Reveal key={f.n} delay={(i % 3) * 80} className="rounded-3xl bg-surface p-8 hover-lift">
               <div className="text-sm text-primary mb-4">{f.n}</div>
               <h3 className="text-lg font-medium tracking-tight mb-3">{f.title}</h3>
               <p className="text-muted leading-relaxed text-sm">{f.body}</p>
@@ -159,7 +159,7 @@ function IleEko() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 70} className="rounded-3xl bg-surface p-8 hover-lift">
+            <Reveal key={s.n} delay={i * 80} className="rounded-3xl bg-surface p-8 hover-lift">
               <div className="text-sm text-primary mb-4">{s.n}</div>
               <h3 className="text-lg font-medium tracking-tight mb-3">{s.title}</h3>
               <p className="text-muted leading-relaxed text-sm">{s.body}</p>
@@ -182,7 +182,7 @@ function IleEko() {
             {tiers.map((t, i) => (
               <Reveal
                 key={t.name}
-                delay={i * 80}
+                delay={i * 100}
                 className={`rounded-3xl p-8 hover-lift ${
                   t.highlight
                     ? "bg-surface border-2 border-primary animate-soft-pulse"

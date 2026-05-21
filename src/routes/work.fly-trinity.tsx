@@ -46,7 +46,7 @@ type Design =
 
 const designs: Design[] = [
   { label: "Staff ID Card", kind: "gradient", gradient: "linear-gradient(135deg, #3C096C 0%, #5A189A 60%, #9D4EDD 100%)" },
-  { label: "Social Media", kind: "gradient", gradient: "linear-gradient(135deg, #5A189A 0%, #9D4EDD 50%, #DAB6FC 100%)" },
+  { label: "Social Media", kind: "image", src: flyTrinitySocial },
   { label: "Business Card", kind: "image", src: flyTrinityBusinessCard },
 ];
 

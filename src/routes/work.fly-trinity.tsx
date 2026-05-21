@@ -39,10 +39,14 @@ const deliverables = [
   { icon: ImageIcon, title: "Digital Presence", desc: "Website, app UI, and social media templates designed for seamless brand consistency." },
 ];
 
-const designs = [
-  { label: "Staff ID Card", gradient: "linear-gradient(135deg, #3C096C 0%, #5A189A 60%, #9D4EDD 100%)" },
-  { label: "Social Media", gradient: "linear-gradient(135deg, #5A189A 0%, #9D4EDD 50%, #DAB6FC 100%)" },
-  { label: "Business Card", gradient: "linear-gradient(135deg, #1A1024 0%, #3C096C 60%, #5A189A 100%)" },
+type Design =
+  | { label: string; kind: "gradient"; gradient: string }
+  | { label: string; kind: "image"; src: string };
+
+const designs: Design[] = [
+  { label: "Staff ID Card", kind: "gradient", gradient: "linear-gradient(135deg, #3C096C 0%, #5A189A 60%, #9D4EDD 100%)" },
+  { label: "Social Media", kind: "gradient", gradient: "linear-gradient(135deg, #5A189A 0%, #9D4EDD 50%, #DAB6FC 100%)" },
+  { label: "Business Card", kind: "image", src: flyTrinityBusinessCard },
 ];
 
 // Scope the purple accent to this page only — overrides --primary/--primary-glow

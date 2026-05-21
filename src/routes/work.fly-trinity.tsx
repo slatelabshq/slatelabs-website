@@ -4,6 +4,7 @@ import { Plane, Palette, Type, LayoutTemplate, Image as ImageIcon } from "lucide
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects } from "@/lib/work-data";
+import flyTrinityBusinessCard from "@/assets/fly-trinity-business-card.png";
 
 const project = projects.find((p) => p.slug === "fly-trinity")!;
 
@@ -38,10 +39,14 @@ const deliverables = [
   { icon: ImageIcon, title: "Digital Presence", desc: "Website, app UI, and social media templates designed for seamless brand consistency." },
 ];
 
-const designs = [
-  { label: "Staff ID Card", gradient: "linear-gradient(135deg, #3C096C 0%, #5A189A 60%, #9D4EDD 100%)" },
-  { label: "Social Media", gradient: "linear-gradient(135deg, #5A189A 0%, #9D4EDD 50%, #DAB6FC 100%)" },
-  { label: "Business Card", gradient: "linear-gradient(135deg, #1A1024 0%, #3C096C 60%, #5A189A 100%)" },
+type Design =
+  | { label: string; kind: "gradient"; gradient: string }
+  | { label: string; kind: "image"; src: string };
+
+const designs: Design[] = [
+  { label: "Staff ID Card", kind: "gradient", gradient: "linear-gradient(135deg, #3C096C 0%, #5A189A 60%, #9D4EDD 100%)" },
+  { label: "Social Media", kind: "gradient", gradient: "linear-gradient(135deg, #5A189A 0%, #9D4EDD 50%, #DAB6FC 100%)" },
+  { label: "Business Card", kind: "image", src: flyTrinityBusinessCard },
 ];
 
 // Scope the purple accent to this page only — overrides --primary/--primary-glow
@@ -161,14 +166,27 @@ function FlyTrinityCaseStudy() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {designs.map((d) => (
             <div key={d.label} className="bg-surface rounded-3xl p-4 border border-border">
-              <div
-                className="aspect-[4/5] rounded-2xl flex items-end p-6"
-                style={{ background: d.gradient }}
-              >
-                <div className="text-background/90 text-xs font-medium tracking-[0.2em] uppercase">
-                  Preview
+              {d.kind === "image" ? (
+                <div className="aspect-[4/5] rounded-2xl overflow-hidden">
+                  <img
+                    src={d.src}
+                    alt={d.label}
+                    loading="lazy"
+                    width={800}
+                    height={1000}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </div>
+              ) : (
+                <div
+                  className="aspect-[4/5] rounded-2xl flex items-end p-6"
+                  style={{ background: d.gradient }}
+                >
+                  <div className="text-background/90 text-xs font-medium tracking-[0.2em] uppercase">
+                    Preview
+                  </div>
+                </div>
+              )}
               <div className="px-2 pt-4 pb-2 text-center">
                 <div className="text-sm font-medium">{d.label}</div>
               </div>

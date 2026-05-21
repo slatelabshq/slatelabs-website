@@ -36,7 +36,7 @@
   --surface: #F2F1EC;
   --muted: #6B6B68;
   --muted-foreground: #6B6B68;
-  --primary: #C5553D;
+  --primary: #00D9FF;
   --primary-foreground: #FAFAF7;
   --border: rgba(17, 17, 17, 0.08);
 }
@@ -98,8 +98,8 @@
   to   { transform: translateX(-50%); }
 }
 @keyframes soft-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(197, 85, 61, 0.18); }
-  50%      { box-shadow: 0 0 0 6px rgba(197, 85, 61, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 217, 255, 0.18); }
+  50%      { box-shadow: 0 0 0 6px rgba(0, 217, 255, 0); }
 }
 
 /* ===== Utilities ===== */
@@ -149,11 +149,11 @@
               background-color 350ms var(--ease-out-soft),
               color 350ms var(--ease-out-soft),
               transform 350ms var(--ease-out-soft);
-  box-shadow: 0 0 0 0 rgba(197, 85, 61, 0);
+  box-shadow: 0 0 0 0 rgba(0, 217, 255, 0);
 }
 .glow-primary:hover {
-  box-shadow: 0 0 28px 4px rgba(197, 85, 61, 0.28),
-              0 0 60px 8px rgba(197, 85, 61, 0.12);
+  box-shadow: 0 0 28px 4px rgba(0, 217, 255, 0.28),
+              0 0 60px 8px rgba(0, 217, 255, 0.12);
 }
 .glow-subtle {
   transition: box-shadow 500ms var(--ease-out-soft),

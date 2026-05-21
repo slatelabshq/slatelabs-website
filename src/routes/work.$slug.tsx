@@ -1,7 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { Car } from "lucide-react";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects, type CaseStudyDetail } from "@/lib/work-data";
+
 
 export const Route = createFileRoute("/work/$slug")({
   loader: ({ params }) => {
@@ -36,18 +38,42 @@ function CaseStudy() {
 
   return (
     <>
-      <header className="px-6 pt-32 pb-12">
-        <div className="max-w-7xl mx-auto">
-          <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
-          <div className="mt-8 inline-flex items-center gap-2 text-sm text-primary">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            {project.category}
+      {project.slug === "vida-rosa" ? (
+        <header className="px-6 pt-32 pb-12">
+          <div className="max-w-5xl mx-auto text-center">
+            <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
+            <div className="mt-12 flex justify-center">
+              <div className="w-28 h-32 rounded-3xl border border-border bg-surface/60 backdrop-blur flex items-center justify-center">
+                <Car className="w-12 h-12 text-primary" strokeWidth={1.75} />
+              </div>
+            </div>
+            <div className="mt-8 text-xs font-medium tracking-[0.2em] text-primary uppercase">
+              Brand Foundations · Social Management
+            </div>
+            <h1 className="mt-6 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] text-balance">
+              Vida Rosa <br />
+              <span className="text-primary">Luxury Auto Social Management</span>
+            </h1>
+            <p className="mt-8 text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+              {project.oneLiner}
+            </p>
           </div>
-          <h1 className="mt-4 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-12 text-balance">
-            {project.title}
-          </h1>
-        </div>
-      </header>
+        </header>
+      ) : (
+        <header className="px-6 pt-32 pb-12">
+          <div className="max-w-7xl mx-auto">
+            <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
+            <div className="mt-8 inline-flex items-center gap-2 text-sm text-primary">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+              {project.category}
+            </div>
+            <h1 className="mt-4 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-12 text-balance">
+              {project.title}
+            </h1>
+          </div>
+        </header>
+      )}
+
 
       <div className="px-6">
         <div className="max-w-7xl mx-auto">

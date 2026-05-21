@@ -93,12 +93,15 @@ function BrillantaCaseStudy() {
 
       <div className="px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="aspect-[16/9] overflow-hidden rounded-[2.5rem]">
-            <img
-              src={project.image}
-              alt={project.client}
-              width={1280}
-              height={720}
+          <div className="aspect-[16/9] overflow-hidden rounded-[2.5rem] bg-surface">
+            <video
+              src="/brillanta-banner.mp4"
+              poster={project.image}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
               className="w-full h-full object-cover"
             />
           </div>

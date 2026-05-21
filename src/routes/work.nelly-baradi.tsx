@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Sparkles, MessageCircle, Megaphone, Video, Calendar, Radio, Newspaper, Music } from "lucide-react";
+import { Sparkles, MessageCircle, Megaphone, Video, Calendar, Radio, Newspaper, Music, ExternalLink, Headphones } from "lucide-react";
+import { FaInstagram, FaXTwitter, FaTiktok, FaSpotify, FaApple } from "react-icons/fa6";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects } from "@/lib/work-data";

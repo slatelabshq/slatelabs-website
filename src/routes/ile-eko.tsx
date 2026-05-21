@@ -12,7 +12,6 @@ export const Route = createFileRoute("/ile-eko")({
       { property: "og:description", content: "Bridge traditional learning with digital tools. Manage students, track grades, communicate with parents, and scale your school." },
       { property: "og:url", content: "/ile-eko" },
       { property: "og:type", content: "product" },
-      { property: "og:image", content: workIleEko },
     ],
     links: [{ rel: "canonical", href: "/ile-eko" }],
   }),

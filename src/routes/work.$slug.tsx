@@ -165,32 +165,35 @@ function CaseStudy() {
       </Section>
 
       {/* More work */}
-      <Section>
-        <Eyebrow>Explore more projects</Eyebrow>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {others.map((p) => (
-            <Link
-              key={p.slug}
-              to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
-              params={{ slug: p.slug }}
-              className="group block"
-            >
-              <div className="aspect-[4/3] overflow-hidden rounded-[2rem] mb-6">
-                <img
-                  src={p.image}
-                  alt={p.client}
-                  loading="lazy"
-                  width={1280}
-                  height={960}
-                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                />
-              </div>
-              <h3 className="text-2xl font-medium tracking-tight">{p.title}</h3>
-              <p className="text-muted mt-2">{p.oneLiner}</p>
-            </Link>
-          ))}
-        </div>
-      </Section>
+      {project.slug !== "vida-rosa" && (
+        <Section>
+          <Eyebrow>Explore more projects</Eyebrow>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {others.map((p) => (
+              <Link
+                key={p.slug}
+                to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
+                params={{ slug: p.slug }}
+                className="group block"
+              >
+                <div className="aspect-[4/3] overflow-hidden rounded-[2rem] mb-6">
+                  <img
+                    src={p.image}
+                    alt={p.client}
+                    loading="lazy"
+                    width={1280}
+                    height={960}
+                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                  />
+                </div>
+                <h3 className="text-2xl font-medium tracking-tight">{p.title}</h3>
+                <p className="text-muted mt-2">{p.oneLiner}</p>
+              </Link>
+            ))}
+          </div>
+        </Section>
+      )}
+
 
       <Section>
         <div className="text-center">

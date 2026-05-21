@@ -168,7 +168,7 @@ function BrillantaCaseStudy() {
         <h2 className="text-4xl md:text-6xl font-medium tracking-[-0.03em] mb-12 text-balance">
           Bringing the brand <span className="text-primary">to life.</span>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {designs.map((d) => (
             <div key={d.label} className="bg-surface rounded-3xl p-4 border border-border">
               {d.kind === "image" ? (

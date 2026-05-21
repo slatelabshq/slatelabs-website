@@ -31,6 +31,7 @@ export type CaseStudyDetail = {
 export const projects: Project[] = [
   {
     slug: "44db",
+    color: "#3a1a6b",
     client: "44DB",
     title: "44DB — Music Collective Branding",
     category: "Brand Foundations",

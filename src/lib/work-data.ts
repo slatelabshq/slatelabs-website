@@ -141,6 +141,61 @@ export const projects: Project[] = [
     image: workIleEko,
     tags: ["SaaS", "Product Design", "EdTech"],
   },
-];
+  {
+    slug: "morgan-oxford",
+    client: "Morgan Oxford Education",
+    title: "Morgan Oxford — Education CRM",
+    category: "Intelligent Systems",
+    oneLiner: "A custom CRM built around how their staff actually work.",
+    image: workMorganOxford,
+    tags: ["Custom CRM", "Workflow Automation", "Internal Tools"],
+    detail: {
+      industry: "Education",
+      date: "Ongoing",
+      services: ["Discovery & Workflow Mapping", "Product Design", "Custom CRM Build", "Staff Onboarding"],
+      metrics: [
+        { value: "1", label: "Unified system replacing scattered tools" },
+        { value: "<2 wks", label: "Average staff onboarding time" },
+        { value: "100%", label: "Coverage of their real workflow" },
+      ],
+      challenge:
+        "Morgan Oxford's team runs an education-specific workflow — student enquiries, advisor handoffs, application tracking, follow-ups across multiple programmes. Off-the-shelf CRMs forced them to bend that workflow around generic sales pipelines, so the team fell back on spreadsheets, email threads, and disconnected tools. Information lived in too many places, handoffs slipped, and leadership had no clean view of the pipeline.",
+      solution: [
+        {
+          heading: "Workflow Discovery",
+          body: "We sat with advisors and admin staff and mapped the real journey from first enquiry to enrolment — every status, every handoff, every edge case — before writing a line of code.",
+        },
+        {
+          heading: "Custom Data Model",
+          body: "Built around students, programmes, and advisor relationships instead of generic 'leads' and 'deals' — so the system speaks the team's language out of the box.",
+        },
+        {
+          heading: "Role-Based Interface",
+          body: "Each staff role gets a screen designed for their job. No clutter, no unused fields, no hunting through tabs that don't apply to them.",
+        },
+        {
+          heading: "Automation Layer",
+          body: "Automated reminders, status changes, and handoffs run quietly in the background so nothing falls between teams and advisors spend their time on students, not admin.",
+        },
+      ],
+      results:
+        "Morgan Oxford now runs on one source of truth. Advisors spend less time on admin and more time with students, new staff are productive in under two weeks, and leadership finally has visibility into the full pipeline.",
+      numbers: [
+        "One unified system replaced spreadsheets, email threads, and disconnected tools",
+        "Role-based dashboards for advisors, admin, and leadership",
+        "Automated handoffs and reminders across the enquiry-to-enrolment journey",
+        "Full audit trail of every student interaction",
+        "New staff onboarded and productive in under two weeks",
+      ],
+      deliverables: [
+        "Workflow audit and process map",
+        "Custom data model for students, programmes, and advisors",
+        "Full custom CRM application",
+        "Role-based dashboards and views",
+        "Automation rules for reminders, status changes, and handoffs",
+        "Staff training sessions and internal documentation",
+      ],
+    },
+  },
 
 export const featuredProjects = projects;

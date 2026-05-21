@@ -50,6 +50,7 @@ const designs: Design[] = [
   { label: "Staff ID Card", kind: "image", src: brillantaIdCard },
   { label: "Social Media", kind: "image", src: brillantaSocial },
   { label: "Business Card", kind: "image", src: brillantaBusinessCard },
+  { label: "Website", kind: "image", src: brillantaWebsite },
 ];
 
 // Scope the green/gold accent to this page only — does not touch global tokens.

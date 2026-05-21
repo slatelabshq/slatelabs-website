@@ -3,7 +3,33 @@ import { useState } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { Reveal } from "@/components/Reveal";
-import { projects } from "@/lib/work-data";
+import { projects, type Project } from "@/lib/work-data";
+
+function WorkCard({ p }: { p: Project }) {
+  return (
+    <div className="relative overflow-hidden rounded-[2rem] p-8 md:p-10 min-h-[420px] md:min-h-[480px] flex flex-col justify-end text-white transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 bg-[#0A0A0A] shadow-[0_0_0_0_rgba(0,217,255,0)] group-hover:shadow-[0_0_60px_-5px_rgba(0,217,255,0.45)]">
+      <svg className="absolute top-8 left-8 w-8 h-8 text-primary/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 2l2 8 8 2-8 2-2 8-2-8-8-2 8-2z" />
+      </svg>
+      <svg className="absolute top-10 right-10 w-10 h-10 text-primary/25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M4 15a4 4 0 014-4 5 5 0 019.9 1A3 3 0 0119 18H7a3 3 0 01-3-3z" />
+      </svg>
+      <svg className="absolute bottom-24 right-12 w-8 h-8 text-primary/25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 3v18M3 12h18" />
+      </svg>
+      <div className="relative">
+        <div className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-6">{p.category}</div>
+        <h2 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] leading-[0.95] mb-4">{p.client}</h2>
+        <p className="text-white/60 text-base md:text-lg max-w-md mb-8">{p.oneLiner}</p>
+        <span className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all">
+          {p.slug === "ile-eko" ? "Learn more" : "View case study"}
+          <span aria-hidden>→</span>
+        </span>
+      </div>
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/work")({
   head: () => ({

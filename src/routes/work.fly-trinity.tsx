@@ -4,6 +4,7 @@ import { Plane, Palette, Type, LayoutTemplate, Image as ImageIcon } from "lucide
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects } from "@/lib/work-data";
+import flyTrinityBusinessCard from "@/assets/fly-trinity-business-card.png";
 
 const project = projects.find((p) => p.slug === "fly-trinity")!;
 

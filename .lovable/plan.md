@@ -1,26 +1,25 @@
-## What I'll do
+## Plan: Add Morgan Oxford website screenshots to the case study
 
-Fold the website revamp into the existing Morgan Oxford case study at `/work/morgan-oxford` — no new route, no new project entry. Two surgical additions:
+Use the 4 uploaded screenshots as the website mockup gallery in the existing Morgan Oxford case study.
 
-## Edits to `src/routes/work.morgan-oxford.tsx`
+### Steps
 
-1. **Solutions grid** — add a 7th card so the existing 3×2 grid becomes 4×2 on the second row:
-   - **Icon**: `Globe` (already imported).
-   - **Title**: "Website Revamp".
-   - **Desc**: "A full rebuild of MorganOxford.com — a modern, fast, conversion-focused site that mirrors the consultancy's premium positioning and routes prospective students straight into the CRM pipeline."
+1. **Copy uploads to assets** (`src/assets/`):
+   - `morgan-oxford-website-hero.png` — hero with "Placed with purpose"
+   - `morgan-oxford-website-stats.png` — stats strip (2,000+, 13+, ICEF, Worldwide)
+   - `morgan-oxford-website-framework.png` — "What we do" placement cards
+   - `morgan-oxford-website-destinations.png` — Study destinations grid
 
-2. **New "The website" section** — inserted after the Solutions block and before the Info strip. Single Section containing:
-   - `Eyebrow`: "The website"
-   - Heading: *"A new front door for ****global students.****"*
-   - One placeholder tile in a 16:9 rounded frame using a Slate Dark → System Cyan gradient (matches the existing palette). Caption: "morganoxford.com — Revamp".
-   - Wrapped in `<div data-website-mockup>` so when you send the screenshot I can swap the gradient for an `<img>` in one edit. Same `Design` swap pattern as Fly Trinity / Brillanta.
+2. **Update `src/routes/work.morgan-oxford.tsx`** — "The website" section:
+   - Replace the single gradient placeholder tile inside `<div data-website-mockup>` with a gallery layout:
+     - Hero screenshot as a large 16:9 lead tile (full width)
+     - Below: 3-column grid (stats / framework / destinations), each in a rounded frame with subtle border, captioned
+   - Each frame uses the existing case-study tile styling (rounded-2xl, border, overflow-hidden) consistent with Fly Trinity / Brillanta galleries
+   - Captions: "Hero — Placed with purpose", "Proof points", "Service framework", "Study destinations"
+   - Add `loading="lazy"` and descriptive alt text on each `<img>`
 
-3. **Info strip — "Service Delivered"** — change `"Custom CRM System"` to `"Custom CRM System + Website Revamp"` so the deliverable summary reflects both.
+3. **No other changes** — meta tags, solution cards, and service strip already updated in the previous turn.
 
-4. **Head meta** — append "& website revamp" to the description and og:description so the social/search snippet is accurate.
-
-## Not changing
-
-- `src/lib/work-data.ts` — Morgan Oxford's card on `/work` keeps its current copy (CRM-led). Adding "website" to the one-liner would dilute the headline.
-- No new route, no new project entry.
-- When you upload the website screenshot next, I'll copy it to `src/assets/morgan-oxford-website.png`, import it, and swap the gradient tile for the image.
+### Technical notes
+- Import the 4 images at the top of the route file alongside existing asset imports
+- Reuse the same Tailwind classes as other gallery sections (e.g., `aspect-video`, `rounded-2xl`, `border border-border/40`, `bg-muted`) for visual consistency

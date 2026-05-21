@@ -3,8 +3,13 @@ import { GraduationCap, Database, Users, Globe, BarChart3, Network, ShieldCheck 
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects } from "@/lib/work-data";
+import websiteHero from "@/assets/morgan-oxford-website-hero.png";
+import websiteStats from "@/assets/morgan-oxford-website-stats.png";
+import websiteFramework from "@/assets/morgan-oxford-website-framework.png";
+import websiteDestinations from "@/assets/morgan-oxford-website-destinations.png";
 
 const project = projects.find((p) => p.slug === "morgan-oxford")!;
+
 
 export const Route = createFileRoute("/work/morgan-oxford")({
   head: () => ({
@@ -132,19 +137,29 @@ function MorganOxfordCaseStudy() {
         <h2 className="text-4xl md:text-6xl font-medium tracking-[-0.03em] mb-12 text-balance">
           A new front door for <span className="text-primary">global students.</span>
         </h2>
-        <div data-website-mockup className="bg-surface rounded-3xl p-4 border border-border">
-          <div
-            className="aspect-video rounded-2xl flex items-end p-6"
-            style={{ background: "linear-gradient(135deg, #1A2235 0%, #2A3347 55%, #00D9FF 100%)" }}
-          >
-            <div className="text-background/90 text-xs font-medium tracking-[0.2em] uppercase">
-              Placeholder
+        <div data-website-mockup className="space-y-4">
+          <figure className="bg-surface rounded-3xl p-4 border border-border">
+            <div className="aspect-video rounded-2xl overflow-hidden border border-border/40 bg-muted">
+              <img src={websiteHero} alt="Morgan Oxford website hero — Placed with purpose, supported all the way." loading="lazy" className="w-full h-full object-cover object-top" />
             </div>
-          </div>
-          <div className="px-2 pt-4 pb-2 text-center">
-            <div className="text-sm font-medium">morganoxford.com — Revamp</div>
+            <figcaption className="px-2 pt-4 pb-2 text-center text-sm font-medium">morganoxford.com — Hero</figcaption>
+          </figure>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              { src: websiteStats, alt: "Morgan Oxford proof points — 2,000+ students placed, 13+ years of expertise, ICEF accredited, worldwide destinations served.", caption: "Proof points" },
+              { src: websiteFramework, alt: "Morgan Oxford service framework — school and university placement cards.", caption: "Service framework" },
+              { src: websiteDestinations, alt: "Morgan Oxford study destinations — United Kingdom, United States, Canada.", caption: "Study destinations" },
+            ].map((tile) => (
+              <figure key={tile.caption} className="bg-surface rounded-3xl p-4 border border-border">
+                <div className="aspect-video rounded-2xl overflow-hidden border border-border/40 bg-muted">
+                  <img src={tile.src} alt={tile.alt} loading="lazy" className="w-full h-full object-cover object-top" />
+                </div>
+                <figcaption className="px-2 pt-4 pb-2 text-center text-sm font-medium">{tile.caption}</figcaption>
+              </figure>
+            ))}
           </div>
         </div>
+
       </Section>
 
       {/* Info strip */}

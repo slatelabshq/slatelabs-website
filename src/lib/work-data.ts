@@ -2,9 +2,10 @@ import work44db from "@/assets/work-44db.jpg";
 import workVidaRosa from "@/assets/work-vidarosa.jpg";
 import workIleEko from "@/assets/work-ileeko.jpg";
 import workMorganOxford from "@/assets/work-morgan-oxford.jpg";
+import workFlyTrinity from "@/assets/work-fly-trinity.jpg";
 
 export type Project = {
-  slug: "44db" | "vida-rosa" | "ile-eko" | "morgan-oxford";
+  slug: "44db" | "vida-rosa" | "ile-eko" | "morgan-oxford" | "fly-trinity";
   client: string;
   title: string;
   category: "Brand Foundations" | "Digital Platforms" | "Intelligent Systems";
@@ -201,6 +202,16 @@ export const projects: Project[] = [
         "Staff training sessions and internal documentation",
       ],
     },
+  },
+  {
+    slug: "fly-trinity",
+    color: "#3C096C",
+    client: "Fly Trinity Airways",
+    title: "Fly Trinity Airways — Brand Identity",
+    category: "Brand Foundations",
+    oneLiner: "Crafting a premium airline brand identity from ground to sky.",
+    image: workFlyTrinity,
+    tags: ["Brand Strategy", "Visual Identity", "Collateral"],
   },
 ];
 

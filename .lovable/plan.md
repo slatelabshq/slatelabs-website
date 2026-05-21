@@ -1,25 +1,32 @@
 ## Goal
 
-Create a dedicated case-study page for Morgan Oxford Education at `/work/morgan-oxford`, mirroring the layout and quality of the existing 44DB case study but populated with the content shown in the uploaded screenshots (hero with grad-cap icon card, brief, system palette, solution cards, sector/service/category info card, CTA).
+Add a Fly Trinity Airways case study at `/work/fly-trinity` matching the layout of the Morgan Oxford / 44DB pages, using a purple accent palette scoped to this page only (rest of site stays cyan). Also add it as a card on the work index.
 
 ## Changes
 
-1. **New route file** `src/routes/work.morgan-oxford.tsx`
-   - Hero: eyebrow `INTELLIGENT SYSTEMS · CRM`, headline "Morgan Oxford **Education**" (accent on "Education"), subtitle "Bespoke CRM built to orchestrate global student recruitment at scale", with the grad-cap icon card above.
-   - The Brief section: "International education deserves intelligent infrastructure" + supporting paragraph from screenshot.
-   - System Palette section: "Built for clarity, built for scale" with 5 swatches — Slate Dark `#2A3347`, Steel Grey `#5B6E8A`, System Cyan `#00D9FF`, Cloud White `#F2F4F8`, Deep Navy `#1A2235`.
-   - The Solution section: "A CRM that thinks the way they work" + supporting paragraph and a 2-column grid of 6 feature cards (Custom CRM Architecture, Student Pipeline Management, Global University Placement Engine, Operations Dashboard, Automated Workflow System, Data Security & Compliance) each with a lucide icon (Database, Users, Globe, BarChart3, Network, ShieldCheck).
-   - Info strip card with three columns: Sector "International Education Agency & Consultancy", Service Delivered "Custom CRM System", Category "Intelligent Systems".
-   - CTA: "Need a custom intelligent system for your business?" with `Start Your Mission` button linking to `/contact`.
-   - SEO `head()` with route-specific title, description, og tags, canonical.
+1. **New asset** `src/assets/work-fly-trinity.jpg`
+   - Generate a purple-toned airline brand mock image (clouds / lavender gradient / abstract plane) for the work card and og:image.
 
-2. **Update `src/routes/work.tsx`** card link branch
-   - Add a `p.slug === "morgan-oxford"` branch that links to `/work/morgan-oxford` (alongside the existing `44db` and `ile-eko` branches).
+2. **Update `src/lib/work-data.ts`**
+   - Add a new `Project` entry with `slug: "fly-trinity"`, category `Brand Foundations`, client `Fly Trinity Airways`, color `#3C096C`, tags `["Brand Strategy", "Visual Identity", "Collateral"]`, oneLiner `Crafting a premium airline brand identity from ground to sky.`
+   - Extend the `slug` union type to include `"fly-trinity"`.
 
-3. **No changes** to `src/lib/work-data.ts` content — copy on the page comes from the screenshots directly; data file remains the source for the work index card.
+3. **New route file** `src/routes/work.fly-trinity.tsx` mirroring the Morgan Oxford structure:
+   - Wrap the whole page in a `<div className="fly-trinity-page">` that scopes a CSS variable override so the page's `--primary` reads as deep purple. Headings, eyebrows, icons that use `text-primary` will automatically pick this up — no per-element color overrides needed.
+   - **Hero**: a square card with a `Plane` lucide icon centered, eyebrow `BRAND FOUNDATIONS · AIRLINE`, headline `Fly Trinity Airways` with `Airways` in accent purple, subtitle `Crafting a premium airline brand identity from ground to sky`.
+   - **The Brief**: heading `Elevating air travel through identity` with paragraph copy from the screenshot.
+   - **Color Palette**: heading `The colours of flight`, 5 swatches — Deep Purple `#3C096C`, Lavender `#DAB6FC`, Off-White `#F4F4F2`, Royal Violet `#5A189A`, Orchid `#9D4EDD`.
+   - **What we delivered**: 2×2 grid of 4 cards with icons (Palette → Brand Identity, Type → Typography System, LayoutTemplate → Collateral Design, Image → Digital Presence), copy from screenshots.
+   - **Bringing the brand to life**: 3-column gallery of placeholder tiles labeled `Staff ID Card`, `Social Media`, `Business Card`. Each tile is a purple-tinted gradient card with the label centered — easy to swap for real imagery later.
+   - **CTA**: `Ready for your clean slate?` with `Let's talk` button, consistent with other case studies.
+   - SEO `head()` with route-specific title, description, og tags, canonical, and the generated og:image.
+
+4. **Update `src/routes/work.tsx`** card link branch
+   - Add a `p.slug === "fly-trinity"` branch linking to `/work/fly-trinity` alongside the existing branches.
 
 ## Technical Notes
 
-- Follows existing patterns (`Section`, `Eyebrow`, `CtaButton`, semantic tokens, no hardcoded Tailwind colors except inline swatch backgrounds via `style={{ backgroundColor }}` as 44DB does).
-- File name uses TanStack flat dot routing: `work.morgan-oxford.tsx` → `/work/morgan-oxford`. `routeTree.gen.ts` regenerates automatically.
-- Reuses lucide icons already common in the project.
+- Purple accent scoped via `style={{ "--primary": "270 73% 27%" } as React.CSSProperties}` (or `oklch` matching the token format in `src/styles.css`) on the page wrapper — keeps every other route's cyan branding untouched.
+- Reuses `Section`, `Eyebrow`, `CtaButton`, semantic tokens; only the swatch backgrounds use inline `style.backgroundColor` exactly like 44DB.
+- TanStack flat dot routing: `work.fly-trinity.tsx` → `/work/fly-trinity`. `routeTree.gen.ts` regenerates automatically.
+- Placeholder gallery tiles use `bg-surface` with a soft purple inner gradient via `style` — no missing-asset imports.

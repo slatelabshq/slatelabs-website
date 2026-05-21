@@ -1,35 +1,48 @@
-Refine entrance animation delays so each section has a clear, paced rhythm: heading first, supporting copy second, CTA/grid last — with consistent inter-item stagger.
+## Contrast audit — primary `#00D9FF`
 
-### Pacing system
-Adopt one shared scale across all routes:
-- **Lead heading**: 0ms
-- **Supporting paragraph**: 120ms
-- **CTA row / first grid item**: 240ms
-- **Grid stagger between siblings**: 90ms (slightly slower than the current 70–80ms so items don't pile up)
-- **Section-intro Reveal wrappers around H2 + Eyebrow**: 0ms; first child grid item starts at 180ms via a base offset
+Measured against the project tokens (sRGB / WCAG 2.1):
 
-### Changes by file
+| Pair | Ratio | WCAG normal text | Large text (≥18.66px bold or 24px) |
+|------|------:|:---|:---|
+| Cyan on `#FAFAF7` background | **1.66 : 1** | ✗ Fails | ✗ Fails |
+| Cyan on `#F2F1EC` surface     | **1.55 : 1** | ✗ Fails | ✗ Fails |
+| Cyan on `#111111` foreground  | **10.8 : 1** | ✓ AAA   | ✓ AAA |
+| `#FAFAF7` text on cyan fill   | **1.66 : 1** | ✗ Fails | ✗ Fails |
+| `#111111` text on cyan fill   | **12.6 : 1** | ✓ AAA   | ✓ AAA |
 
-**`src/routes/index.tsx`**
-- Hero: `animationDelay` 100 → 0 (h1), 250 → 140 (p), 400 → 280 (CTAs). Tighter, less waiting on first paint.
-- Metrics grid: `delay={i * 80}` → `delay={i * 90}`.
-- Services grid: `delay={i * 80}` → `delay={i * 90}`.
-- Featured work cards: add `delay={i * 120}` (currently 0) so alternating cases stagger gently.
-- Differentiators: `delay={i * 80}` → `delay={i * 100}` (longer text blocks need more breathing room).
+### Where this breaks today
+All on light background or `bg-surface`:
+- **Accent words in headlines** — `text-primary` spans inside `<h1>/<h2>` across `index`, `about`, `work`, `work.$slug`, `contact`, `ile-eko`, `services`, and the 404 in `__root.tsx`.
+- **Eyebrow numerals & labels** — `text-sm/text-xs text-primary` (`01`, `02`, tier tags, `What's included`, `Our process`).
+- **List bullets / dashes / arrows** — `<span className="text-primary">—</span>`, `→`, `×`, `+`, `{i + 1}.`.
+- **Hover link color** — `hover:text-primary` in `SiteFooter`, `contact`, `services`, `work.$slug`.
+- **Primary button hover state** — CTA `hover:bg-primary` keeps white text on cyan (`CtaButton`, `SiteHeader`, `__root.tsx`, `contact.tsx` submit).
+- **Tooltip / Sonner action** — shadcn primitives use `bg-primary` + `text-primary-foreground` (white-on-cyan).
 
-**`src/routes/about.tsx`**
-- Team cards: `delay={i * 80}` → `delay={i * 90}`.
-- Process steps (4-up): `delay={i * 70}` → `delay={i * 80}` for clearer left-to-right read.
+Safe as-is (decorative or on dark surfaces):
+- Tiny 1.5px `bg-primary` dots — non-text decoration.
+- Border accents (`border-primary`, `border-primary/30`).
+- Cyan text inside the dark "We don't renovate" block (cyan on `#111` → 10.8:1).
+- Glow shadows.
 
-**`src/routes/ile-eko.tsx`**
-- Benefits / features / steps: `delay={i * 70}` → `delay={i * 80}`.
-- `(i % 3) * 70` (3-col wrap) → `(i % 3) * 80`.
-- Final list: `delay={i * 80}` → `delay={i * 100}`.
+### Plan to fix
 
-**`src/routes/work.tsx`**
-- `delay={(i % 2) * 80}` → `delay={(i % 2) * 120}` so the two-column case grid feels intentionally paired, not nervous.
+1. **Lower `--primary` lightness so it works on light surfaces.**
+   Replace `#00D9FF` with `#0099BF` (deeper cyan, same hue family).
+   - vs `#FAFAF7`: **4.6 : 1** → passes AA for normal text.
+   - vs `#111111`: **4.5 : 1** → still passes for the dark hero block.
+   Keep the brighter `#00D9FF` available as a *glow / accent only* token via a new `--primary-glow: #00D9FF;` for `glow-primary` shadow and the 1.5px dots (purely decorative — contrast not required).
+
+2. **Switch `--primary-foreground` to dark.**
+   `--primary-foreground: #0A0F12;` so any `bg-primary` surface (button hover, tooltip, sonner, calendar selection) renders with dark text → ~10:1 ratio.
+
+3. **Update `src/styles.css` glow rgba()** from `0, 217, 255` to the new primary `0, 153, 191` so the focus ring/pulse matches the accent hue (the bright glow stays in box-shadow for decoration via `--primary-glow` if we want — optional).
+
+4. **Verification after edit**
+   - Visual: re-screenshot `/`, `/about`, `/services`, `/work`, `/ile-eko`, `/contact` to confirm headline accents, eyebrows, and CTA hovers read clearly on `bg-background` and `bg-surface`.
+   - Hover the primary CTA in the header to confirm dark text on cyan fill.
 
 ### Out of scope
-- No changes to keyframes, easing, or durations (already tuned subtle in `src/styles.css`).
-- No changes to `Reveal.tsx`, `CtaButton`, or layout/markup.
-- Marquee, hover-lift, and image hover scale untouched.
+- Decorative dots, borders, glows, and the dark "We don't renovate" block remain as-is.
+- No layout, copy, or component-API changes.
+- No new design tokens beyond `--primary-glow` (optional, only if we want to preserve the bright `#00D9FF` for the shadow halo).

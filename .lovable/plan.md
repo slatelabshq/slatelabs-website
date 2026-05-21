@@ -1,21 +1,8 @@
-# Update contact & social info across site
+# Remove case study images from home page
 
-Replace outdated email, Instagram, and add TikTok references across three files.
+In `src/routes/index.tsx` "Selected work" section (lines ~119-164), remove the image column from each featured project card. The text column (title, one-liner, tags, "Case study 0X" label) stays and becomes full-width.
 
-## Files changed
-
-### `src/routes/contact.tsx`
-- Change mailto link from `hello@slatelabs.co` to `hello@slatelabshq.com`
-- Change sidebar email link from `hello@slatelabs.co` to `hello@slatelabshq.com`
-- Change Instagram link from `slatelabs.co` to `slatelabs.hq`
-- Add TikTok — `slatelabs.hq` in "Other ways to connect"
-
-### `src/components/SiteFooter.tsx`
-- Change Instagram link from `slatelabs.co` to `slatelabs.hq`
-- Change email from `hello@slatelabs.co` to `hello@slatelabshq.com`
-- Add TikTok link below Instagram in "Connect" column
-
-### `src/routes/__root.tsx`
-- Update JSON-LD schema email from `hello@slatelabs.co` to `hello@slatelabshq.com`
-- Update JSON-LD schema `sameAs` Instagram from `slatelabs.co` to `slatelabs.hq`
-- Add TikTok URL to `sameAs` array
+## Change
+- Drop the `<div className="md:col-span-7 ...">` image wrapper (lines 130-141) entirely.
+- Remove the 12-col grid + reversed alternation; replace with a simple stacked text block per project (or a `max-w-3xl` container).
+- Keep links, hover state, tags, and CTA below unchanged.

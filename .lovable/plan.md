@@ -1,26 +1,30 @@
-# Tune Cyan Glow & Pulse Strength
+# Smoother, More Consistent Reveal Easing
+
+## Problem
+- `--ease-out-soft` and `--ease-out-expo` are defined identically (`cubic-bezier(0.33, 1, 0.68, 1)`) — the "expo" token is a lie, and all entrances share the same mild quart curve.
+- Entrance durations are scattered: `reveal/slide-up` 900ms, `fade-in` 600ms, `fade-in-up` 750ms, `scale-in` 700ms. Stacked reveals feel uneven because each item glides for a different length of time.
+- `Reveal` always animates for 900ms regardless of how many items are in a stagger, so trailing items feel laggy.
 
 ## Goal
-Make the cyan glow and soft-pulse effects feel consistent with the deepened primary (`#0099BF`) while remaining visible but not overpowering against the warm off-white background (`#FAFAF7`).
+One easing curve and a tighter, predictable duration for all entrance animations so staggers read as a single coordinated motion.
 
-## Current State (from `src/styles.css`)
-- `--primary: #0099BF` (text/accessible accent)
-- `--primary-glow: #00D9FF` (brighter, decorative only)
-- Glow classes hardcode `rgba(0, 217, 255, ...)` — not tied to `--primary-glow`
-- `soft-pulse`: `rgba(0, 217, 255, 0.18)` → `6px` ring
-- `glow-primary:hover`: `28px/60px` double halo at `0.28` and `0.12` alpha
-
-## Proposed Changes
-1. **Wire glows to `--primary-glow`** via CSS custom properties (`--glow-color`, `--glow-alpha`) so the token is actually used and future changes are single-source.
-2. **Soften the hover glow intensity** by reducing alpha values:
-   - Outer ring: `0.28` → `0.18`
-   - Inner halo: `0.12` → `0.07`
-   - This keeps the cyan visible on `#FAFAF7` without creating a neon sign effect.
-3. **Reduce pulse ring alpha** from `0.18` → `0.12` and tighten spread from `6px` → `4px` so the tab highlight in `ile-eko.tsx` feels crisp, not bloomy.
-4. **Slightly shorten pulse duration** from `3s` → `2.5s` to make the rhythm feel more alive and less lounge-like.
-5. **Verify visually** on the preview that the `ile-eko` active tab, CTA buttons, and header button all feel like one family of effects.
+## Changes (all in `src/styles.css`)
+1. **Define a real expressive easing token:**
+   - `--ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1)` (smoother out-quint, less linear tail than current)
+   - `--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1)` (true expo for hero-scale reveals)
+2. **Standardize entrance durations** to a single rhythm:
+   - `.reveal` transition: `900ms` → `700ms`
+   - `.animate-reveal` (hero slide-up): `900ms` → `800ms` with `--ease-out-expo`
+   - `.animate-fade-in`: `600ms` → `700ms`
+   - `.animate-fade-in-up`: `750ms` → `700ms`
+   - `.animate-scale-in`: `700ms` (keep) but switch to `--ease-out-expo`
+3. **Keep `--ease-out-soft` as the default** for all `Reveal` wrappers and small UI transitions (hovers, links).
+4. **No JS changes required** — `Reveal.tsx` already reads from `.reveal` CSS; durations centralize in one file.
 
 ## Out of Scope
-- No changes to animation timings for page entrances (already tuned).
-- No changes to `glow-subtle` (dark/neutral, unrelated).
-- No changes to layout or copy.
+- No changes to existing per-section delay values (already tuned in a prior pass).
+- No changes to hover-lift, glow, story-link timing (already at 350–500ms, separate rhythm).
+- No new Reveal props.
+
+## Risk
+Hero `animate-reveal` keyframe (`slide-up`) starts from `translateY(10px)`. Tightening to 800ms with expo will feel snappier — intended. If too snappy, fallback is 850ms.

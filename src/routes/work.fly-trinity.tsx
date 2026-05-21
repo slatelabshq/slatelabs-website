@@ -5,6 +5,7 @@ import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects } from "@/lib/work-data";
 import flyTrinityBusinessCard from "@/assets/fly-trinity-business-card.png";
+import flyTrinitySocial from "@/assets/fly-trinity-social.jpg";
 
 const project = projects.find((p) => p.slug === "fly-trinity")!;
 
@@ -45,7 +46,7 @@ type Design =
 
 const designs: Design[] = [
   { label: "Staff ID Card", kind: "gradient", gradient: "linear-gradient(135deg, #3C096C 0%, #5A189A 60%, #9D4EDD 100%)" },
-  { label: "Social Media", kind: "gradient", gradient: "linear-gradient(135deg, #5A189A 0%, #9D4EDD 50%, #DAB6FC 100%)" },
+  { label: "Social Media", kind: "image", src: flyTrinitySocial },
   { label: "Business Card", kind: "image", src: flyTrinityBusinessCard },
 ];
 

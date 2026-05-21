@@ -116,34 +116,52 @@ function Home() {
         <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-16 max-w-xl">
           Work that speaks for itself.
         </h2>
-        <div className="space-y-16 max-w-3xl">
-          {featuredProjects.map((p, i) => (
-            <Reveal key={p.slug} delay={i * 120}>
-              <Link
-                to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
-                params={{ slug: p.slug }}
-                className="group block"
-              >
-                <div className="inline-flex items-center gap-2 text-xs text-muted mb-4">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  Case study 0{i + 1}
-                </div>
-                <h3 className="text-3xl md:text-4xl font-medium mb-4 tracking-tight group-hover:text-primary transition-colors">
-                  {p.title}
-                </h3>
-                <p className="text-muted mb-6 leading-relaxed">{p.oneLiner}</p>
-                <div className="flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span key={t} className="px-3 py-1 rounded-full bg-surface text-xs text-muted">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            </Reveal>
-          ))}
+        <div className="space-y-24">
+          {featuredProjects.map((p, i) => {
+            const reversed = i % 2 === 1;
+            return (
+              <Reveal key={p.slug} delay={i * 120}>
+                <Link
+                  to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
+                  params={{ slug: p.slug }}
+                  className="group block"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                    <div className={`md:col-span-7 ${reversed ? "md:order-2" : ""}`}>
+                      <div className="w-full aspect-[4/3] overflow-hidden rounded-[2rem]">
+                        <img
+                          src={p.image}
+                          alt={p.client}
+                          loading="lazy"
+                          width={1280}
+                          height={960}
+                          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+                        />
+                      </div>
+                    </div>
+                    <div className={`md:col-span-5 ${reversed ? "md:order-1" : ""}`}>
+                      <div className="inline-flex items-center gap-2 text-xs text-muted mb-4">
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        Case study 0{i + 1}
+                      </div>
+                      <h3 className="text-3xl md:text-4xl font-medium mb-4 tracking-tight">
+                        {p.title}
+                      </h3>
+                      <p className="text-muted mb-6 leading-relaxed">{p.oneLiner}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {p.tags.map((t) => (
+                          <span key={t} className="px-3 py-1 rounded-full bg-surface text-xs text-muted">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+            );
+          })}
         </div>
-
         <div className="mt-20 flex justify-center">
           <CtaButton to="/work" variant="secondary">View full portfolio</CtaButton>
         </div>

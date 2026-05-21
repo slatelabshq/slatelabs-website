@@ -1,7 +1,9 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { Car } from "lucide-react";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects, type CaseStudyDetail } from "@/lib/work-data";
+
 
 export const Route = createFileRoute("/work/$slug")({
   loader: ({ params }) => {

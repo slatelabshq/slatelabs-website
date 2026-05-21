@@ -48,14 +48,14 @@ function Home() {
       <header className="px-6 pt-32 pb-24">
         <div className="max-w-6xl mx-auto text-center">
           <Eyebrow>Lagos, Nigeria</Eyebrow>
-          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-[-0.03em] text-balance mb-8 animate-reveal" style={{ animationDelay: "60ms" }}>
+          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-[-0.03em] text-balance mb-8 animate-reveal" style={{ animationDelay: "100ms" }}>
             Building brands & platforms on a{" "}
             <span className="text-primary">clean slate.</span>
           </h1>
-          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed mb-10 animate-reveal" style={{ animationDelay: "180ms" }}>
+          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed mb-10 animate-reveal" style={{ animationDelay: "250ms" }}>
             Creative and technical excellence for businesses ready to start fresh and grow exponentially.
           </p>
-          <div className="flex flex-wrap justify-center gap-3 animate-reveal" style={{ animationDelay: "300ms" }}>
+          <div className="flex flex-wrap justify-center gap-3 animate-reveal" style={{ animationDelay: "400ms" }}>
             <CtaButton to="/work" variant="primary">See our work</CtaButton>
             <CtaButton to="/contact" variant="secondary">Let's talk</CtaButton>
           </div>

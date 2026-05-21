@@ -30,7 +30,7 @@ function Contact() {
       `Project Type: ${fd.get("projectType") ?? ""}\n` +
       `Budget: ${fd.get("budget") ?? ""}\n\n` +
       `Message:\n${fd.get("message") ?? ""}`;
-    const mailto = `mailto:hello@slatelabs.co?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailto = `mailto:hello@slatelabshq.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
     setSent(true);
   }
@@ -120,8 +120,8 @@ function Contact() {
             <aside className="md:col-span-5 space-y-10">
               <div>
                 <div className="text-xs font-medium text-muted mb-3">Direct</div>
-                <a href="mailto:hello@slatelabs.co" className="text-xl font-medium hover:text-primary">
-                  hello@slatelabs.co
+                <a href="mailto:hello@slatelabshq.com" className="text-xl font-medium hover:text-primary">
+                  hello@slatelabshq.com
                 </a>
               </div>
               <div>
@@ -135,7 +135,8 @@ function Contact() {
               <div>
                 <div className="text-xs font-medium text-muted mb-3">Other ways to connect</div>
                 <ul className="space-y-2 text-base">
-                  <li><a href="https://instagram.com/slatelabs.co" className="hover:text-primary">Instagram — @slatelabs.co</a></li>
+                  <li><a href="https://instagram.com/slatelabs.hq" className="hover:text-primary">Instagram — @slatelabs.hq</a></li>
+                  <li><a href="https://tiktok.com/@slatelabs.hq" className="hover:text-primary">TikTok — @slatelabs.hq</a></li>
                   <li><a href="#" className="hover:text-primary">LinkedIn — Slate Labs</a></li>
                 </ul>
               </div>

@@ -10,6 +10,7 @@ export type Project = {
   category: "Brand Foundations" | "Digital Platforms" | "Intelligent Systems";
   oneLiner: string;
   image: string;
+  color: string;
   tags: string[];
   detail?: CaseStudyDetail;
 };

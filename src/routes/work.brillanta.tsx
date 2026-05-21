@@ -7,6 +7,7 @@ import { projects } from "@/lib/work-data";
 import brillantaBusinessCard from "@/assets/brillanta-business-card.png";
 import brillantaIdCard from "@/assets/brillanta-id-card.png";
 import brillantaSocial from "@/assets/brillanta-social.jpg";
+import brillantaWebsite from "@/assets/brillanta-website.png";
 
 const project = projects.find((p) => p.slug === "brillanta")!;
 

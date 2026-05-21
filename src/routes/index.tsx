@@ -39,7 +39,16 @@ const services = [
   { n: "03", title: "Intelligent systems", body: "AI automation and workflows that multiply your team's capacity.", hash: "intelligent-systems" },
 ];
 
-const logos = ["44DB", "Vida Rosa", "Ile Eko", "BREAKTIME", "Lagos Schools", "Partners"];
+const logos = [
+  "44DB",
+  "Vida Rosa",
+  "Ile Eko",
+  "Morgan Oxford Education",
+  "Nelly Baradi",
+  "Fly Trinity Airways",
+  "Rita's Bakehouse",
+  "Edith Smith",
+];
 
 function Home() {
   return (

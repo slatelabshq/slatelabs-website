@@ -1,28 +1,26 @@
-## Update logo marquee on homepage
+## Add 44DB video hero banner
 
-Replace the 3 placeholder logos (BREAKTIME, Lagos Schools, Partners) in the marquee on `src/routes/index.tsx` with 5 real client names.
+Use the uploaded 1920×1080, 3.5s H.264 clip as a muted, looping, autoplaying background video in two places.
 
-### Change
+### Files
 
-In `src/routes/index.tsx`, update the `logos` array from:
+1. **Place asset** at `public/media/44db-hero.mp4` (5.4MB — too large for src/assets bundling; served from public).
 
-```ts
-const logos = ["44DB", "Vida Rosa", "Ile Eko", "BREAKTIME", "Lagos Schools", "Partners"];
-```
+2. **`src/routes/index.tsx` — Homepage hero**
+   - Wrap the existing `<header>` in a `relative` container.
+   - Add absolutely-positioned `<video autoPlay muted loop playsInline preload="auto" aria-hidden="true">` covering the background (`absolute inset-0 w-full h-full object-cover`).
+   - Add a dark overlay (`bg-background/70`) so the existing headline/eyebrow/CTAs stay legible.
+   - Keep all existing hero text & buttons unchanged, just lifted above via `relative z-10`.
+   - Eyebrow + headline color stays as-is (already works on dark).
 
-to:
+3. **`src/routes/work.44db.tsx` — Case study hero**
+   - Replace the centered logo tile block with a full-width video banner (`aspect-video` or `h-[70vh]`) above the title/category text.
+   - Same `<video>` attrs: autoplay, muted, loop, playsInline.
+   - Keep the back link, category eyebrow, and h1 below the video.
+   - Logo import (`logo44db`) can stay for now or be removed if unused.
 
-```ts
-const logos = [
-  "44DB",
-  "Vida Rosa",
-  "Ile Eko",
-  "Morgan Oxford Education",
-  "Nelly Baradi",
-  "Fly Trinity Airways",
-  "Rita's Bakehouse",
-  "Edith Smith",
-];
-```
-
-No other changes — marquee rendering (triplicated loop, styling) stays the same.
+### Notes
+- No new dependencies.
+- No business logic changes — purely presentational.
+- `playsInline` ensures iOS autoplay works.
+- File lives in `public/` so it's referenced as `/media/44db-hero.mp4` (no import needed).

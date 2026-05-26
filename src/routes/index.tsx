@@ -54,8 +54,19 @@ function Home() {
   return (
     <>
       {/* Hero */}
-      <header className="px-6 pt-32 pb-24">
-        <div className="max-w-6xl mx-auto text-center">
+      <header className="relative px-6 pt-32 pb-24 overflow-hidden">
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/media/44db-hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-background/70" aria-hidden="true" />
+        <div className="relative z-10 max-w-6xl mx-auto text-center">
           <Eyebrow>Lagos, Nigeria</Eyebrow>
           <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-medium leading-[1.05] tracking-[-0.03em] text-balance mb-8 animate-reveal" style={{ animationDelay: "0ms" }}>
             Building brands & platforms on a{" "}

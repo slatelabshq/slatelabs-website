@@ -47,22 +47,31 @@ function FortyFourDBCaseStudy() {
     <>
       {/* Hero */}
       <header className="px-6 pt-32 pb-12">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-7xl mx-auto">
           <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
 
-          <div className="mt-12 flex justify-center">
-            <div className="w-32 h-32 rounded-3xl border border-border bg-surface/60 backdrop-blur flex items-center justify-center overflow-hidden">
-              <img src={logo44db} alt="44DB logo" className="w-24 h-24 object-contain" />
+          <div className="mt-8 relative overflow-hidden rounded-3xl bg-surface aspect-video">
+            <video
+              className="absolute inset-0 w-full h-full object-cover"
+              src="/media/44db-hero.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-label="44DB hero reel"
+            />
+          </div>
+
+          <div className="mt-12 text-center">
+            <div className="text-xs font-medium tracking-[0.2em] text-primary uppercase">
+              {project.category}
             </div>
-          </div>
 
-          <div className="mt-8 text-xs font-medium tracking-[0.2em] text-primary uppercase">
-            {project.category}
+            <h1 className="mt-6 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] text-balance">
+              {project.title}
+            </h1>
           </div>
-
-          <h1 className="mt-6 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] text-balance">
-            {project.title}
-          </h1>
         </div>
       </header>
 

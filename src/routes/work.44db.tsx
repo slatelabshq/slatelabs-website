@@ -50,19 +50,6 @@ function FortyFourDBCaseStudy() {
         <div className="max-w-7xl mx-auto">
           <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
 
-          <div className="mt-8 relative overflow-hidden rounded-3xl bg-surface aspect-video">
-            <video
-              className="absolute inset-0 w-full h-full object-cover"
-              src="/media/44db-hero.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              aria-label="44DB hero reel"
-            />
-          </div>
-
           <div className="mt-12 text-center">
             <div className="text-xs font-medium tracking-[0.2em] text-primary uppercase">
               {project.category}
@@ -85,6 +72,24 @@ function FortyFourDBCaseStudy() {
           <p className="text-lg text-muted leading-relaxed">{d.challenge}</p>
         </div>
       </Section>
+
+      {/* Hero reel */}
+      <div className="px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative overflow-hidden rounded-3xl bg-surface aspect-video">
+            <video
+              className="absolute inset-0 w-full h-full object-cover"
+              src="/media/44db-hero.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-label="44DB hero reel"
+            />
+          </div>
+        </div>
+      </div>
 
       {/* Color Palette */}
       <Section>

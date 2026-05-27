@@ -1,31 +1,40 @@
-## Problem
+## Plan: Fix Vercel 404 by using upstream TanStack Start plugin
 
-The 404 you're seeing is from Vercel's edge, not from the app. The project is currently configured for **Cloudflare Workers**:
+The current `vite.config.ts` uses `@lovable.dev/vite-tanstack-config` with `cloudflare: false` and `target: "vercel"`. That wrapper is Cloudflare-opinionated and likely still isn't emitting the Vercel Build Output API directory (`.vercel/output`) that Vercel needs — which is why you're still getting `NOT_FOUND`.
 
-- `wrangler.jsonc` declares a Worker with `main: "src/server.ts"`
-- `src/server.ts` imports `@tanstack/react-start/server-entry` and exports a Worker `fetch` handler
-- `vite.config.ts` uses `@lovable.dev/vite-tanstack-config`, which bundles the `@cloudflare/vite-plugin` and builds a Worker artifact
+### Changes
 
-When this build is uploaded to Vercel, no route handler runs (Vercel expects either a static site or its own Node/Edge function format), so every URL returns Vercel's generic `404: NOT_FOUND`.
+1. **Rewrite `vite.config.ts`** to bypass the Lovable wrapper and use the upstream plugins directly:
+   - `@tanstack/react-start/plugin/vite` with `{ target: "vercel" }`
+   - `@vitejs/plugin-react`
+   - `@tailwindcss/vite`
+   - `vite-tsconfig-paths`
+   - Keep the `@` alias and React/TanStack dedupe
 
-## Plan: switch the build target to Vercel
+2. **Delete `src/server.ts`** — it's a Cloudflare Worker `fetch` handler and has no role on Vercel. The TanStack Start Vercel preset generates its own serverless function entry. `src/start.ts`'s `errorMiddleware` already handles SSR errors with the branded error page.
 
-1. **Add a Vercel build target to TanStack Start**
-   - Update `vite.config.ts` to pass `target: "vercel"` to TanStack Start, replacing the Cloudflare-specific `tanstackStart.server.entry` override.
-   - Remove `src/server.ts` from the SSR entry path (it's a Cloudflare Worker wrapper and won't run on Vercel). Keep the file or delete it — but stop referencing it from config.
+3. **Add `vercel.json`** with:
+   ```json
+   { "buildCommand": "vite build", "outputDirectory": ".vercel/output", "framework": null }
+   ```
+   This makes the build deterministic regardless of Vercel's auto-detection.
 
-2. **Remove Cloudflare-only config**
-   - Delete `wrangler.jsonc` (Cloudflare-only, ignored by Vercel and confusing to keep).
-   - Confirm `@lovable.dev/vite-tanstack-config` doesn't force the Cloudflare plugin in a way that breaks Vercel output. If it does, we'll bypass it and use TanStack Start's own Vite plugin directly (`@tanstack/react-start/plugin/vite`) with `target: "vercel"`.
+4. **Install any missing dev deps** (`@vitejs/plugin-react`, `@tailwindcss/vite`, `vite-tsconfig-paths`) if not already present — they're transitive today via the Lovable wrapper.
 
-3. **Add a `vercel.json`** (only if needed) to point Vercel at the generated `.vercel/output` directory produced by TanStack Start's Vercel preset. With the preset, Vercel auto-detects it — no file usually needed.
+### Vercel dashboard settings
 
-4. **Re-deploy to Vercel**
-   - Push the changes; Vercel rebuilds.
-   - All routes (`/`, `/about`, `/work/44db`, etc.) should resolve via TanStack Start's SSR handler running as a Vercel function, and the in-app branded 404 will show for genuinely missing paths instead of Vercel's generic one.
+- Framework Preset: **Other**
+- Build Command: leave blank (uses `vercel.json`)
+- Output Directory: leave blank (uses `vercel.json`)
+- Install Command: default
 
-## Heads-up / risk
+### Risks
 
-`@lovable.dev/vite-tanstack-config` is opinionated toward Cloudflare. There's a real chance step 1 alone isn't enough and we'll need to swap it for the upstream TanStack Start Vite plugin to get a clean Vercel build. I'll do that fallback automatically if the first attempt still produces a Worker bundle.
+- The Lovable dev sandbox/preview here uses the wrapper. After this change, the local Lovable preview will run on the upstream plugin instead. Behavior should be equivalent, but if the in-Lovable preview breaks I'll need to reconcile.
+- If `@tanstack/react-start/plugin/vite` isn't installed standalone, I'll add `@tanstack/react-start` (already a dep) — the plugin ships with it.
 
-Alternative (much simpler): publish through Lovable instead — it's already set up for this stack and would work in one click. Let me know if you'd rather go that route; otherwise I'll proceed with the Vercel reconfiguration above.
+### Outcome
+
+After redeploying, Vercel will find `.vercel/output/config.json` + functions, route all paths through the SSR handler, and the 404s disappear. Genuine missing routes will show your in-app 404 from `__root.tsx`.
+
+Confirm to proceed and I'll implement.

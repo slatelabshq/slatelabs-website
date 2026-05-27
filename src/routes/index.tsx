@@ -188,9 +188,9 @@ function Home() {
 
       {/* Logo marquee */}
       <div className="py-12 overflow-hidden">
-        <div className="flex items-center gap-16 animate-marquee whitespace-nowrap w-max">
-          {[...logos, ...logos, ...logos].map((l, i) => (
-            <span key={i} className="text-lg font-medium text-muted/40 px-8">
+        <div className="flex items-center gap-6 md:gap-16 animate-marquee whitespace-nowrap w-max">
+          {[...logos, ...logos].map((l, i) => (
+            <span key={i} className="text-sm md:text-lg font-medium text-muted/40 px-3 md:px-8">
               {l}
             </span>
           ))}

@@ -1,12 +1,16 @@
-## Move 44DB hero video below the write-up
+## Adjust logo marquee for mobile responsiveness
 
-On `/work/44db`, the hero video (the glowing "B" logo reel) currently sits at the top of the page, above the title and "The brief" write-up. Move it so it appears **after** the brief.
+The logo marquee on the homepage has layout issues on mobile devices:
+- Text, gaps, and padding are desktop-sized and don't scale down
+- Three copies of the logo array are rendered but the CSS animation scrolls only `translateX(-50%)`, creating a misaligned loop
+- The wide `w-max` container with `whitespace-nowrap` overflows the viewport
 
-### Change
+### Changes
+1. **`src/routes/index.tsx`** — Update the marquee markup:
+   - Reduce `gap-16` → responsive `gap-6 md:gap-16`
+   - Reduce `px-8` per item → responsive `px-3 md:px-8`
+   - Reduce `text-lg` → responsive `text-sm md:text-lg`
+   - Change `[...logos, ...logos, ...logos]` to `[...logos, ...logos]` so the duplicated content matches the `translateX(-50%)` keyframe for a seamless loop
+   - Keep `overflow-hidden` on the outer container so no horizontal scrollbar appears
 
-In `src/routes/work.work.44db.tsx` (the `FortyFourDBCaseStudy` component):
-
-1. In the `<header>` block, remove the video container and keep only the "← All work" link, eyebrow category, and `<h1>` title.
-2. Insert the video block as its own full-width section immediately after the "The brief" `<Section>`, before "Color palette". Keep the same `aspect-video`, rounded container, autoplay/muted/loop/playsInline attributes, and `max-w-7xl mx-auto` wrapper so the visual treatment is unchanged.
-
-No other sections, copy, or styling change. No other routes affected.
+No other files or routes affected.

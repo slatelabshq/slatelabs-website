@@ -34,9 +34,10 @@ const differentiators = [
 ];
 
 const services = [
-  { n: "01", title: "Brand foundations", body: "Strategy, identity, and content that make your brand stand out and stick.", hash: "brand-foundations" },
-  { n: "02", title: "Digital platforms", body: "Custom websites, web apps, and SaaS products built to scale with your business.", hash: "digital-platforms" },
-  { n: "03", title: "Intelligent systems", body: "AI automation and workflows that multiply your team's capacity.", hash: "intelligent-systems" },
+  { n: "01", title: "Brand Strategy", body: "Positioning, identity, and messaging that make your brand stand out and stick.", hash: "brand-strategy" },
+  { n: "02", title: "Growth Marketing", body: "Organic-first campaigns and content engines that compound attention into demand.", hash: "growth-marketing" },
+  { n: "03", title: "Digital Platforms", body: "Custom websites, web apps, and SaaS products built to scale with your business.", hash: "digital-platforms" },
+  { n: "04", title: "Intelligent Systems", body: "AI automation and workflows that multiply your team's capacity.", hash: "intelligent-systems" },
 ];
 
 const logos = [

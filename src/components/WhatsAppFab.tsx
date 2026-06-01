@@ -1,3 +1,5 @@
+import { trackEvent } from "@/lib/analytics";
+
 const WA_URL =
   "https://wa.me/2347026036554?text=Hi%20Slate%20Labs%2C%20I%20want%20to%20discuss%20a%20project";
 
@@ -7,6 +9,7 @@ export function WhatsAppFab() {
       href={WA_URL}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackEvent("whatsapp_click", { location: "fab" })}
       aria-label="Chat with Slate Labs on WhatsApp"
       className="md:hidden fixed bottom-5 right-5 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-lg active:scale-95 transition-transform"
       style={{ backgroundColor: "#25D366" }}

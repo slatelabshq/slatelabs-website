@@ -79,7 +79,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "Slate Labs" },
       { property: "og:site_name", content: "Slate Labs" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://slatelabshq.com/og-default.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://slatelabshq.com/og-default.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

@@ -1,17 +1,65 @@
-# Phase 3 — MEDIUM priority — SHIPPED ✅
+# Insights / Blog scaffold
 
-## Done
-- **Testimonials**: new `src/components/Testimonials.tsx`, 3-card grid with placeholder quotes (44DB / Morgan Oxford / Vida Rosa). Mounted on home (above final CTA) and about (below Press).
-- **Calendly**: new `src/lib/calendly.ts` reads `VITE_CALENDLY_URL` with fallback `https://calendly.com/slatelabs/intro`. Contact page now leads with "Book a 20-min intro" button (email + WhatsApp remain). Home and Services final CTAs include "Book a 20-min call" secondary.
-- **CtaButton**: now supports `external` prop for `target="_blank"` external links.
-- **Work-card metric badges**: added optional `badge` field to `work-data.ts` (44DB 74.6% reach, Vida Rosa Featured engagement, Morgan Oxford 8hrs+ saved/wk, Nelly Baradi 250K+ views). Rendered as primary-tinted pill top-right on each card in `work.tsx`.
-- **SEO infrastructure**: `public/robots.txt` (Allow all + Sitemap directive), `public/sitemap.xml` listing all 12 public routes with lastmod 2026-06-01.
+A lightweight publishing surface for thought-leadership pieces — no CMS, no MDX toolchain. Content lives as typed objects in `src/lib/insights-data.ts` so SK / Joseph can write new posts by adding an entry.
 
-## Out of scope (user-side)
-- Custom domain DNS migration.
-- Google Search Console verification + sitemap submission (`https://slatelabshq.com/sitemap.xml`).
-- Replace placeholder testimonial quotes with real client sign-off when SK has them.
-- Set `VITE_CALENDLY_URL` env var to the real Slate Labs Calendly link.
+## Routes
 
-## Asset swaps still pending
-- Hero image, logo PNG wall, SK + team headshots, Ile Eko screenshots (Phase 2 carryover).
+- `/insights` — index. Header, intro line, grid of post cards (image, date, title, excerpt, tag).
+- `/insights/$slug` — detail. Hero with cover, title, meta (date, author, read time), rendered body, "More insights" footer with 2 related posts, back-to-insights link.
+
+## Data model (`src/lib/insights-data.ts`)
+
+```ts
+type Block =
+  | { type: "p"; text: string }
+  | { type: "h2"; text: string }
+  | { type: "quote"; text: string; cite?: string }
+  | { type: "ul"; items: string[] };
+
+type Post = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;          // ISO
+  readMinutes: number;
+  author: { name: string; role: string };
+  cover?: string;        // optional asset import; falls back to gradient
+  tag: "Brand" | "Growth" | "Platforms" | "Systems" | "Culture";
+  body: Block[];
+};
+```
+
+Renderer (small `BlockRenderer` in the detail route) maps each block type to styled JSX — reuses existing typography tokens, no new components beyond a simple `<Prose>` wrapper.
+
+## Seed posts (2)
+
+1. **"Why most Lagos brands look the same"** — Brand essay by Joseph (4-min read). Talks positioning, sameness, what differentiation actually means. Pulls thread from the RefinedNG piece.
+2. **"The CRM your team will actually use"** — Systems essay by SK (5-min read). Workflow-first thinking, the Morgan Oxford lesson.
+
+Both shipped as placeholders with `// TODO: editorial pass` comment so SK can rewrite. Real publishing happens by adding entries.
+
+## SEO
+
+- Index route: `head()` with insights-specific title / description / canonical.
+- Detail route: dynamic `head()` from loader data — title, description (= excerpt), `og:type: article`, `og:title`, `og:description`, canonical, **Article JSON-LD** (headline, datePublished, author, publisher = Slate Labs).
+- Add both routes to `public/sitemap.xml`.
+
+## Navigation + cross-linking
+
+- `SiteHeader` desktop + mobile nav: add `Insights` link between Work and About.
+- `SiteFooter`: add Insights to the footer link list.
+- Home page: add a small "Latest from Slate Labs" 3-card strip above the final CTA (pulls top 3 posts) — only renders if posts exist.
+
+## Files
+
+- **New**: `src/lib/insights-data.ts`, `src/routes/insights.tsx` (index), `src/routes/insights.$slug.tsx` (detail), `src/components/InsightCard.tsx`, `src/components/Prose.tsx`
+- **Edited**: `src/components/SiteHeader.tsx`, `src/components/SiteFooter.tsx`, `src/routes/index.tsx`, `public/sitemap.xml`, `.lovable/plan.md`
+
+## Out of scope
+
+- No MDX, no remark/rehype, no markdown parser dependency.
+- No CMS, no DB. Editorial workflow = edit TS file, deploy.
+- No tag/category filter pages — single index sorted by date.
+- No RSS feed (easy to add later if asked).
+
+Approve and I'll build it.

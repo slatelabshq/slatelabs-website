@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
+import { CALENDLY_URL } from "@/lib/calendly";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -313,6 +314,7 @@ function Services() {
           </h2>
           <div className="flex flex-wrap justify-center gap-3">
             <CtaButton to="/contact" variant="primary">Book a consultation</CtaButton>
+            <CtaButton href={CALENDLY_URL} external variant="secondary">Book a 20-min call</CtaButton>
             <CtaButton to="/work" variant="secondary">See our work</CtaButton>
           </div>
         </div>

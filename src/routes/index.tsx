@@ -2,7 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { Reveal } from "@/components/Reveal";
+import { Testimonials } from "@/components/Testimonials";
 import { featuredProjects } from "@/lib/work-data";
+import { CALENDLY_URL } from "@/lib/calendly";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -232,6 +234,9 @@ function Home() {
         </div>
       </Section>
 
+      {/* Testimonials */}
+      <Testimonials heading="What clients say." />
+
       {/* Final CTA */}
       <Section>
         <div className="text-center">
@@ -243,7 +248,7 @@ function Home() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <CtaButton to="/contact" variant="primary">Get started</CtaButton>
-            <CtaButton to="/services" variant="secondary">See our services</CtaButton>
+            <CtaButton href={CALENDLY_URL} external variant="secondary">Book a 20-min call</CtaButton>
           </div>
         </div>
       </Section>

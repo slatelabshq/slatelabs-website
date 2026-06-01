@@ -34,10 +34,11 @@ export function SiteFooter() {
           <div>
             <div className="text-xs font-medium text-muted mb-4">Connect</div>
             <ul className="space-y-2 text-sm">
-              <li><a href="https://instagram.com/slatelabs.hq" className="hover:text-primary">Instagram</a></li>
-              <li><a href="https://tiktok.com/@slatelabs.hq" className="hover:text-primary">TikTok</a></li>
-              <li><a href="#" className="hover:text-primary">LinkedIn</a></li>
+              <li><a href="https://instagram.com/slatelabs.hq" target="_blank" rel="noopener noreferrer" className="hover:text-primary">Instagram</a></li>
+              <li><a href="https://tiktok.com/@slatelabs.hq" target="_blank" rel="noopener noreferrer" className="hover:text-primary">TikTok</a></li>
+              <li><a href="https://www.linkedin.com/company/slate-labs-hq" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn</a></li>
               <li><a href="mailto:hello@slatelabshq.com" className="hover:text-primary">hello@slatelabshq.com</a></li>
+              <li><a href="tel:+2347026036554" className="hover:text-primary">+234 702 603 6554</a></li>
             </ul>
           </div>
         </div>

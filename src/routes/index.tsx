@@ -3,7 +3,9 @@ import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { Reveal } from "@/components/Reveal";
 import { Testimonials } from "@/components/Testimonials";
+import { InsightCard } from "@/components/InsightCard";
 import { featuredProjects } from "@/lib/work-data";
+import { getLatestPosts } from "@/lib/insights-data";
 import { CALENDLY_URL } from "@/lib/calendly";
 
 export const Route = createFileRoute("/")({

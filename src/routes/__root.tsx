@@ -191,8 +191,14 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-foreground focus:text-background focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium"
+        >
+          Skip to content
+        </a>
         <SiteHeader />
-        <main className="flex-1">
+        <main id="main" className="flex-1">
           <PageTransition>
             <Outlet />
           </PageTransition>

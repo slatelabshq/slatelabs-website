@@ -1,5 +1,4 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Car } from "lucide-react";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { projects, type CaseStudyDetail } from "@/lib/work-data";
@@ -38,42 +37,18 @@ function CaseStudy() {
 
   return (
     <>
-      {project.slug === "vida-rosa" ? (
-        <header className="px-6 pt-32 pb-12">
-          <div className="max-w-5xl mx-auto text-center">
-            <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
-            <div className="mt-12 flex justify-center">
-              <div className="w-28 h-32 rounded-3xl border border-border bg-surface/60 backdrop-blur flex items-center justify-center">
-                <Car className="w-12 h-12 text-primary" strokeWidth={1.75} />
-              </div>
-            </div>
-            <div className="mt-8 text-xs font-medium tracking-[0.2em] text-primary uppercase">
-              Brand Foundations · Social Management
-            </div>
-            <h1 className="mt-6 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] text-balance">
-              Vida Rosa <br />
-              <span className="text-primary">Luxury Auto Social Management</span>
-            </h1>
-            <p className="mt-8 text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
-              {project.oneLiner}
-            </p>
+      <header className="px-6 pt-32 pb-12">
+        <div className="max-w-7xl mx-auto">
+          <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
+          <div className="mt-8 inline-flex items-center gap-2 text-sm text-primary">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+            {project.category}
           </div>
-        </header>
-      ) : (
-        <header className="px-6 pt-32 pb-12">
-          <div className="max-w-7xl mx-auto">
-            <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
-            <div className="mt-8 inline-flex items-center gap-2 text-sm text-primary">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              {project.category}
-            </div>
-            <h1 className="mt-4 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-12 text-balance">
-              {project.title}
-            </h1>
-          </div>
-        </header>
-      )}
-
+          <h1 className="mt-4 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-12 text-balance">
+            {project.title}
+          </h1>
+        </div>
+      </header>
 
       <div className="px-6">
         <div className="max-w-7xl mx-auto">
@@ -191,34 +166,32 @@ function CaseStudy() {
       </Section>
 
       {/* More work */}
-      {project.slug !== "vida-rosa" && (
-        <Section>
-          <Eyebrow>Explore more projects</Eyebrow>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {others.map((p) => (
-              <Link
-                key={p.slug}
-                to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
-                params={{ slug: p.slug }}
-                className="group block"
-              >
-                <div className="aspect-[4/3] overflow-hidden rounded-[2rem] mb-6">
-                  <img
-                    src={p.image}
-                    alt={p.client}
-                    loading="lazy"
-                    width={1280}
-                    height={960}
-                    className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
-                  />
-                </div>
-                <h3 className="text-2xl font-medium tracking-tight">{p.title}</h3>
-                <p className="text-muted mt-2">{p.oneLiner}</p>
-              </Link>
-            ))}
-          </div>
-        </Section>
-      )}
+      <Section>
+        <Eyebrow>Explore more projects</Eyebrow>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {others.map((p) => (
+            <Link
+              key={p.slug}
+              to={p.slug === "ile-eko" ? "/ile-eko" : "/work/$slug"}
+              params={{ slug: p.slug }}
+              className="group block"
+            >
+              <div className="aspect-[4/3] overflow-hidden rounded-[2rem] mb-6">
+                <img
+                  src={p.image}
+                  alt={p.client}
+                  loading="lazy"
+                  width={1280}
+                  height={960}
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                />
+              </div>
+              <h3 className="text-2xl font-medium tracking-tight">{p.title}</h3>
+              <p className="text-muted mt-2">{p.oneLiner}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
 
 
       <Section>

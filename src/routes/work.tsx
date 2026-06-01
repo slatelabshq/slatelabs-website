@@ -35,15 +35,24 @@ export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
       { title: "Work — Slate Labs" },
-      { name: "description", content: "Selected work from Slate Labs: 44DB music collective, Vida Rosa luxury auto, and Ile Eko learning platform." },
+      {
+        name: "description",
+        content:
+          "Slate Labs portfolio — brand identity, growth marketing, digital platforms, and intelligent systems for clients across music, automotive, aviation, education, and agriculture in Lagos, Nigeria.",
+      },
       { property: "og:title", content: "Work — Slate Labs" },
-      { property: "og:description", content: "Building brands and platforms on a clean slate—one successful project at a time." },
+      {
+        property: "og:description",
+        content:
+          "Brand identity, growth marketing, digital platforms, and intelligent systems for clients across music, automotive, aviation, education, and agriculture.",
+      },
       { property: "og:url", content: "/work" },
     ],
     links: [{ rel: "canonical", href: "/work" }],
   }),
   component: Work,
 });
+
 
 const filters = ["All", "Brand Foundations", "Digital Platforms", "Intelligent Systems"] as const;
 

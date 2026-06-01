@@ -6,9 +6,17 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services — Slate Labs" },
-      { name: "description", content: "Brand Strategy, Growth Marketing, Digital Platforms, and Intelligent Systems. The full stack of creative and technical services from Slate Labs." },
+      {
+        name: "description",
+        content:
+          "Brand strategy, growth marketing, custom web development, and AI automation from Slate Labs — Lagos's creative and tech agency for businesses building from scratch. Serving clients across Nigeria and globally.",
+      },
       { property: "og:title", content: "Services — Slate Labs" },
-      { property: "og:description", content: "Brand Strategy, Growth Marketing, Digital Platforms, and Intelligent Systems — creative + technical services from Slate Labs." },
+      {
+        property: "og:description",
+        content:
+          "Brand strategy, growth marketing, custom web development, and AI automation from Slate Labs — Lagos's creative and tech agency.",
+      },
       { property: "og:url", content: "/services" },
     ],
     links: [{ rel: "canonical", href: "/services" }],
@@ -30,7 +38,7 @@ export const Route = createFileRoute("/services")({
             name: "Slate Labs Services",
             itemListElement: [
               { "@type": "Offer", itemOffered: { "@type": "Service", name: "Brand Strategy", description: "Brand positioning, visual identity, and messaging for businesses starting fresh." } },
-              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Growth Marketing", description: "Organic-first campaigns and content engines that compound attention into demand." } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Growth Marketing", description: "Social media, paid ads, music marketing, and campaign strategy." } },
               { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Platforms", description: "Custom websites, web applications, and SaaS products built to scale." } },
               { "@type": "Offer", itemOffered: { "@type": "Service", name: "Intelligent Systems", description: "AI automation and workflow systems that multiply your team's capacity." } },
             ],
@@ -42,51 +50,154 @@ export const Route = createFileRoute("/services")({
   component: Services,
 });
 
-const services = [
+type CaseLink = { label: string; href: "/work/44db" | "/work/vida-rosa" | "/work/morgan-oxford" };
+
+type Practice = {
+  id: string;
+  n: string;
+  title: string;
+  lead: string[];
+  includes: string[];
+  example: string;
+  caseStudy: CaseLink;
+};
+
+const practices: Practice[] = [
   {
-    id: "brand-foundations",
+    id: "brand-strategy",
     n: "01",
-    title: "Brand foundations",
-    intro: "We build brands that stand out and stick. From strategy and visual identity to social media and content, your brand gets a foundation built to last.",
-    includes: ["Brand strategy & positioning", "Visual identity (logo, color, typography)", "Content strategy & calendar", "Social media management", "Photography & video direction"],
-    process: ["Listen to your story and what's not working.", "Develop positioning, messaging, and visual direction.", "Create your identity and apply across platforms.", "Execute and continually evolve."],
-    example: "44DB: grew Instagram from 1,000 to 69,526 views/month with 74.6% from non-followers.",
-    caseStudy: { label: "See how we did it", slug: "44db" as const },
+    title: "Brand Strategy",
+    lead: [
+      "Most brands in Lagos have a logo. Few have a story. Fewer still have both working together across every surface — digital, physical, and cultural. Brand strategy is the difference between looking good and meaning something.",
+    ],
+    includes: [
+      "Brand positioning & competitive strategy",
+      "Naming & messaging architecture",
+      "Visual identity (logo, colour, typography, motion)",
+      "Brand guidelines & asset library",
+      "Content strategy & voice development",
+    ],
+    example:
+      "44DB went from an underground producer collective with under 1,000 monthly views to the brand behind Nigeria's #1 rap song — with a visual identity and a content system built to match their cultural weight.",
+    caseStudy: { label: "See case study", href: "/work/44db" },
+  },
+  {
+    id: "growth-marketing",
+    n: "02",
+    title: "Growth Marketing",
+    lead: [
+      "Content is a commodity. Strategy is rare. We manage social media, run paid campaigns, and execute music marketing for artists and collectives who want real traction — not just follower counts.",
+      "Whether you're selling luxury cars to Lagos's top 1%, launching a product or record to the streets, or building an audience from zero — growth looks different for every client. We plan, execute, and measure accordingly.",
+    ],
+    includes: [
+      "Social media management (strategy + execution)",
+      "Paid advertising (Meta, Google, TikTok)",
+      "Music marketing & campaign rollouts",
+      "Influencer strategy & partnerships",
+      "Analytics, reporting, and optimisation",
+      "Content production (photo, video, graphics)",
+    ],
+    example:
+      "In May 2026, we collaborated on the digital rollout for 'Chanel' by Blaqbonez ft. Asake — produced by Johnson IP of 44DB. 300,000+ organic views, 6,000,000 streams on Spotify in 7 days. The song became Nigeria's #1 rap record.",
+    caseStudy: { label: "See case study", href: "/work/44db" },
   },
   {
     id: "digital-platforms",
-    n: "02",
-    title: "Digital platforms",
-    intro: "Custom websites, web applications, and SaaS products that scale with your business. Every platform is tailored to your specific needs.",
-    includes: ["Marketing websites & landing pages", "Web applications & dashboards", "SaaS products (end-to-end)", "E-commerce platforms", "API & infrastructure design"],
-    process: ["Understand the problem the platform is solving.", "Map data models, user flows, and tech choices.", "Develop in sprints with regular feedback loops.", "Stress test, debug, and deploy with confidence."],
-    example: "Ile Eko: a full-featured learning management system built from scratch—now serving Nigerian schools.",
-    caseStudy: undefined,
+    n: "03",
+    title: "Digital Platforms",
+    lead: [
+      "A website should do more than exist. A platform should do more than function. We build custom digital products — from marketing websites to full SaaS applications — that solve specific problems and scale as your business grows.",
+      "Every platform we build starts with one question: what does this need to do that no off-the-shelf tool can do? The answer becomes your competitive advantage.",
+    ],
+    includes: [
+      "Websites & landing pages",
+      "Web applications & dashboards",
+      "SaaS products (end-to-end)",
+      "E-commerce platforms",
+      "API design & infrastructure",
+      "CRM & internal tools",
+    ],
+    example:
+      "We built a new website for Morgan Oxford Education that showcases the work they do. Live and in use by their full team.",
+    caseStudy: { label: "See case study", href: "/work/morgan-oxford" },
   },
   {
     id: "intelligent-systems",
-    n: "03",
-    title: "Intelligent systems",
-    intro: "AI automation and workflow optimization that multiply your capacity. Systems that work smarter, not harder.",
-    includes: ["AI chatbots & customer support agents", "Workflow automation", "Internal tools & dashboards", "Data pipelines & analytics", "Integrations with your existing stack"],
-    process: ["Identify the workflows draining your team's time.", "Propose the smallest intelligent system that solves it.", "Ship it into your existing tools.", "Measure, refine, expand."],
-    example: "Saved a client 12 hours/week by replacing manual customer-inquiry handling with an AI assistant.",
-    caseStudy: undefined,
+    n: "04",
+    title: "Intelligent Systems",
+    lead: [
+      "Most businesses are running on manual. Data entry that takes hours. Customer enquiries that pile up. Reports that someone spends a Friday building. Decisions made on gut when they should be made on numbers.",
+      "We find the 8 to 20 hours your team is losing every week and build systems that handle it. AI automation, workflow design, and intelligent infrastructure — not as a novelty, but as a business tool.",
+    ],
+    includes: [
+      "AI chatbots & customer support agents",
+      "Workflow automation (across any tool stack)",
+      "Internal dashboards & reporting tools",
+      "Data pipelines & analytics infrastructure",
+      "Custom AI agents for operations, sales, or content",
+      "System integration (connect your existing tools)",
+    ],
+    example:
+      "We rebuilt the operational infrastructure for Morgan Oxford Education — consolidating fragmented manual processes into one integrated system. Result: 8+ hours saved per staff member per week.",
+    caseStudy: { label: "See case study", href: "/work/morgan-oxford" },
   },
 ];
 
 const comparison = [
-  { row: "Approach", slate: "Clean-slate, tailored", trad: "Templated process", free: "Inconsistent" },
-  { row: "Skills", slate: "Creative + Technical", trad: "One or the other", free: "Varies by person" },
-  { row: "Integration", slate: "Brand + platform together", trad: "Fragmented vendors", free: "You manage it" },
-  { row: "Access", slate: "Direct to founders", trad: "Account managers", free: "Maybe" },
+  {
+    row: "Practices",
+    slate: "Brand + Marketing + Platform + Systems",
+    trad: "One or two",
+    free: "One at a time",
+    inhouse: "Depends on headcount",
+  },
+  {
+    row: "Approach",
+    slate: "Clean-slate, tailored",
+    trad: "Templated process",
+    free: "Inconsistent",
+    inhouse: "Internal politics",
+  },
+  {
+    row: "Skills",
+    slate: "Creative + Technical",
+    trad: "One or the other",
+    free: "Varies by person",
+    inhouse: "Depends on hires",
+  },
+  {
+    row: "Integration",
+    slate: "Brand + platform together",
+    trad: "Fragmented vendors",
+    free: "You manage it",
+    inhouse: "Cross-team coordination",
+  },
+  {
+    row: "Access",
+    slate: "Direct to founders",
+    trad: "Account managers",
+    free: "Maybe",
+    inhouse: "Your own team",
+  },
 ];
 
 const faqs = [
-  { q: "How long does a project take?", a: "It depends on scope. A brand foundation typically takes 4–8 weeks. A digital platform is 8–16+ weeks. We'll give you a clear timeline after the discovery call." },
-  { q: "Do you work with clients outside Nigeria?", a: "Yes. We're based in Lagos but partner with founders and teams globally." },
-  { q: "Can you handle just one part of a project?", a: "Of course. We're built for integrated work, but we'll happily take on a single brand engagement, a website, or an automation project." },
-  { q: "How much do you charge?", a: "Every project is custom, so pricing varies based on scope. Get in touch and we'll provide a detailed quote." },
+  {
+    q: "How long does a project take?",
+    a: "It depends on scope. A brand foundation typically takes 4–8 weeks. A digital platform is 8–16+ weeks. We'll give you a clear timeline after the discovery call.",
+  },
+  {
+    q: "Do you work with clients outside Nigeria?",
+    a: "Yes. We're based in Lagos but partner with founders and teams globally.",
+  },
+  {
+    q: "Can you handle just one part of a project?",
+    a: "Of course. We're built for integrated work, but we'll happily take on a single brand engagement, a website, or an automation project.",
+  },
+  {
+    q: "How much do you charge?",
+    a: "Every project is scoped individually. Brand strategy and identity projects typically start from ₦500,000. Digital platforms from ₦1.5M. Growth marketing retainers from ₦300,000/month. We'll give you a detailed quote after a discovery call — no commitment required.",
+  },
 ];
 
 function Services() {
@@ -96,27 +207,31 @@ function Services() {
         <div className="max-w-5xl mx-auto text-center">
           <Eyebrow>Services</Eyebrow>
           <h1 className="text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-8 text-balance">
-            What we <span className="text-primary">build.</span>
+            Four practices. One team. Everything you need to <span className="text-primary">build and grow.</span>
           </h1>
-          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed">
-            Four integrated practices. One team. Brand, growth, platform, and intelligent systems built to grow your business.
+          <p className="max-w-2xl mx-auto text-lg text-muted leading-relaxed">
+            Brand strategy and growth marketing. Digital platforms and intelligent systems. We don't hand you to a department, you work with the people who built this.
           </p>
         </div>
       </header>
 
-      {services.map((s) => (
+      {practices.map((s) => (
         <Section key={s.id}>
           <div id={s.id} className="scroll-mt-24 bg-surface rounded-[2.5rem] p-10 md:p-16">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
               <div className="md:col-span-4">
-                <div className="text-sm text-primary mb-4">{s.n}</div>
+                <div className="text-sm font-mono text-primary mb-4">{s.n}</div>
                 <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-6">{s.title}</h2>
-                <p className="text-muted leading-relaxed">{s.intro}</p>
+                <div className="space-y-4 text-muted leading-relaxed">
+                  {s.lead.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
+                </div>
               </div>
-              <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="md:col-span-8 space-y-10">
                 <div>
-                  <h3 className="text-sm font-medium text-primary mb-4">What's included</h3>
-                  <ul className="space-y-3">
+                  <h3 className="text-sm font-medium text-primary mb-4 uppercase tracking-[0.15em]">What's included</h3>
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {s.includes.map((i) => (
                       <li key={i} className="flex gap-3 text-sm">
                         <span className="text-primary">—</span>
@@ -125,29 +240,15 @@ function Services() {
                     ))}
                   </ul>
                 </div>
-                <div>
-                  <h3 className="text-sm font-medium text-primary mb-4">Our process</h3>
-                  <ol className="space-y-3">
-                    {s.process.map((p, i) => (
-                      <li key={p} className="flex gap-3 text-sm">
-                        <span className="text-primary">{i + 1}.</span>
-                        <span className="text-muted">{p}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-                <div className="md:col-span-2 pt-6 border-t border-border">
-                  <div className="text-xs text-muted mb-2">Example outcome</div>
-                  <p className="text-base">{s.example}</p>
-                  {s.caseStudy && (
-                    <Link
-                      to="/work/$slug"
-                      params={{ slug: s.caseStudy.slug }}
-                      className="mt-4 inline-block text-sm font-medium hover:text-primary"
-                    >
-                      {s.caseStudy.label} →
-                    </Link>
-                  )}
+                <div className="pt-6 border-t border-border">
+                  <div className="text-xs text-muted mb-3 uppercase tracking-[0.15em]">Example outcome</div>
+                  <p className="text-base leading-relaxed">{s.example}</p>
+                  <Link
+                    to={s.caseStudy.href}
+                    className="mt-4 inline-block text-sm font-medium hover:text-primary"
+                  >
+                    {s.caseStudy.label} →
+                  </Link>
                 </div>
               </div>
             </div>
@@ -159,24 +260,28 @@ function Services() {
       <Section>
         <Eyebrow>How we're different</Eyebrow>
         <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-12">Why choose Slate Labs.</h2>
-        <div className="rounded-3xl border border-border overflow-hidden">
-          <div className="grid grid-cols-4 bg-foreground text-background text-xs font-medium">
-            <div className="p-5" />
-            <div className="p-5 text-primary">Slate Labs</div>
-            <div className="p-5">Traditional Agencies</div>
-            <div className="p-5">Freelancers</div>
-          </div>
-          {comparison.map((c, i) => (
-            <div
-              key={c.row}
-              className={`grid grid-cols-4 text-sm ${i > 0 ? "border-t border-border" : ""}`}
-            >
-              <div className="p-5 font-medium">{c.row}</div>
-              <div className="p-5">{c.slate}</div>
-              <div className="p-5 text-muted">{c.trad}</div>
-              <div className="p-5 text-muted">{c.free}</div>
+        <div className="rounded-3xl border border-border overflow-x-auto">
+          <div className="min-w-[720px]">
+            <div className="grid grid-cols-5 bg-foreground text-background text-xs font-medium">
+              <div className="p-5" />
+              <div className="p-5 text-primary">Slate Labs</div>
+              <div className="p-5">Traditional Agencies</div>
+              <div className="p-5">Freelancers</div>
+              <div className="p-5">In-house</div>
             </div>
-          ))}
+            {comparison.map((c, i) => (
+              <div
+                key={c.row}
+                className={`grid grid-cols-5 text-sm ${i > 0 ? "border-t border-border" : ""}`}
+              >
+                <div className="p-5 font-medium">{c.row}</div>
+                <div className="p-5">{c.slate}</div>
+                <div className="p-5 text-muted">{c.trad}</div>
+                <div className="p-5 text-muted">{c.free}</div>
+                <div className="p-5 text-muted">{c.inhouse}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 

@@ -6,15 +6,24 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Slate Labs" },
-      { name: "description", content: "Ready to transform your brand, build your platform, or scale your business? Get in touch with Slate Labs in Lagos." },
+      {
+        name: "description",
+        content:
+          "Get in touch with Slate Labs, Lagos. We build brands, platforms, and intelligent systems. Email: hello@slatelabshq.com · WhatsApp: +234 702 603 6554. Based in Lekki Phase 1, Lagos, Nigeria.",
+      },
       { property: "og:title", content: "Contact — Slate Labs" },
-      { property: "og:description", content: "Let's build on a clean slate. We typically respond within 24 hours." },
+      {
+        property: "og:description",
+        content:
+          "Get in touch with Slate Labs, Lagos. Email hello@slatelabshq.com or WhatsApp +234 702 603 6554. Based in Lekki Phase 1, Lagos.",
+      },
       { property: "og:url", content: "/contact" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
   }),
   component: Contact,
 });
+
 
 function Contact() {
   const [sent, setSent] = useState(false);
@@ -137,7 +146,8 @@ function Contact() {
               </div>
               <div>
                 <div className="text-xs font-medium text-muted mb-3">Location</div>
-                <p className="text-base">Lagos, Nigeria</p>
+                <p className="text-base">Lagos, Nigeria (Lekki Phase 1)</p>
+
               </div>
               <div>
                 <div className="text-xs font-medium text-muted mb-3">Response time</div>

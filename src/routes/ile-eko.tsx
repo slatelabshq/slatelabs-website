@@ -14,6 +14,20 @@ export const Route = createFileRoute("/ile-eko")({
       { property: "og:type", content: "product" },
     ],
     links: [{ rel: "canonical", href: "/ile-eko" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "Ile Eko",
+          operatingSystem: "Web",
+          applicationCategory: "EducationApplication",
+          description: "A complete learning management system built specifically for Nigerian schools.",
+          creator: { "@type": "Organization", name: "Slate Labs", url: "https://slatelabshq.com" },
+        }),
+      },
+    ],
   }),
   component: IleEko,
 });
@@ -42,17 +56,17 @@ const features = [
   { n: "06", title: "Mobile access", body: "Teachers, parents, and admins access Ile Eko from any device." },
 ];
 
+const screens = [
+  { caption: "Student dashboard — grades, attendance, and records in one view" },
+  { caption: "Grade management — enter marks, calculate averages, export reports" },
+  { caption: "Parent communication — send updates and share reports directly" },
+];
+
 const steps = [
   { n: "01", title: "Onboarding", body: "We set up your school's account, migrate data, and configure the system." },
   { n: "02", title: "Training", body: "We train your staff with live sessions, video tutorials, and documentation." },
   { n: "03", title: "Implementation", body: "You go live. Students enrolled, teachers using the platform, parents get access." },
   { n: "04", title: "Ongoing support", body: "Support, updates, and new features as we continue improving the platform." },
-];
-
-const tiers = [
-  { name: "Starter", tag: "For small schools", features: ["Up to 200 students", "Basic features", "Email support", "1 admin account"] },
-  { name: "Professional", tag: "Most popular", highlight: true, features: ["Up to 500 students", "All features", "Priority support", "5 admin accounts", "Analytics & reporting"] },
-  { name: "Enterprise", tag: "For large schools", features: ["500+ students", "All features", "Dedicated support", "Unlimited admins", "Custom integrations", "White-label options"] },
 ];
 
 const faqs = [
@@ -142,6 +156,28 @@ function IleEko() {
         </div>
       </Section>
 
+      {/* See it in action */}
+      <Section>
+        <Eyebrow>See it in action</Eyebrow>
+        <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-16">
+          A look inside the platform.
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {screens.map((s, i) => (
+            <Reveal key={s.caption} delay={i * 80}>
+              <div className="rounded-3xl bg-surface border border-border overflow-hidden">
+                <div className="aspect-[4/3] bg-gradient-to-br from-background to-surface flex items-center justify-center border-b border-border">
+                  <span className="text-xs font-mono uppercase tracking-[0.15em] text-muted">Screenshot coming soon</span>
+                </div>
+                <div className="p-6">
+                  <p className="text-sm text-muted leading-relaxed">{s.caption}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
       {/* How it works */}
       <Section>
         <Eyebrow>How it works</Eyebrow>
@@ -159,41 +195,17 @@ function IleEko() {
         </div>
       </Section>
 
-      {/* Pricing */}
+      {/* Pricing — placeholder CTA, SK to add tiers manually */}
       <Section>
-        <div id="pricing" className="scroll-mt-24">
+        <div id="pricing" className="scroll-mt-24 bg-surface rounded-[2.5rem] p-10 md:p-16 text-center">
           <Eyebrow>Pricing</Eyebrow>
           <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-4">
             Pricing built for Nigerian schools.
           </h2>
-          <p className="text-muted mb-16 max-w-xl">
-            All plans include onboarding, training, and ongoing updates. Custom pricing available for multi-school groups.
+          <p className="text-muted mb-10 max-w-xl mx-auto">
+            Plans are structured per academic term and scale with your school's size. Book a demo and we'll walk you through the right plan for you.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {tiers.map((t, i) => (
-              <Reveal
-                key={t.name}
-                delay={i * 100}
-                className={`rounded-3xl p-8 hover-lift ${
-                  t.highlight
-                    ? "bg-surface border-2 border-primary animate-soft-pulse"
-                    : "bg-surface border border-border"
-                }`}
-              >
-                <div className="text-xs font-medium text-primary mb-2">{t.tag}</div>
-                <h3 className="text-2xl font-medium tracking-tight mb-8">{t.name}</h3>
-                <ul className="space-y-3 mb-10 text-sm">
-                  {t.features.map((f) => (
-                    <li key={f} className="flex gap-3">
-                      <span className="text-primary">—</span>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="text-sm font-medium text-muted">Contact for pricing</div>
-              </Reveal>
-            ))}
-          </div>
+          <CtaButton to="/contact" variant="primary">Book a demo</CtaButton>
         </div>
       </Section>
 

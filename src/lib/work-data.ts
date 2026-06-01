@@ -92,52 +92,13 @@ export const projects: Project[] = [
     slug: "vida-rosa",
     color: "#7a1f3d",
     client: "Vida Rosa",
-    title: "Vida Rosa — Luxury Auto Social Management",
+    title: "Vida Rosa — Luxury Automotive Marketing",
     category: "Brand Foundations",
-    oneLiner: "Turning Instagram into a premium sales channel.",
+    oneLiner: "Luxury automotive marketing for one of Lagos's most exclusive dealerships.",
     image: workVidaRosa,
-    tags: ["Brand Strategy", "Social Media", "Content"],
-    detail: {
-      industry: "Luxury Automotive",
-      date: "Ongoing",
-      services: ["Brand Strategy", "Social Media Management", "Content Creation"],
-      metrics: [
-        { value: "8,000+", label: "Followers grown organically" },
-        { value: "2–5", label: "Qualified leads per week" },
-        { value: "45%", label: "Increase in car sales" },
-      ],
-      challenge:
-        "Vida Rosa is a luxury car dealership selling premium vehicles, but their digital presence didn't reflect the quality of their inventory. With no consistent social strategy, they were missing a huge opportunity to reach affluent buyers where they already spend time—Instagram.",
-      solution: [
-        {
-          heading: "Premium Visual Identity",
-          body: "Built a visual language that mirrored the quality of the cars—clean, confident, unmistakably high-end.",
-        },
-        {
-          heading: "Content Engine",
-          body: "Produced a continuous stream of polished photography, walkarounds and storytelling posts that positioned every vehicle as aspirational.",
-        },
-        {
-          heading: "Sales-Focused Social",
-          body: "Treated Instagram as a primary sales channel, with DMs, stories and call-to-actions engineered to convert lurkers into qualified buyers.",
-        },
-      ],
-      results:
-        "Instagram became Vida Rosa's most reliable lead source—turning followers into showroom visits and, ultimately, signed deals.",
-      numbers: [
-        "8,000 followers grown organically from a near-zero starting point",
-        "2–5 qualified leads delivered per week",
-        "45% increase in car sales attributed to social channels",
-      ],
-      deliverables: [
-        "Brand voice & visual guidelines",
-        "Monthly content calendar",
-        "Custom photography & video direction",
-        "Instagram, TikTok, and X management",
-        "DM and lead-handling playbooks",
-      ],
-    },
+    tags: ["Luxury Marketing", "Paid Media", "Creative Direction"],
   },
+
   {
     slug: "ile-eko",
     color: "#1f4d3a",

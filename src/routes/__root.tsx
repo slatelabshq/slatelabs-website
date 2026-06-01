@@ -15,22 +15,49 @@ import { PageTransition } from "@/components/PageTransition";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 
 function NotFoundComponent() {
+  const links = [
+    { to: "/services", label: "Services", desc: "Brands, platforms & AI systems" },
+    { to: "/work", label: "Work", desc: "Selected case studies" },
+    { to: "/insights", label: "Insights", desc: "Field notes from the studio" },
+    { to: "/contact", label: "Contact", desc: "Start a project" },
+  ] as const;
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-medium tracking-tight text-primary">404</h1>
-        <h2 className="mt-4 text-xl font-medium tracking-tight text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted">
-          The page you're looking for doesn't exist or has been moved.
+    <div className="flex min-h-[80vh] items-center justify-center bg-background px-6 py-24">
+      <div className="max-w-2xl w-full text-center">
+        <p className="text-xs font-medium tracking-[0.2em] uppercase text-muted">Error 404</p>
+        <h1 className="mt-4 text-[clamp(4rem,12vw,9rem)] leading-none font-medium tracking-[-0.04em] text-foreground">
+          Off the <span className="text-primary">slate.</span>
+        </h1>
+        <p className="mt-6 text-base md:text-lg text-muted max-w-md mx-auto leading-relaxed">
+          This page doesn't exist — or it's moved. Try one of the routes below, or head back home.
         </p>
-        <div className="mt-6">
+        <div className="mt-8 flex flex-wrap justify-center gap-2">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium bg-foreground text-background hover:bg-primary glow-primary transition-colors"
           >
             Go home
           </Link>
+          <Link
+            to="/insights"
+            className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-medium hover:bg-surface glow-subtle transition-colors"
+          >
+            Read Insights
+          </Link>
         </div>
+        <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
+          {links.map((l) => (
+            <li key={l.to}>
+              <Link
+                to={l.to}
+                className="block rounded-2xl border border-border bg-surface/40 px-5 py-4 hover:bg-surface hover:border-foreground/20 transition-colors"
+              >
+                <div className="text-sm font-medium text-foreground">{l.label}</div>
+                <div className="text-xs text-muted mt-0.5">{l.desc}</div>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

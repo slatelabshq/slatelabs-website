@@ -167,6 +167,7 @@ function RootComponent() {
           </PageTransition>
         </main>
         <SiteFooter />
+        <WhatsAppFab />
       </div>
     </QueryClientProvider>
   );

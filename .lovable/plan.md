@@ -4,18 +4,16 @@ Work follows the brief's Section 10 priority table. Each phase ends with a Verce
 
 ---
 
-## Phase 1 — BLOCKERS (ship before any public promotion)
+## Phase 1 — BLOCKERS ✅ SHIPPED
 
-Goal: site is safe to share publicly. Pure copy/markup work, no new assets required (except OG images — temporary auto-generated fallback until Praise delivers).
+1. ✅ LinkedIn fixed sitewide (`linkedin.com/company/slate-labs-hq`, new tab) — footer + contact.
+2. ✅ Floating WhatsApp FAB (mobile only) + Contact "Direct" + footer `tel:` link.
+3. ✅ `og:image` / `twitter:image` sitewide via root `head()` (placeholder `public/og-default.jpg` — swap for Praise finals).
+4. ✅ Organization + LocalBusiness JSON-LD on root; Service JSON-LD on `/services`.
+5. ✅ All "studio" instances removed; homepage now reads "Four integrated practices. One team."
+6. ✅ Homepage Four Practices section — Growth Marketing added as new pillar; grid expanded to 4 columns.
 
-1. Fix LinkedIn link sitewide → `linkedin.com/company/slate-labs-hq` (header, footer, contact). Open in new tab.
-2. Floating WhatsApp button (mobile only, <768px) + Contact "Direct" entry + footer phone `+234 702 603 6554` (`tel:` + `wa.me` deep link with prefilled message).
-3. OG + Twitter image meta tags on every route, default + per-page overrides (`og-default`, `og-about`, `og-services`, `og-work`, `og-ile-eko`, `og-contact`). ⚠ Use auto-generated placeholder until Praise delivers final 1200×630s.
-4. JSON-LD schema: Organization+LocalBusiness on every page; Service schema on `/services`; (third block per brief) added globally via root `head()`.
-5. Remove every "studio" instance sitewide. Homepage hero: "Four integrated practices. One team."
-6. Four Practices section — new copy, Growth Marketing added as 4th pillar.
-
-→ **Deploy v1.0**
+→ **Ready to deploy v1.0**
 
 ---
 

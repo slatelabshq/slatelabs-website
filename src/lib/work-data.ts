@@ -15,6 +15,7 @@ export type Project = {
   image: string;
   color: string;
   tags: string[];
+  badge?: string;
   detail?: CaseStudyDetail;
 };
 
@@ -41,6 +42,7 @@ export const projects: Project[] = [
     oneLiner: "Transforming a music collective into a cultural movement.",
     image: work44db,
     tags: ["Brand Strategy", "Visual Identity", "Social Media"],
+    badge: "74.6% reach",
     detail: {
       industry: "Music",
       date: "Ongoing",
@@ -97,6 +99,7 @@ export const projects: Project[] = [
     oneLiner: "Luxury automotive marketing for one of Lagos's most exclusive dealerships.",
     image: workVidaRosa,
     tags: ["Luxury Marketing", "Paid Media", "Creative Direction"],
+    badge: "Featured engagement",
   },
 
   {
@@ -118,6 +121,7 @@ export const projects: Project[] = [
     oneLiner: "A custom CRM built around how their staff actually work.",
     image: workMorganOxford,
     tags: ["Custom CRM", "Workflow Automation", "Internal Tools"],
+    badge: "8hrs+ saved / wk",
     detail: {
       industry: "Education",
       date: "Ongoing",
@@ -195,6 +199,7 @@ export const projects: Project[] = [
     oneLiner: "The voice behind the voice — now centre stage.",
     image: workNellyBaradi,
     tags: ["Creative Direction", "Music Marketing", "Social Media"],
+    badge: "250K+ views",
     detail: {
       industry: "Music — Afropop / R&B",
       date: "March – April 2026",

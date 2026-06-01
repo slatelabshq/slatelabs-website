@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Section, Eyebrow } from "@/components/Section";
+import { CALENDLY_URL } from "@/lib/calendly";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -127,6 +128,18 @@ function Contact() {
             </div>
 
             <aside className="md:col-span-5 space-y-10">
+              <div>
+                <div className="text-xs font-medium text-muted mb-3">Book a call</div>
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-6 py-3 text-sm font-medium hover:bg-primary glow-primary transition-colors"
+                >
+                  Book a 20-min intro →
+                </a>
+                <p className="text-xs text-muted mt-3">Pick a slot that works. No prep needed.</p>
+              </div>
               <div>
                 <div className="text-xs font-medium text-muted mb-3">Direct</div>
                 <a href="mailto:hello@slatelabshq.com" className="block text-xl font-medium hover:text-primary">

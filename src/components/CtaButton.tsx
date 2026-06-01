@@ -5,11 +5,12 @@ type Props = {
   to?: string;
   href?: string;
   hash?: string;
+  external?: boolean;
   variant?: "primary" | "secondary";
   children: ReactNode;
 };
 
-export function CtaButton({ to, href, hash, variant = "primary", children }: Props) {
+export function CtaButton({ to, href, hash, external, variant = "primary", children }: Props) {
   const base =
     "inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium active:translate-y-px focus-visible:outline-none";
   const styles =
@@ -25,7 +26,11 @@ export function CtaButton({ to, href, hash, variant = "primary", children }: Pro
     );
   }
   return (
-    <a href={href} className={`${base} ${styles}`}>
+    <a
+      href={href}
+      className={`${base} ${styles}`}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
       {children}
     </a>
   );

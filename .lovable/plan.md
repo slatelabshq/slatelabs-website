@@ -1,18 +1,17 @@
-# Phase 2 — HIGH priority build — SHIPPED ✅
-
-All code-only items from Phase 2 are in. Asset-blocked items use framed placeholders so structure ships now and assets can be dropped in later.
+# Phase 3 — MEDIUM priority — SHIPPED ✅
 
 ## Done
-- Homepage: new 4-stat block (300K+ / #1 / 8hrs+ / Lagos) with sub-labels, hero audience line, marquee "Brands we've built" label + updated logo list.
-- 44DB case study: full rewrite — subline, The Brief, The Credits (3 cards), What We Delivered + 4-metric grid + 74.6% callout, new CTA.
-- Vida Rosa: new dedicated `/work/vida-rosa` route (Featured Engagement). Stripped vida-rosa special case from `work.$slug.tsx`. `work-data.ts` updated (detail removed, new oneLiner, new tags).
-- Services: 4 practices (Brand Strategy, Growth Marketing, Digital Platforms, Intelligent Systems) with lead copy + What's included + Example outcome + case-study link. Comparison table expanded to 5 cols incl. In-house with new Practices row. FAQ pricing answer updated with ₦ tiers.
-- About: founders/team split, all 7 bios + roles per brief, Press card (RefinedNG) with cyan left border.
-- Ile Eko: pricing tiers removed → single CTA. "See it in action" placeholder strip added. SoftwareApplication JSON-LD added.
-- Meta descriptions updated on home / about / services / work / contact / ile-eko per §8.2.
-- Phone number `tel:` link added to mobile nav menu.
-- Contact location → "Lagos, Nigeria (Lekki Phase 1)".
+- **Testimonials**: new `src/components/Testimonials.tsx`, 3-card grid with placeholder quotes (44DB / Morgan Oxford / Vida Rosa). Mounted on home (above final CTA) and about (below Press).
+- **Calendly**: new `src/lib/calendly.ts` reads `VITE_CALENDLY_URL` with fallback `https://calendly.com/slatelabs/intro`. Contact page now leads with "Book a 20-min intro" button (email + WhatsApp remain). Home and Services final CTAs include "Book a 20-min call" secondary.
+- **CtaButton**: now supports `external` prop for `target="_blank"` external links.
+- **Work-card metric badges**: added optional `badge` field to `work-data.ts` (44DB 74.6% reach, Vida Rosa Featured engagement, Morgan Oxford 8hrs+ saved/wk, Nelly Baradi 250K+ views). Rendered as primary-tinted pill top-right on each card in `work.tsx`.
+- **SEO infrastructure**: `public/robots.txt` (Allow all + Sitemap directive), `public/sitemap.xml` listing all 12 public routes with lastmod 2026-06-01.
 
-## Deferred to Phase 3 (assets / external)
-- ⚠ Hero image, logo PNG wall, SK + team headshots, Ile Eko screenshots.
-- Testimonials, Calendly link, Work-card metric badges, domain migration, GSC + sitemap.
+## Out of scope (user-side)
+- Custom domain DNS migration.
+- Google Search Console verification + sitemap submission (`https://slatelabshq.com/sitemap.xml`).
+- Replace placeholder testimonial quotes with real client sign-off when SK has them.
+- Set `VITE_CALENDLY_URL` env var to the real Slate Labs Calendly link.
+
+## Asset swaps still pending
+- Hero image, logo PNG wall, SK + team headshots, Ile Eko screenshots (Phase 2 carryover).

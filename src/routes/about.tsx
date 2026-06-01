@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { Reveal } from "@/components/Reveal";
+import { Testimonials } from "@/components/Testimonials";
 import photoJoseph from "@/assets/team-joseph.png";
 import photoKehinde from "@/assets/team-kehinde.png";
 
@@ -243,6 +244,8 @@ function About() {
           <span className="text-sm font-medium group-hover:text-primary">Read the full feature →</span>
         </a>
       </Section>
+
+      <Testimonials heading="What it's like to work with us." />
 
       <Section>
         <div className="text-center">

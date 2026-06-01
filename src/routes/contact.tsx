@@ -46,7 +46,7 @@ function Contact() {
   }
 
   const input =
-    "w-full rounded-xl bg-background border border-transparent focus:border-foreground/20 outline-none px-4 py-3 text-foreground placeholder:text-muted/60 transition-colors";
+    "w-full rounded-xl bg-background border border-transparent focus:border-foreground/20 outline-none px-4 py-3 text-foreground placeholder:text-muted transition-colors";
   const label = "block text-xs font-medium text-muted mb-2";
 
   return (

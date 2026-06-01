@@ -7,12 +7,14 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageTransition } from "@/components/PageTransition";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { initGA, trackPageview } from "@/lib/analytics";
 
 function NotFoundComponent() {
   const links = [

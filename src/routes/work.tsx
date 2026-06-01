@@ -8,6 +8,11 @@ import { projects, type Project } from "@/lib/work-data";
 function WorkCard({ p }: { p: Project }) {
   return (
     <div className="relative overflow-hidden rounded-[2rem] p-8 md:p-10 min-h-[420px] md:min-h-[480px] flex flex-col justify-end text-white transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 bg-[#0A0A0A] shadow-[0_0_0_0_rgba(0,217,255,0)] group-hover:shadow-[0_0_60px_-5px_rgba(0,217,255,0.45)]">
+      {p.badge && (
+        <span className="absolute top-6 right-6 z-10 px-3 py-1.5 rounded-full bg-primary/15 border border-primary/40 text-primary text-[11px] font-medium tracking-wide backdrop-blur-sm">
+          {p.badge}
+        </span>
+      )}
       <svg className="absolute top-8 left-8 w-8 h-8 text-primary/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
         <path d="M12 2l2 8 8 2-8 2-2 8-2-8-8-2 8-2z" />
       </svg>

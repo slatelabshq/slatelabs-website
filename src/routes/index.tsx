@@ -97,12 +97,12 @@ function Home() {
           <div>
             <Eyebrow>What we build</Eyebrow>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight max-w-xl">
-              Three integrated practices. One studio.
+              Four integrated practices. One team.
             </h2>
           </div>
-          <span className="text-sm text-muted">01 — 03</span>
+          <span className="text-sm text-muted">01 — 04</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((s, i) => (
             <Reveal key={s.n} delay={i * 90}>
               <Link

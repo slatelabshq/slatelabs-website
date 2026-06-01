@@ -24,6 +24,7 @@ import { Route as WorkBrillantaRouteImport } from './routes/work.brillanta'
 import { Route as Work44dbRouteImport } from './routes/work.44db'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
@@ -100,6 +101,12 @@ const InsightsSlugRoute = InsightsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => InsightsRoute,
 } as any)
+const LovableEmailQueueProcessRoute =
+  LovableEmailQueueProcessRouteImport.update({
+    id: '/lovable/email/queue/process',
+    path: '/lovable/email/queue/process',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
   '/work/nelly-baradi': typeof WorkNellyBaradiRoute
   '/work/vida-rosa': typeof WorkVidaRosaRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,6 +142,7 @@ export interface FileRoutesByTo {
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
   '/work/nelly-baradi': typeof WorkNellyBaradiRoute
   '/work/vida-rosa': typeof WorkVidaRosaRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -152,6 +161,7 @@ export interface FileRoutesById {
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
   '/work/nelly-baradi': typeof WorkNellyBaradiRoute
   '/work/vida-rosa': typeof WorkVidaRosaRoute
+  '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/work/morgan-oxford'
     | '/work/nelly-baradi'
     | '/work/vida-rosa'
+    | '/lovable/email/queue/process'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +199,7 @@ export interface FileRouteTypes {
     | '/work/morgan-oxford'
     | '/work/nelly-baradi'
     | '/work/vida-rosa'
+    | '/lovable/email/queue/process'
   id:
     | '__root__'
     | '/'
@@ -205,6 +217,7 @@ export interface FileRouteTypes {
     | '/work/morgan-oxford'
     | '/work/nelly-baradi'
     | '/work/vida-rosa'
+    | '/lovable/email/queue/process'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -215,6 +228,7 @@ export interface RootRouteChildren {
   InsightsRoute: typeof InsightsRouteWithChildren
   ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRouteWithChildren
+  LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -324,6 +338,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof InsightsRoute
     }
+    '/lovable/email/queue/process': {
+      id: '/lovable/email/queue/process'
+      path: '/lovable/email/queue/process'
+      fullPath: '/lovable/email/queue/process'
+      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -369,6 +390,7 @@ const rootRouteChildren: RootRouteChildren = {
   InsightsRoute: InsightsRouteWithChildren,
   ServicesRoute: ServicesRoute,
   WorkRoute: WorkRouteWithChildren,
+  LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,6 +1,7 @@
-// GA4 analytics — no-ops unless VITE_GA_MEASUREMENT_ID is set in a production build.
+// GA4 analytics — Measurement ID is public (visible in gtag.js requests), safe to inline.
+// Disabled in dev to avoid polluting analytics with local traffic.
 
-const GA_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined)?.trim();
+const GA_ID = "G-B1DBF35GW9";
 const ENABLED = !!GA_ID && import.meta.env.PROD;
 
 let initialized = false;

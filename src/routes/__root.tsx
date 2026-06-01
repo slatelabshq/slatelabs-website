@@ -190,6 +190,18 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    initGA();
+    // Initial pageview
+    trackPageview(window.location.pathname + window.location.search);
+    const unsub = router.subscribe("onResolved", ({ toLocation }) => {
+      trackPageview((toLocation.pathname ?? "/") + (toLocation.searchStr ?? ""));
+    });
+    return () => unsub();
+  }, [router]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col">

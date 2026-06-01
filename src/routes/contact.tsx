@@ -120,8 +120,19 @@ function Contact() {
             <aside className="md:col-span-5 space-y-10">
               <div>
                 <div className="text-xs font-medium text-muted mb-3">Direct</div>
-                <a href="mailto:hello@slatelabshq.com" className="text-xl font-medium hover:text-primary">
+                <a href="mailto:hello@slatelabshq.com" className="block text-xl font-medium hover:text-primary">
                   hello@slatelabshq.com
+                </a>
+                <a
+                  href="https://wa.me/2347026036554?text=Hi%20Slate%20Labs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-2 text-base hover:text-primary"
+                >
+                  <svg viewBox="0 0 32 32" className="w-5 h-5" fill="#25D366" aria-hidden="true">
+                    <path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.045 2.264v.114c-.015.99.405 1.976.832 2.834 1.36 2.493 3.864 4.795 6.616 5.798.717.288 2.044.66 2.832.66.99 0 2.176-.59 2.59-1.55.13-.297.187-.622.187-.95 0-.187 0-.348-.044-.516-.115-.387-1.504-.985-1.847-1.146-.215-.115-.402-.215-.616-.215zM16.32 0c-8.696 0-15.747 7.05-15.747 15.747 0 2.79.732 5.51 2.107 7.916L0 32l8.532-2.234a15.61 15.61 0 0 0 7.788 1.974c8.696 0 15.747-7.05 15.747-15.748C32.067 7.052 25.017 0 16.32 0z" />
+                  </svg>
+                  WhatsApp / Call — +234 702 603 6554
                 </a>
               </div>
               <div>
@@ -135,9 +146,9 @@ function Contact() {
               <div>
                 <div className="text-xs font-medium text-muted mb-3">Other ways to connect</div>
                 <ul className="space-y-2 text-base">
-                  <li><a href="https://instagram.com/slatelabs.hq" className="hover:text-primary">Instagram — @slatelabs.hq</a></li>
-                  <li><a href="https://tiktok.com/@slatelabs.hq" className="hover:text-primary">TikTok — @slatelabs.hq</a></li>
-                  <li><a href="#" className="hover:text-primary">LinkedIn — Slate Labs</a></li>
+                  <li><a href="https://instagram.com/slatelabs.hq" target="_blank" rel="noopener noreferrer" className="hover:text-primary">Instagram — @slatelabs.hq</a></li>
+                  <li><a href="https://tiktok.com/@slatelabs.hq" target="_blank" rel="noopener noreferrer" className="hover:text-primary">TikTok — @slatelabs.hq</a></li>
+                  <li><a href="https://www.linkedin.com/company/slate-labs-hq" target="_blank" rel="noopener noreferrer" className="hover:text-primary">LinkedIn — Slate Labs</a></li>
                 </ul>
               </div>
             </aside>

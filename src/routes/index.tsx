@@ -239,6 +239,33 @@ function Home() {
       {/* Testimonials */}
       <Testimonials heading="What clients say." />
 
+      {/* Latest insights */}
+      {(() => {
+        const latest = getLatestPosts(3);
+        if (latest.length === 0) return null;
+        return (
+          <Section>
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+              <div>
+                <Eyebrow>Insights</Eyebrow>
+                <h2 className="text-4xl md:text-5xl font-medium tracking-tight max-w-xl">
+                  Latest from Slate Labs.
+                </h2>
+              </div>
+              <Link to="/insights" className="text-sm font-medium text-muted hover:text-primary">
+                All insights →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {latest.map((p, i) => (
+                <InsightCard key={p.slug} post={p} i={i} />
+              ))}
+            </div>
+          </Section>
+        );
+      })()}
+
+
       {/* Final CTA */}
       <Section>
         <div className="text-center">

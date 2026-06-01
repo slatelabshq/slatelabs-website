@@ -6,12 +6,38 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services — Slate Labs" },
-      { name: "description", content: "Brand Foundations, Digital Platforms, and Intelligent Systems. The full stack of creative and technical services from Slate Labs." },
+      { name: "description", content: "Brand Strategy, Growth Marketing, Digital Platforms, and Intelligent Systems. The full stack of creative and technical services from Slate Labs." },
       { property: "og:title", content: "Services — Slate Labs" },
-      { property: "og:description", content: "Brand Foundations, Digital Platforms, and Intelligent Systems—creative + technical services from Slate Labs." },
+      { property: "og:description", content: "Brand Strategy, Growth Marketing, Digital Platforms, and Intelligent Systems — creative + technical services from Slate Labs." },
       { property: "og:url", content: "/services" },
     ],
     links: [{ rel: "canonical", href: "/services" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          serviceType: "Brand Strategy, Growth Marketing, Digital Platforms, AI Automation",
+          provider: {
+            "@type": "Organization",
+            name: "Slate Labs",
+            url: "https://slatelabshq.com",
+          },
+          areaServed: { "@type": "Country", name: "Nigeria" },
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Slate Labs Services",
+            itemListElement: [
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Brand Strategy", description: "Brand positioning, visual identity, and messaging for businesses starting fresh." } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Growth Marketing", description: "Organic-first campaigns and content engines that compound attention into demand." } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Digital Platforms", description: "Custom websites, web applications, and SaaS products built to scale." } },
+              { "@type": "Offer", itemOffered: { "@type": "Service", name: "Intelligent Systems", description: "AI automation and workflow systems that multiply your team's capacity." } },
+            ],
+          },
+        }),
+      },
+    ],
   }),
   component: Services,
 });
@@ -73,7 +99,7 @@ function Services() {
             What we <span className="text-primary">build.</span>
           </h1>
           <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed">
-            Three integrated practices. One studio. Brand, platform, and intelligent systems built to grow your business.
+            Four integrated practices. One team. Brand, growth, platform, and intelligent systems built to grow your business.
           </p>
         </div>
       </header>

@@ -12,6 +12,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageTransition } from "@/components/PageTransition";
+import { WhatsAppFab } from "@/components/WhatsAppFab";
 
 function NotFoundComponent() {
   return (
@@ -78,7 +79,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "Slate Labs" },
       { property: "og:site_name", content: "Slate Labs" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://slatelabshq.com/og-default.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://slatelabshq.com/og-default.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -95,17 +100,41 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Organization",
+          "@type": ["Organization", "LocalBusiness"],
           name: "Slate Labs",
-          url: "/",
+          alternateName: "Slate Labs HQ",
+          description:
+            "Creative & Tech Agency in Lagos, Nigeria. Brand strategy, growth marketing, digital platforms, and AI automation.",
+          url: "https://slatelabshq.com",
+          logo: "https://slatelabshq.com/assets/slate-logo-wordmark.png",
+          image: "https://slatelabshq.com/og-default.jpg",
+          telephone: "+2347026036554",
           email: "hello@slatelabshq.com",
-          slogan: "Building brands & platforms on a clean slate",
           address: {
             "@type": "PostalAddress",
+            streetAddress: "Lekki Phase 1",
             addressLocality: "Lagos",
             addressCountry: "NG",
           },
-          sameAs: ["https://instagram.com/slatelabs.hq", "https://tiktok.com/@slatelabs.hq"],
+          geo: { "@type": "GeoCoordinates", latitude: 6.4281, longitude: 3.4219 },
+          areaServed: ["Lagos", "Nigeria", "Global"],
+          sameAs: [
+            "https://www.linkedin.com/company/slate-labs-hq",
+            "https://instagram.com/slatelabs.hq",
+            "https://tiktok.com/@slatelabs.hq",
+          ],
+          founder: [
+            {
+              "@type": "Person",
+              name: "Joseph Awujoola-Kalohun",
+              jobTitle: "Co-Founder & CEO",
+            },
+            {
+              "@type": "Person",
+              name: "Olasukanmi Adeyeye",
+              jobTitle: "Co-Founder & CTO",
+            },
+          ],
         }),
       },
     ],
@@ -142,6 +171,7 @@ function RootComponent() {
           </PageTransition>
         </main>
         <SiteFooter />
+        <WhatsAppFab />
       </div>
     </QueryClientProvider>
   );

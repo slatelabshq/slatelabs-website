@@ -7,17 +7,17 @@ import { featuredProjects } from "@/lib/work-data";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Slate Labs — Building brands & platforms on a clean slate" },
+      { title: "Slate Labs — Lagos Creative & Tech Agency" },
       {
         name: "description",
         content:
-          "Creative + technical excellence for businesses ready to start fresh and grow exponentially. Brand foundations, digital platforms, and intelligent systems from Lagos.",
+          "Slate Labs is a Lagos-based Creative & Tech Agency. We build brands, digital platforms, and AI systems for businesses ready to grow.",
       },
-      { property: "og:title", content: "Slate Labs — Building brands & platforms on a clean slate" },
+      { property: "og:title", content: "Slate Labs — Lagos Creative & Tech Agency" },
       {
         property: "og:description",
         content:
-          "Creative + technical excellence for businesses ready to start fresh and grow exponentially.",
+          "Slate Labs is a Lagos-based Creative & Tech Agency. We build brands, digital platforms, and AI systems for businesses ready to grow.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -29,26 +29,31 @@ export const Route = createFileRoute("/")({
 const differentiators = [
   { n: "01", title: "A fresh perspective", body: "We don't do quick fixes or generic templates. Every project starts with a clean slate—we understand what's not working, then build for your specific goals." },
   { n: "02", title: "Creative meets technical", body: "Most agencies are either creative or technical. We're both. Brand strategy and platform development are aligned from day one." },
-  { n: "03", title: "Proven track record", body: "From growing a music collective by 6,900% in one month to lifting car sales by 45% via social, we deliver measurable results." },
+  { n: "03", title: "Proven track record", body: "From a producer collective that became the brand behind Nigeria's #1 rap song to saving an education team 8+ hours a week, we deliver measurable results." },
   { n: "04", title: "We listen, we don't judge", body: "Your challenges are opportunities. You get direct access to the founders—no scripts, no account managers." },
 ];
 
 const services = [
-  { n: "01", title: "Brand Strategy", body: "Positioning, identity, and messaging that make your brand stand out and stick.", hash: "brand-strategy" },
-  { n: "02", title: "Growth Marketing", body: "Organic-first campaigns and content engines that compound attention into demand.", hash: "growth-marketing" },
-  { n: "03", title: "Digital Platforms", body: "Custom websites, web apps, and SaaS products built to scale with your business.", hash: "digital-platforms" },
-  { n: "04", title: "Intelligent Systems", body: "AI automation and workflows that multiply your team's capacity.", hash: "intelligent-systems" },
+  { n: "01", title: "Brand Strategy", body: "Identity, positioning, and messaging that build brands people remember. We start from what makes you different and build outward from there.", hash: "brand-strategy" },
+  { n: "02", title: "Growth Marketing", body: "Social media management, paid ads, music marketing, and campaign strategy. We don't just post — we build audiences and drive measurable results.", hash: "growth-marketing" },
+  { n: "03", title: "Digital Platforms", body: "Custom websites, web apps, and SaaS products built to scale. Every platform is tailored to the problem it's solving.", hash: "digital-platforms" },
+  { n: "04", title: "Intelligent Systems", body: "AI automation and workflow design that give your team their time back. We find what's draining you and build systems that handle it.", hash: "intelligent-systems" },
 ];
 
 const logos = [
   "44DB",
-  "Vida Rosa",
-  "Ile Eko",
   "Morgan Oxford Education",
-  "Nelly Baradi",
   "Fly Trinity Airways",
+  "Brillanta Afrique",
   "Rita's Bakehouse",
-  "Edith Smith",
+  "Nelly Baradi",
+];
+
+const stats = [
+  { v: "300K+", l: "Organic views in 30 days", sub: "44DB — May, 2026" },
+  { v: "#1", l: "Rap song in Nigeria, co-produced by our client", sub: "Blaqbonez ft. Asake" },
+  { v: "8hrs+", l: "Operational time saved weekly", sub: "Morgan Oxford Education" },
+  { v: "Lagos", l: "HQ base", sub: "Nigeria" },
 ];
 
 function Home() {
@@ -62,8 +67,11 @@ function Home() {
             Building brands & platforms on a{" "}
             <span className="text-primary">clean slate.</span>
           </h1>
-          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed mb-10 animate-reveal" style={{ animationDelay: "140ms" }}>
+          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed mb-6 animate-reveal" style={{ animationDelay: "140ms" }}>
             Creative and technical excellence for businesses ready to start fresh and grow exponentially.
+          </p>
+          <p className="max-w-2xl mx-auto text-sm text-muted/80 leading-relaxed mb-10 animate-reveal" style={{ animationDelay: "200ms" }}>
+            From music collectives and luxury automotive to education and aviation — if you're building something real in Lagos and beyond, we're for you.
           </p>
           <div className="flex flex-wrap justify-center gap-3 animate-reveal" style={{ animationDelay: "280ms" }}>
             <CtaButton to="/work" variant="primary">See our work</CtaButton>
@@ -72,19 +80,15 @@ function Home() {
         </div>
       </header>
 
-      {/* Metrics */}
+      {/* Stats */}
       <div className="px-6">
         <div className="max-w-7xl mx-auto bg-surface rounded-[2.5rem] p-8 md:p-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { v: "69,526", l: "IG views / month — 44DB" },
-              { v: "45%", l: "Car sales lift — Vida Rosa" },
-              { v: "8,000+", l: "Followers grown organically" },
-              { v: "Lagos", l: "HQ base" },
-            ].map((m, i) => (
+            {stats.map((m, i) => (
               <Reveal key={m.l} delay={i * 90} className="text-center md:text-left">
                 <div className="text-3xl md:text-4xl font-medium tracking-tight">{m.v}</div>
-                <div className="text-sm text-muted mt-2">{m.l}</div>
+                <div className="text-sm text-foreground/80 mt-2 leading-snug">{m.l}</div>
+                <div className="text-xs text-muted mt-1">{m.sub}</div>
               </Reveal>
             ))}
           </div>
@@ -189,6 +193,9 @@ function Home() {
 
       {/* Logo marquee */}
       <div className="py-12 overflow-hidden">
+        <div className="px-6 mb-6 max-w-7xl mx-auto">
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted">Brands we've built</span>
+        </div>
         <div className="flex items-center gap-6 md:gap-16 animate-marquee whitespace-nowrap w-max">
           {[...logos, ...logos].map((l, i) => (
             <span key={i} className="text-sm md:text-lg font-medium text-muted/40 px-3 md:px-8">

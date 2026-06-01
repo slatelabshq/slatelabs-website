@@ -62,6 +62,13 @@ export function SiteHeader() {
                 {n.label}
               </Link>
             ))}
+            <a
+              href="tel:+2347026036554"
+              onClick={() => setOpen(false)}
+              className="mt-2 px-3 py-2 rounded-xl text-sm text-muted hover:bg-surface hover:text-foreground"
+            >
+              Call — +234 702 603 6554
+            </a>
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
@@ -69,6 +76,7 @@ export function SiteHeader() {
             >
               Get started
             </Link>
+
           </div>
         </div>
       )}

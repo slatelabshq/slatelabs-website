@@ -15,6 +15,7 @@ import { Route as IleEkoRouteImport } from './routes/ile-eko'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as WorkVidaRosaRouteImport } from './routes/work.vida-rosa'
 import { Route as WorkNellyBaradiRouteImport } from './routes/work.nelly-baradi'
 import { Route as WorkMorganOxfordRouteImport } from './routes/work.morgan-oxford'
 import { Route as WorkFlyTrinityRouteImport } from './routes/work.fly-trinity'
@@ -51,6 +52,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const WorkVidaRosaRoute = WorkVidaRosaRouteImport.update({
+  id: '/vida-rosa',
+  path: '/vida-rosa',
+  getParentRoute: () => WorkRoute,
 } as any)
 const WorkNellyBaradiRoute = WorkNellyBaradiRouteImport.update({
   id: '/nelly-baradi',
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/work/fly-trinity': typeof WorkFlyTrinityRoute
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
   '/work/nelly-baradi': typeof WorkNellyBaradiRoute
+  '/work/vida-rosa': typeof WorkVidaRosaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -110,6 +117,7 @@ export interface FileRoutesByTo {
   '/work/fly-trinity': typeof WorkFlyTrinityRoute
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
   '/work/nelly-baradi': typeof WorkNellyBaradiRoute
+  '/work/vida-rosa': typeof WorkVidaRosaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/work/fly-trinity': typeof WorkFlyTrinityRoute
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
   '/work/nelly-baradi': typeof WorkNellyBaradiRoute
+  '/work/vida-rosa': typeof WorkVidaRosaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -141,6 +150,7 @@ export interface FileRouteTypes {
     | '/work/fly-trinity'
     | '/work/morgan-oxford'
     | '/work/nelly-baradi'
+    | '/work/vida-rosa'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/work/fly-trinity'
     | '/work/morgan-oxford'
     | '/work/nelly-baradi'
+    | '/work/vida-rosa'
   id:
     | '__root__'
     | '/'
@@ -169,6 +180,7 @@ export interface FileRouteTypes {
     | '/work/fly-trinity'
     | '/work/morgan-oxford'
     | '/work/nelly-baradi'
+    | '/work/vida-rosa'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -224,6 +236,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/vida-rosa': {
+      id: '/work/vida-rosa'
+      path: '/vida-rosa'
+      fullPath: '/work/vida-rosa'
+      preLoaderRoute: typeof WorkVidaRosaRouteImport
+      parentRoute: typeof WorkRoute
+    }
     '/work/nelly-baradi': {
       id: '/work/nelly-baradi'
       path: '/nelly-baradi'
@@ -276,6 +295,7 @@ interface WorkRouteChildren {
   WorkFlyTrinityRoute: typeof WorkFlyTrinityRoute
   WorkMorganOxfordRoute: typeof WorkMorganOxfordRoute
   WorkNellyBaradiRoute: typeof WorkNellyBaradiRoute
+  WorkVidaRosaRoute: typeof WorkVidaRosaRoute
 }
 
 const WorkRouteChildren: WorkRouteChildren = {
@@ -285,6 +305,7 @@ const WorkRouteChildren: WorkRouteChildren = {
   WorkFlyTrinityRoute: WorkFlyTrinityRoute,
   WorkMorganOxfordRoute: WorkMorganOxfordRoute,
   WorkNellyBaradiRoute: WorkNellyBaradiRoute,
+  WorkVidaRosaRoute: WorkVidaRosaRoute,
 }
 
 const WorkRouteWithChildren = WorkRoute._addFileChildren(WorkRouteChildren)

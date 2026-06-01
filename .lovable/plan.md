@@ -1,17 +1,28 @@
-# Phase 3 — MEDIUM priority — SHIPPED ✅
+# Phase 4 — Insights / Blog scaffold — SHIPPED ✅
 
 ## Done
-- **Testimonials**: new `src/components/Testimonials.tsx`, 3-card grid with placeholder quotes (44DB / Morgan Oxford / Vida Rosa). Mounted on home (above final CTA) and about (below Press).
-- **Calendly**: new `src/lib/calendly.ts` reads `VITE_CALENDLY_URL` with fallback `https://calendly.com/slatelabs/intro`. Contact page now leads with "Book a 20-min intro" button (email + WhatsApp remain). Home and Services final CTAs include "Book a 20-min call" secondary.
-- **CtaButton**: now supports `external` prop for `target="_blank"` external links.
-- **Work-card metric badges**: added optional `badge` field to `work-data.ts` (44DB 74.6% reach, Vida Rosa Featured engagement, Morgan Oxford 8hrs+ saved/wk, Nelly Baradi 250K+ views). Rendered as primary-tinted pill top-right on each card in `work.tsx`.
-- **SEO infrastructure**: `public/robots.txt` (Allow all + Sitemap directive), `public/sitemap.xml` listing all 12 public routes with lastmod 2026-06-01.
+- **Data**: `src/lib/insights-data.ts` — typed `Post` + `Block` model, helpers (`getPostBySlug`, `getRelatedPosts`, `getLatestPosts`, `formatPostDate`), 2 seed posts marked `TODO: editorial pass`.
+- **Components**: `src/components/Prose.tsx` (block renderer for p / h2 / quote / ul), `src/components/InsightCard.tsx` (card with gradient fallback cover, tag pill, meta).
+- **Routes**:
+  - `/insights` (`src/routes/insights.tsx`) — header, sorted card grid, empty state.
+  - `/insights/$slug` (`src/routes/insights.$slug.tsx`) — hero with tag/date/read time, author chip, Prose body, CTA card, related posts. Article JSON-LD + per-post `og:type=article`, dynamic title/description/canonical. `notFound()` for unknown slugs with a custom notFoundComponent.
+- **Navigation**: Insights added to `SiteHeader` (desktop + mobile) and `SiteFooter` Company list.
+- **Home cross-link**: "Latest from Slate Labs" 3-card strip between testimonials and final CTA (auto-hides when no posts).
+- **SEO**: added `/insights` and both seed-post URLs to `public/sitemap.xml`.
 
-## Out of scope (user-side)
-- Custom domain DNS migration.
-- Google Search Console verification + sitemap submission (`https://slatelabshq.com/sitemap.xml`).
-- Replace placeholder testimonial quotes with real client sign-off when SK has them.
-- Set `VITE_CALENDLY_URL` env var to the real Slate Labs Calendly link.
+## How to publish new posts
+1. Add an entry to the `posts` array in `src/lib/insights-data.ts`.
+2. Build body with `p` / `h2` / `quote` / `ul` blocks.
+3. Add the URL to `public/sitemap.xml`.
+4. Ship.
 
-## Asset swaps still pending
-- Hero image, logo PNG wall, SK + team headshots, Ile Eko screenshots (Phase 2 carryover).
+## Out of scope
+- No MDX, CMS, or DB.
+- No tag-filter pages, no pagination, no RSS (easy to add later).
+- Real editorial copy — seed posts need SK / Joseph sign-off.
+
+## Still pending (carryover)
+- Hero image, logo PNG wall, SK + team headshots, Ile Eko screenshots.
+- DNS migration, Google Search Console.
+- Real Calendly URL (set `VITE_CALENDLY_URL`).
+- Real testimonial quotes.

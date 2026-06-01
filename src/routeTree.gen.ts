@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as IleEkoRouteImport } from './routes/ile-eko'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -22,6 +23,7 @@ import { Route as WorkFlyTrinityRouteImport } from './routes/work.fly-trinity'
 import { Route as WorkBrillantaRouteImport } from './routes/work.brillanta'
 import { Route as Work44dbRouteImport } from './routes/work.44db'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
@@ -31,6 +33,11 @@ const WorkRoute = WorkRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IleEkoRoute = IleEkoRouteImport.update({
@@ -88,14 +95,21 @@ const WorkSlugRoute = WorkSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => WorkRoute,
 } as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => InsightsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/ile-eko': typeof IleEkoRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/services': typeof ServicesRoute
   '/work': typeof WorkRouteWithChildren
+  '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
   '/work/brillanta': typeof WorkBrillantaRoute
@@ -109,8 +123,10 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/ile-eko': typeof IleEkoRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/services': typeof ServicesRoute
   '/work': typeof WorkRouteWithChildren
+  '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
   '/work/brillanta': typeof WorkBrillantaRoute
@@ -125,8 +141,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/ile-eko': typeof IleEkoRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/services': typeof ServicesRoute
   '/work': typeof WorkRouteWithChildren
+  '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
   '/work/brillanta': typeof WorkBrillantaRoute
@@ -142,8 +160,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/ile-eko'
+    | '/insights'
     | '/services'
     | '/work'
+    | '/insights/$slug'
     | '/work/$slug'
     | '/work/44db'
     | '/work/brillanta'
@@ -157,8 +177,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/ile-eko'
+    | '/insights'
     | '/services'
     | '/work'
+    | '/insights/$slug'
     | '/work/$slug'
     | '/work/44db'
     | '/work/brillanta'
@@ -172,8 +194,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/ile-eko'
+    | '/insights'
     | '/services'
     | '/work'
+    | '/insights/$slug'
     | '/work/$slug'
     | '/work/44db'
     | '/work/brillanta'
@@ -188,6 +212,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   IleEkoRoute: typeof IleEkoRoute
+  InsightsRoute: typeof InsightsRouteWithChildren
   ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRouteWithChildren
 }
@@ -206,6 +231,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ile-eko': {
@@ -285,8 +317,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkSlugRouteImport
       parentRoute: typeof WorkRoute
     }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof InsightsRoute
+    }
   }
 }
+
+interface InsightsRouteChildren {
+  InsightsSlugRoute: typeof InsightsSlugRoute
+}
+
+const InsightsRouteChildren: InsightsRouteChildren = {
+  InsightsSlugRoute: InsightsSlugRoute,
+}
+
+const InsightsRouteWithChildren = InsightsRoute._addFileChildren(
+  InsightsRouteChildren,
+)
 
 interface WorkRouteChildren {
   WorkSlugRoute: typeof WorkSlugRoute
@@ -315,6 +366,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   IleEkoRoute: IleEkoRoute,
+  InsightsRoute: InsightsRouteWithChildren,
   ServicesRoute: ServicesRoute,
   WorkRoute: WorkRouteWithChildren,
 }

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { toast } from "sonner";
 import { Section, Eyebrow } from "@/components/Section";
 import { CALENDLY_URL } from "@/lib/calendly";
 import { trackEvent } from "@/lib/analytics";
@@ -26,33 +27,65 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
+type Status = "idle" | "submitting" | "success" | "error";
 
 function Contact() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (status === "submitting") return;
+    setErrorMsg(null);
+    setStatus("submitting");
+
     const fd = new FormData(e.currentTarget);
-    const subject = `New project enquiry — ${fd.get("name") ?? ""}`;
-    const body =
-      `Name: ${fd.get("name") ?? ""}\n` +
-      `Email: ${fd.get("email") ?? ""}\n` +
-      `Company: ${fd.get("company") ?? ""}\n` +
-      `Project Type: ${fd.get("projectType") ?? ""}\n` +
-      `Budget: ${fd.get("budget") ?? ""}\n\n` +
-      `Message:\n${fd.get("message") ?? ""}`;
-    const mailto = `mailto:hello@slatelabshq.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    trackEvent("contact_submit", {
-      project_type: String(fd.get("projectType") ?? ""),
-      budget: String(fd.get("budget") ?? ""),
-    });
-    window.location.href = mailto;
-    setSent(true);
+    const payload = {
+      name: String(fd.get("name") ?? "").trim(),
+      email: String(fd.get("email") ?? "").trim(),
+      company: String(fd.get("company") ?? "").trim(),
+      projectType: String(fd.get("projectType") ?? "").trim(),
+      budget: String(fd.get("budget") ?? "").trim(),
+      message: String(fd.get("message") ?? "").trim(),
+      website: String(fd.get("website") ?? ""), // honeypot
+    };
+
+    try {
+      const res = await fetch("/api/public/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        trackEvent("contact_submit", {
+          project_type: payload.projectType,
+          budget: payload.budget,
+        });
+        toast.success("Message sent — we'll be in touch within 24 hours.");
+        setStatus("success");
+        return;
+      }
+
+      const data = await res.json().catch(() => ({}));
+      const msg =
+        (data && typeof data.error === "string" && data.error) ||
+        "Something went wrong. Please try again.";
+      setErrorMsg(msg);
+      setStatus("error");
+      toast.error(msg);
+    } catch {
+      const msg = "Network error. Please try again.";
+      setErrorMsg(msg);
+      setStatus("error");
+      toast.error(msg);
+    }
   }
 
   const input =
     "w-full rounded-xl bg-background border border-transparent focus:border-foreground/20 outline-none px-4 py-3 text-foreground placeholder:text-muted transition-colors";
   const label = "block text-xs font-medium text-muted mb-2";
+  const submitting = status === "submitting";
 
   return (
     <>
@@ -73,26 +106,49 @@ function Contact() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div className="md:col-span-7">
               <Eyebrow>Send a message</Eyebrow>
-              {sent ? (
+              {status === "success" ? (
                 <div className="rounded-2xl bg-background p-8 border border-primary/30">
-                  <h2 className="text-xl font-medium tracking-tight mb-3">Email drafted.</h2>
+                  <h2 className="text-xl font-medium tracking-tight mb-3">Message received.</h2>
                   <p className="text-muted">
-                    We've opened your email client with the details. Hit send and we'll get back to you within 24 hours.
+                    Thanks — we've got your message and will reply within 24 hours.
+                    Check your inbox for a confirmation.
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5" noValidate>
+                  {/* Honeypot — hidden from humans */}
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: "absolute",
+                      left: "-10000px",
+                      width: "1px",
+                      height: "1px",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <label htmlFor="website">Website</label>
+                    <input
+                      id="website"
+                      name="website"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      defaultValue=""
+                    />
+                  </div>
+
                   <div>
                     <label className={label} htmlFor="name">Name *</label>
-                    <input id="name" name="name" required className={input} />
+                    <input id="name" name="name" required maxLength={100} className={input} />
                   </div>
                   <div>
                     <label className={label} htmlFor="email">Email *</label>
-                    <input id="email" name="email" type="email" required className={input} />
+                    <input id="email" name="email" type="email" required maxLength={255} className={input} />
                   </div>
                   <div className="md:col-span-2">
                     <label className={label} htmlFor="company">Company / Organization</label>
-                    <input id="company" name="company" className={input} />
+                    <input id="company" name="company" maxLength={200} className={input} />
                   </div>
                   <div>
                     <label className={label} htmlFor="projectType">Project type</label>
@@ -118,14 +174,28 @@ function Contact() {
                   </div>
                   <div className="md:col-span-2">
                     <label className={label} htmlFor="message">Message *</label>
-                    <textarea id="message" name="message" required rows={6} className={`${input} resize-none`} />
+                    <textarea id="message" name="message" required rows={6} maxLength={5000} className={`${input} resize-none`} />
                   </div>
+
+                  {status === "error" && errorMsg && (
+                    <div className="md:col-span-2 -mt-1">
+                      <p className="text-sm text-red-600" role="alert">{errorMsg}</p>
+                    </div>
+                  )}
+
                   <div className="md:col-span-2 mt-2">
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-7 py-3.5 text-sm font-medium hover:bg-primary glow-primary active:translate-y-px focus-visible:outline-none"
+                      disabled={submitting}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-background px-7 py-3.5 text-sm font-medium hover:bg-primary glow-primary active:translate-y-px focus-visible:outline-none disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      Send message
+                      {submitting && (
+                        <span
+                          className="inline-block h-3 w-3 rounded-full border-2 border-background/40 border-t-background animate-spin"
+                          aria-hidden="true"
+                        />
+                      )}
+                      {submitting ? "Sending…" : "Send message"}
                     </button>
                   </div>
                 </form>

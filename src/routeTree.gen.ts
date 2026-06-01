@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as IleEkoRouteImport } from './routes/ile-eko'
@@ -24,11 +25,21 @@ import { Route as WorkBrillantaRouteImport } from './routes/work.brillanta'
 import { Route as Work44dbRouteImport } from './routes/work.44db'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
+import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
+import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -101,6 +112,33 @@ const InsightsSlugRoute = InsightsSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => InsightsRoute,
 } as any)
+const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
+  id: '/email/unsubscribe',
+  path: '/email/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
+  id: '/lovable/email/suppression',
+  path: '/lovable/email/suppression',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
+  id: '/api/public/contact',
+  path: '/api/public/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LovableEmailTransactionalSendRoute =
+  LovableEmailTransactionalSendRouteImport.update({
+    id: '/lovable/email/transactional/send',
+    path: '/lovable/email/transactional/send',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LovableEmailTransactionalPreviewRoute =
+  LovableEmailTransactionalPreviewRouteImport.update({
+    id: '/lovable/email/transactional/preview',
+    path: '/lovable/email/transactional/preview',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -115,7 +153,9 @@ export interface FileRoutesByFullPath {
   '/ile-eko': typeof IleEkoRoute
   '/insights': typeof InsightsRouteWithChildren
   '/services': typeof ServicesRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/work': typeof WorkRouteWithChildren
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
@@ -124,7 +164,11 @@ export interface FileRoutesByFullPath {
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
   '/work/nelly-baradi': typeof WorkNellyBaradiRoute
   '/work/vida-rosa': typeof WorkVidaRosaRoute
+  '/api/public/contact': typeof ApiPublicContactRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -133,7 +177,9 @@ export interface FileRoutesByTo {
   '/ile-eko': typeof IleEkoRoute
   '/insights': typeof InsightsRouteWithChildren
   '/services': typeof ServicesRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/work': typeof WorkRouteWithChildren
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
@@ -142,7 +188,11 @@ export interface FileRoutesByTo {
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
   '/work/nelly-baradi': typeof WorkNellyBaradiRoute
   '/work/vida-rosa': typeof WorkVidaRosaRoute
+  '/api/public/contact': typeof ApiPublicContactRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -152,7 +202,9 @@ export interface FileRoutesById {
   '/ile-eko': typeof IleEkoRoute
   '/insights': typeof InsightsRouteWithChildren
   '/services': typeof ServicesRoute
+  '/unsubscribe': typeof UnsubscribeRoute
   '/work': typeof WorkRouteWithChildren
+  '/email/unsubscribe': typeof EmailUnsubscribeRoute
   '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
   '/work/44db': typeof Work44dbRoute
@@ -161,7 +213,11 @@ export interface FileRoutesById {
   '/work/morgan-oxford': typeof WorkMorganOxfordRoute
   '/work/nelly-baradi': typeof WorkNellyBaradiRoute
   '/work/vida-rosa': typeof WorkVidaRosaRoute
+  '/api/public/contact': typeof ApiPublicContactRoute
+  '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
+  '/lovable/email/transactional/preview': typeof LovableEmailTransactionalPreviewRoute
+  '/lovable/email/transactional/send': typeof LovableEmailTransactionalSendRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -172,7 +228,9 @@ export interface FileRouteTypes {
     | '/ile-eko'
     | '/insights'
     | '/services'
+    | '/unsubscribe'
     | '/work'
+    | '/email/unsubscribe'
     | '/insights/$slug'
     | '/work/$slug'
     | '/work/44db'
@@ -181,7 +239,11 @@ export interface FileRouteTypes {
     | '/work/morgan-oxford'
     | '/work/nelly-baradi'
     | '/work/vida-rosa'
+    | '/api/public/contact'
+    | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -190,7 +252,9 @@ export interface FileRouteTypes {
     | '/ile-eko'
     | '/insights'
     | '/services'
+    | '/unsubscribe'
     | '/work'
+    | '/email/unsubscribe'
     | '/insights/$slug'
     | '/work/$slug'
     | '/work/44db'
@@ -199,7 +263,11 @@ export interface FileRouteTypes {
     | '/work/morgan-oxford'
     | '/work/nelly-baradi'
     | '/work/vida-rosa'
+    | '/api/public/contact'
+    | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   id:
     | '__root__'
     | '/'
@@ -208,7 +276,9 @@ export interface FileRouteTypes {
     | '/ile-eko'
     | '/insights'
     | '/services'
+    | '/unsubscribe'
     | '/work'
+    | '/email/unsubscribe'
     | '/insights/$slug'
     | '/work/$slug'
     | '/work/44db'
@@ -217,7 +287,11 @@ export interface FileRouteTypes {
     | '/work/morgan-oxford'
     | '/work/nelly-baradi'
     | '/work/vida-rosa'
+    | '/api/public/contact'
+    | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
+    | '/lovable/email/transactional/preview'
+    | '/lovable/email/transactional/send'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -227,8 +301,14 @@ export interface RootRouteChildren {
   IleEkoRoute: typeof IleEkoRoute
   InsightsRoute: typeof InsightsRouteWithChildren
   ServicesRoute: typeof ServicesRoute
+  UnsubscribeRoute: typeof UnsubscribeRoute
   WorkRoute: typeof WorkRouteWithChildren
+  EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  ApiPublicContactRoute: typeof ApiPublicContactRoute
+  LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
+  LovableEmailTransactionalPreviewRoute: typeof LovableEmailTransactionalPreviewRoute
+  LovableEmailTransactionalSendRoute: typeof LovableEmailTransactionalSendRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -238,6 +318,13 @@ declare module '@tanstack/react-router' {
       path: '/work'
       fullPath: '/work'
       preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -338,6 +425,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InsightsSlugRouteImport
       parentRoute: typeof InsightsRoute
     }
+    '/email/unsubscribe': {
+      id: '/email/unsubscribe'
+      path: '/email/unsubscribe'
+      fullPath: '/email/unsubscribe'
+      preLoaderRoute: typeof EmailUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/suppression': {
+      id: '/lovable/email/suppression'
+      path: '/lovable/email/suppression'
+      fullPath: '/lovable/email/suppression'
+      preLoaderRoute: typeof LovableEmailSuppressionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/contact': {
+      id: '/api/public/contact'
+      path: '/api/public/contact'
+      fullPath: '/api/public/contact'
+      preLoaderRoute: typeof ApiPublicContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/send': {
+      id: '/lovable/email/transactional/send'
+      path: '/lovable/email/transactional/send'
+      fullPath: '/lovable/email/transactional/send'
+      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lovable/email/transactional/preview': {
+      id: '/lovable/email/transactional/preview'
+      path: '/lovable/email/transactional/preview'
+      fullPath: '/lovable/email/transactional/preview'
+      preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -389,8 +511,14 @@ const rootRouteChildren: RootRouteChildren = {
   IleEkoRoute: IleEkoRoute,
   InsightsRoute: InsightsRouteWithChildren,
   ServicesRoute: ServicesRoute,
+  UnsubscribeRoute: UnsubscribeRoute,
   WorkRoute: WorkRouteWithChildren,
+  EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  ApiPublicContactRoute: ApiPublicContactRoute,
+  LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
+  LovableEmailTransactionalPreviewRoute: LovableEmailTransactionalPreviewRoute,
+  LovableEmailTransactionalSendRoute: LovableEmailTransactionalSendRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

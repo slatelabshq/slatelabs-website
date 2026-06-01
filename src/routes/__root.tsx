@@ -7,12 +7,14 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { useEffect } from "react";
 
 import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageTransition } from "@/components/PageTransition";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
+import { initGA, trackPageview } from "@/lib/analytics";
 
 function NotFoundComponent() {
   const links = [
@@ -188,6 +190,18 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    initGA();
+    // Initial pageview
+    trackPageview(window.location.pathname + window.location.search);
+    const unsub = router.subscribe("onResolved", ({ toLocation }) => {
+      trackPageview((toLocation.pathname ?? "/") + (toLocation.searchStr ?? ""));
+    });
+    return () => unsub();
+  }, [router]);
+
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen flex flex-col">

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Section, Eyebrow } from "@/components/Section";
 import { CALENDLY_URL } from "@/lib/calendly";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -41,6 +42,10 @@ function Contact() {
       `Budget: ${fd.get("budget") ?? ""}\n\n` +
       `Message:\n${fd.get("message") ?? ""}`;
     const mailto = `mailto:hello@slatelabshq.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    trackEvent("contact_submit", {
+      project_type: String(fd.get("projectType") ?? ""),
+      budget: String(fd.get("budget") ?? ""),
+    });
     window.location.href = mailto;
     setSent(true);
   }
@@ -134,6 +139,7 @@ function Contact() {
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("calendly_click", { location: "contact" })}
                   className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-6 py-3 text-sm font-medium hover:bg-primary glow-primary transition-colors"
                 >
                   Book a 20-min intro →
@@ -149,6 +155,7 @@ function Contact() {
                   href="https://wa.me/2347026036554?text=Hi%20Slate%20Labs"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("whatsapp_click", { location: "contact" })}
                   className="mt-3 inline-flex items-center gap-2 text-base hover:text-primary"
                 >
                   <svg viewBox="0 0 32 32" className="w-5 h-5" fill="#25D366" aria-hidden="true">

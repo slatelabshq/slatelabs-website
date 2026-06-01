@@ -1,44 +1,41 @@
-# Phase 5.3 — Backend wiring (form + analytics + Calendly)
+# Phase 5.3a — GA4 analytics
 
-With polish done (5.2) and assets still pending (5.1), the next unblocked phase moves `/contact` off `mailto:` and adds the lightweight infra the site needs before launch.
+Add Google Analytics 4 to the site. Gated on a `VITE_GA_MEASUREMENT_ID` secret so nothing loads until you provide the ID (format `G-XXXXXXXXXX`). No cookie banner work in this phase — GA4 with default settings is in scope; consent UI can come later if needed.
 
-## 1. Contact form backend
-Replace the `mailto:` handoff in `src/routes/contact.tsx` with a real submission so messages land reliably (and on mobile, where `mailto:` often fails silently).
+## What changes
 
-- Add a server route `src/routes/api/public/contact.ts` (POST). Validates payload with Zod (name, email, company?, projectType?, budget?, message; min/max lengths; email format).
-- Sends via Resend using `RESEND_API_KEY` (stored as a Cloud secret). To: `hello@slatelabshq.com`. Reply-To: submitter's email. Subject mirrors current mailto subject.
-- Basic anti-abuse: honeypot field (`company_url`), 30s min time-on-page token, simple in-memory IP rate-limit (3/min) — best-effort only.
-- Client: replace `handleSubmit` with `fetch('/api/public/contact', ...)`. Keep the existing form markup and success state; add an error state with retry. Disable submit button while pending.
+1. **Secret** — add `VITE_GA_MEASUREMENT_ID` via the secrets tool once you share the ID. `VITE_` prefix so it's inlined at build time and usable from the client. Empty/unset = analytics disabled (safe default for dev/preview).
 
-## 2. Calendly secret
-- Move the Calendly URL fully to env. `src/lib/calendly.ts` already reads `VITE_CALENDLY_URL` with a fallback — add it as a Cloud secret so it's set in published builds. No code change beyond confirming the read path.
+2. **Loader** — new `src/lib/analytics.ts`:
+   - Reads `import.meta.env.VITE_GA_MEASUREMENT_ID`.
+   - `initGA()` injects the `gtag.js` script once, only in the browser, only when the ID is set, and only when `import.meta.env.PROD` is true (no analytics noise from dev/preview).
+   - Bootstraps `window.dataLayer` + `gtag('config', id, { send_page_view: false })` — we send page_view manually on route change to avoid double-counting SPA navigations.
+   - Exports `trackPageview(path, title)` and `trackEvent(name, params?)` helpers that no-op when the ID is missing.
 
-## 3. Analytics
-- Add Plausible (privacy-first, no cookie banner needed) via a single script tag in `__root.tsx` `head().scripts`. Domain: `slatelabshq.com`. Script loads only in production (`import.meta.env.PROD`).
-- Track 3 custom events through `window.plausible(...)`:
-  - `Contact Submit` (on successful form POST)
-  - `Calendly Click` (on the "Book a 20-min intro" link in contact + any other CTAs)
-  - `WhatsApp Click` (on `WhatsAppFab` + contact aside link)
+3. **Route-change tracking** — in `src/routes/__root.tsx` `RootComponent`:
+   - Call `initGA()` once on mount.
+   - Subscribe to `router.subscribe('onResolved', ...)` to fire `trackPageview` on every navigation (covers SPA transitions, which gtag's auto page_view misses).
 
-## 4. robots + sitemap sanity
-- Confirm `public/robots.txt` allows crawling and references `public/sitemap.xml`.
-- Confirm sitemap includes every current route (added insights routes in earlier phase).
+4. **Custom events** — wire three events through `trackEvent`:
+   - `contact_submit` — fires in `src/routes/contact.tsx` after a successful submit. (Form is still `mailto:` today, so for now fire on the submit handler; swap to "on success" when the contact backend lands.)
+   - `calendly_click` — on the Calendly link in `src/routes/contact.tsx` (and anywhere else `getCalendlyUrl()` is linked).
+   - `whatsapp_click` — on `src/components/WhatsAppFab.tsx` and the WhatsApp link in the contact aside.
+
+5. **Types** — small `src/types/gtag.d.ts` declaring `window.gtag` and `window.dataLayer` so TS stays happy.
 
 ## Files touched
-- **New**: `src/routes/api/public/contact.ts`
-- **Edit**: `src/routes/contact.tsx` (fetch instead of mailto, pending/error states, event tracking), `src/routes/__root.tsx` (Plausible script in prod), `src/components/WhatsAppFab.tsx` (click event), `public/robots.txt` + `public/sitemap.xml` (verify only — edits only if gaps found).
-- **Secrets**: `RESEND_API_KEY`, `VITE_CALENDLY_URL` (request from user / add via secrets tool).
+- **New**: `src/lib/analytics.ts`, `src/types/gtag.d.ts`
+- **Edit**: `src/routes/__root.tsx` (init + route subscription), `src/routes/contact.tsx` (submit + Calendly + WhatsApp events), `src/components/WhatsAppFab.tsx` (click event)
+- **Secret**: `VITE_GA_MEASUREMENT_ID`
 
 ## Out of scope
-- Hero/logo/headshot assets (5.1, still blocked).
-- OG image generation.
-- Replacing Plausible with GA4 or Posthog — can swap later if the user prefers.
-- Multi-step form, file uploads, CRM sync.
+- Cookie/consent banner (GA4 Consent Mode v2). Add later if you want EU compliance.
+- Replacing/augmenting with Plausible or Posthog.
+- Server-side Measurement Protocol events.
+- Contact form backend (still tracked under Phase 5.3).
 
 ## Verification
-After build: submit the form against a dev Resend key and confirm email arrives; check Plausible dashboard receives a pageview + custom event from a published build; tab through form to confirm pending/error/success states are accessible.
+After deploying with the secret set: open the published site in a browser with GA DebugView open → confirm a `page_view` on load, another on client-side nav, and `calendly_click` / `whatsapp_click` when those links are clicked. Confirm dev/preview builds send nothing (no `gtag` script in network tab).
 
-## Open questions before I implement
-1. **Email provider**: Resend is the simplest fit for a Worker runtime. OK, or do you prefer Postmark / SendGrid / SES?
-2. **Analytics**: Plausible (lightweight, no cookie banner) vs GA4 (richer, needs consent) vs none?
-3. **Calendly URL**: confirm the real link so I can stage it as the `VITE_CALENDLY_URL` secret (current fallback is `https://calendly.com/slatelabs/intro`).
+## What I need from you
+1. Your **GA4 Measurement ID** (`G-XXXXXXXXXX`) — from GA4 → Admin → Data Streams → Web → Measurement ID. I'll add it as `VITE_GA_MEASUREMENT_ID` via the secrets tool.

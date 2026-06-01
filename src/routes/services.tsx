@@ -99,7 +99,7 @@ function Services() {
             What we <span className="text-primary">build.</span>
           </h1>
           <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed">
-            Three integrated practices. One studio. Brand, platform, and intelligent systems built to grow your business.
+            Four integrated practices. One team. Brand, growth, platform, and intelligent systems built to grow your business.
           </p>
         </div>
       </header>

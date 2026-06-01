@@ -116,7 +116,7 @@ function InsightDetail() {
       {post.cover && (
         <div className="px-6 mb-16">
           <div className="max-w-5xl mx-auto rounded-[2rem] overflow-hidden aspect-[16/9] bg-surface">
-            <img src={post.cover} alt={post.title} className="w-full h-full object-cover" />
+            <img src={post.cover} alt={post.title} width={1600} height={900} loading="eager" fetchPriority="high" className="w-full h-full object-cover" />
           </div>
         </div>
       )}

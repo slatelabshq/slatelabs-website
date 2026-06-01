@@ -3,7 +3,7 @@ import logoWordmark from "@/assets/slate-logo-wordmark.png";
 
 export function SiteFooter() {
   return (
-    <footer className="px-6 py-20">
+    <footer aria-label="Site footer" className="px-6 py-20">
       <div className="max-w-7xl mx-auto bg-surface rounded-[2.5rem] p-10 md:p-16">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10">
           <div className="col-span-2">

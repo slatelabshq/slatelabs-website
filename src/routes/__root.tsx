@@ -15,6 +15,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PageTransition } from "@/components/PageTransition";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { initGA, trackPageview } from "@/lib/analytics";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   const links = [
@@ -219,6 +220,7 @@ function RootComponent() {
         </main>
         <SiteFooter />
         <WhatsAppFab />
+        <Toaster />
       </div>
     </QueryClientProvider>
   );

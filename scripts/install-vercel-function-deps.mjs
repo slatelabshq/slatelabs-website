@@ -29,3 +29,18 @@ const npmInstall = spawnSync(
 if (npmInstall.status !== 0) {
   process.exit(npmInstall.status ?? 1);
 }
+
+const entryPath = resolve(funcDir, "chunks/virtual/entry.mjs");
+const entry = readFileSync(entryPath, "utf8");
+const needle = "new FastURL(req.url)";
+if (!entry.includes(needle)) {
+  console.error("[vercel] Could not find FastURL(req.url) in the server bundle.");
+  process.exit(1);
+}
+
+const patched = entry.replaceAll(
+  needle,
+  'new FastURL(typeof req.url==="string"&&req.url.startsWith("/")?`${req.headers.get("x-forwarded-proto")||"https"}://${req.headers.get("x-forwarded-host")||req.headers.get("host")||"localhost"}${req.url}`:req.url)',
+);
+writeFileSync(entryPath, patched);
+console.log("[vercel] Patched server URL handling for Vercel path-only requests.");

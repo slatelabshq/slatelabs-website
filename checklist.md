@@ -4,6 +4,8 @@
 - [x] Confirm: Vercel was not shipping `node_modules` for the server function
 - [x] Add post-build install for `.vercel/output/functions/__fallback.func`
 - [x] Point Vercel settings at Bun (`installCommand` / `buildCommand`)
+- [x] Remove `.vercel/output` from Git (keep in `.gitignore`)
+- [ ] Commit + push (stops tracking build output on GitHub)
 - [ ] Push and redeploy on Vercel
 - [ ] Confirm https://www.slatelabshq.com.ng/ loads (no 500)
 - [ ] Spot-check a few routes (home, work, contact)

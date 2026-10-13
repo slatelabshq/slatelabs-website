@@ -30,17 +30,42 @@ if (npmInstall.status !== 0) {
   process.exit(npmInstall.status ?? 1);
 }
 
+// The Nitro v2 Vercel wrapper hands TanStack Start's web handler a Node
+// IncomingMessage (path-only url, plain headers object) instead of a Request.
 const entryPath = resolve(funcDir, "chunks/virtual/entry.mjs");
 const entry = readFileSync(entryPath, "utf8");
-const needle = "new FastURL(req.url)";
+const needle = "return handler(event.req, event.context);";
 if (!entry.includes(needle)) {
-  console.error("[vercel] Could not find FastURL(req.url) in the server bundle.");
+  console.error("[vercel] Could not find the web handler bridge in the server bundle.");
   process.exit(1);
 }
 
-const patched = entry.replaceAll(
-  needle,
-  'new FastURL(typeof req.url==="string"&&req.url.startsWith("/")?`${req.headers.get("x-forwarded-proto")||"https"}://${req.headers.get("x-forwarded-host")||req.headers.get("host")||"localhost"}${req.url}`:req.url)',
-);
+const toWebRequest = `
+function __toWebRequest(req) {
+	if (typeof Request !== "undefined" && req instanceof Request) return req;
+	const headers = new Headers();
+	for (const [key, value] of Object.entries(req.headers || {})) {
+		if (value == null) continue;
+		if (Array.isArray(value)) for (const v of value) headers.append(key, v);
+		else headers.set(key, String(value));
+	}
+	const proto = (headers.get("x-forwarded-proto") || "https").split(",")[0].trim();
+	const host = (headers.get("x-forwarded-host") || headers.get("host") || "localhost").split(",")[0].trim();
+	const method = req.method || "GET";
+	const hasBody = method !== "GET" && method !== "HEAD";
+	return new Request(\`\${proto}://\${host}\${req.url || "/"}\`, {
+		method,
+		headers,
+		body: hasBody ? __Readable.toWeb(req) : undefined,
+		duplex: hasBody ? "half" : undefined,
+	});
+}
+`;
+
+const patched =
+  `import { Readable as __Readable } from "node:stream";\n` +
+  entry
+    .replace(needle, "return handler(__toWebRequest(event.node?.req ?? event.req), event.context);")
+    .replace("function fromWebHandler(handler) {", `${toWebRequest}\nfunction fromWebHandler(handler) {`);
 writeFileSync(entryPath, patched);
-console.log("[vercel] Patched server URL handling for Vercel path-only requests.");
+console.log("[vercel] Patched server bundle to convert Node requests to web Requests.");

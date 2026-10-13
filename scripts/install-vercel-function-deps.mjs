@@ -1,4 +1,4 @@
-import { existsSync } from "node:fs";
+import { existsSync, rmSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { resolve } from "node:path";
 
@@ -10,10 +10,14 @@ if (!existsSync(packageJsonPath)) {
   process.exit(0);
 }
 
-const npmInstall = spawnSync("npm", ["install", "--omit=dev"], {
-  cwd: funcDir,
-  stdio: "inherit",
-});
+rmSync(resolve(funcDir, "node_modules"), { recursive: true, force: true });
+rmSync(resolve(funcDir, "package-lock.json"), { force: true });
+
+const npmInstall = spawnSync(
+  "npm",
+  ["install", "--omit=dev", "--no-package-lock", "--ignore-scripts", "--prefix", funcDir],
+  { stdio: "inherit" },
+);
 
 if (npmInstall.status !== 0) {
   process.exit(npmInstall.status ?? 1);

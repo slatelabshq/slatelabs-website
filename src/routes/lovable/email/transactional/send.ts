@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { render } from '@react-email/components'
 import { createClient } from '@supabase/supabase-js'
-import { createFileRoute } from '@tanstack/react-router'
+import { createApiRoute } from '@/lib/create-api-route'
 import { TEMPLATES } from '@/lib/email-templates/registry'
 
 // Configuration baked in at scaffold time
@@ -29,10 +29,8 @@ function generateToken(): string {
     .join('')
 }
 
-export const Route = createFileRoute("/lovable/email/transactional/send")({
-  server: {
-    handlers: {
-      POST: async ({ request }) => {
+export const Route = createApiRoute("/lovable/email/transactional/send")({
+  POST: async ({ request }) => {
         const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
         const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
@@ -322,6 +320,4 @@ export const Route = createFileRoute("/lovable/email/transactional/send")({
 
         return Response.json({ success: true, queued: true })
       },
-    },
-  },
 })

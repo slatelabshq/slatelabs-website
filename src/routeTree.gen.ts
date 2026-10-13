@@ -9,57 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WorkRouteImport } from './routes/work'
-import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
-import { Route as ServicesRouteImport } from './routes/services'
-import { Route as InsightsRouteImport } from './routes/insights'
-import { Route as IleEkoRouteImport } from './routes/ile-eko'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as WorkVidaRosaRouteImport } from './routes/work.vida-rosa'
-import { Route as WorkNellyBaradiRouteImport } from './routes/work.nelly-baradi'
-import { Route as WorkMorganOxfordRouteImport } from './routes/work.morgan-oxford'
-import { Route as WorkFlyTrinityRouteImport } from './routes/work.fly-trinity'
-import { Route as WorkBrillantaRouteImport } from './routes/work.brillanta'
-import { Route as Work44dbRouteImport } from './routes/work.44db'
-import { Route as WorkSlugRouteImport } from './routes/work.$slug'
-import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as IleEkoRouteImport } from './routes/ile-eko'
+import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as UnsubscribeRouteImport } from './routes/unsubscribe'
+import { Route as WorkRouteImport } from './routes/work'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
-import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as WorkSlugRouteImport } from './routes/work.$slug'
+import { Route as Work44dbRouteImport } from './routes/work.44db'
+import { Route as WorkBrillantaRouteImport } from './routes/work.brillanta'
+import { Route as WorkFlyTrinityRouteImport } from './routes/work.fly-trinity'
+import { Route as WorkMorganOxfordRouteImport } from './routes/work.morgan-oxford'
+import { Route as WorkNellyBaradiRouteImport } from './routes/work.nelly-baradi'
+import { Route as WorkVidaRosaRouteImport } from './routes/work.vida-rosa'
 import { Route as ApiPublicContactRouteImport } from './routes/api/public/contact'
-import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
-import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
+import { Route as LovableEmailSuppressionRouteImport } from './routes/lovable/email/suppression'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
+import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/lovable/email/transactional/preview'
+import { Route as LovableEmailTransactionalSendRouteImport } from './routes/lovable/email/transactional/send'
 
-const WorkRoute = WorkRouteImport.update({
-  id: '/work',
-  path: '/work',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UnsubscribeRoute = UnsubscribeRouteImport.update({
-  id: '/unsubscribe',
-  path: '/unsubscribe',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InsightsRoute = InsightsRouteImport.update({
-  id: '/insights',
-  path: '/insights',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IleEkoRoute = IleEkoRouteImport.update({
-  id: '/ile-eko',
-  path: '/ile-eko',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -67,34 +42,49 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WorkVidaRosaRoute = WorkVidaRosaRouteImport.update({
-  id: '/vida-rosa',
-  path: '/vida-rosa',
-  getParentRoute: () => WorkRoute,
+const IleEkoRoute = IleEkoRouteImport.update({
+  id: '/ile-eko',
+  path: '/ile-eko',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const WorkNellyBaradiRoute = WorkNellyBaradiRouteImport.update({
-  id: '/nelly-baradi',
-  path: '/nelly-baradi',
-  getParentRoute: () => WorkRoute,
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const WorkMorganOxfordRoute = WorkMorganOxfordRouteImport.update({
-  id: '/morgan-oxford',
-  path: '/morgan-oxford',
-  getParentRoute: () => WorkRoute,
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const WorkFlyTrinityRoute = WorkFlyTrinityRouteImport.update({
-  id: '/fly-trinity',
-  path: '/fly-trinity',
-  getParentRoute: () => WorkRoute,
+const UnsubscribeRoute = UnsubscribeRouteImport.update({
+  id: '/unsubscribe',
+  path: '/unsubscribe',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const WorkBrillantaRoute = WorkBrillantaRouteImport.update({
-  id: '/brillanta',
-  path: '/brillanta',
+const WorkRoute = WorkRouteImport.update({
+  id: '/work',
+  path: '/work',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
+  id: '/email/unsubscribe',
+  path: '/email/unsubscribe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => InsightsRoute,
+} as any)
+const WorkSlugRoute = WorkSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
   getParentRoute: () => WorkRoute,
 } as any)
 const Work44dbRoute = Work44dbRouteImport.update({
@@ -102,19 +92,34 @@ const Work44dbRoute = Work44dbRouteImport.update({
   path: '/44db',
   getParentRoute: () => WorkRoute,
 } as any)
-const WorkSlugRoute = WorkSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
+const WorkBrillantaRoute = WorkBrillantaRouteImport.update({
+  id: '/brillanta',
+  path: '/brillanta',
   getParentRoute: () => WorkRoute,
 } as any)
-const InsightsSlugRoute = InsightsSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => InsightsRoute,
+const WorkFlyTrinityRoute = WorkFlyTrinityRouteImport.update({
+  id: '/fly-trinity',
+  path: '/fly-trinity',
+  getParentRoute: () => WorkRoute,
 } as any)
-const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
-  id: '/email/unsubscribe',
-  path: '/email/unsubscribe',
+const WorkMorganOxfordRoute = WorkMorganOxfordRouteImport.update({
+  id: '/morgan-oxford',
+  path: '/morgan-oxford',
+  getParentRoute: () => WorkRoute,
+} as any)
+const WorkNellyBaradiRoute = WorkNellyBaradiRouteImport.update({
+  id: '/nelly-baradi',
+  path: '/nelly-baradi',
+  getParentRoute: () => WorkRoute,
+} as any)
+const WorkVidaRosaRoute = WorkVidaRosaRouteImport.update({
+  id: '/vida-rosa',
+  path: '/vida-rosa',
+  getParentRoute: () => WorkRoute,
+} as any)
+const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
+  id: '/api/public/contact',
+  path: '/api/public/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
@@ -122,15 +127,10 @@ const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   path: '/lovable/email/suppression',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiPublicContactRoute = ApiPublicContactRouteImport.update({
-  id: '/api/public/contact',
-  path: '/api/public/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LovableEmailTransactionalSendRoute =
-  LovableEmailTransactionalSendRouteImport.update({
-    id: '/lovable/email/transactional/send',
-    path: '/lovable/email/transactional/send',
+const LovableEmailQueueProcessRoute =
+  LovableEmailQueueProcessRouteImport.update({
+    id: '/lovable/email/queue/process',
+    path: '/lovable/email/queue/process',
     getParentRoute: () => rootRouteImport,
   } as any)
 const LovableEmailTransactionalPreviewRoute =
@@ -139,10 +139,10 @@ const LovableEmailTransactionalPreviewRoute =
     path: '/lovable/email/transactional/preview',
     getParentRoute: () => rootRouteImport,
   } as any)
-const LovableEmailQueueProcessRoute =
-  LovableEmailQueueProcessRouteImport.update({
-    id: '/lovable/email/queue/process',
-    path: '/lovable/email/queue/process',
+const LovableEmailTransactionalSendRoute =
+  LovableEmailTransactionalSendRouteImport.update({
+    id: '/lovable/email/transactional/send',
+    path: '/lovable/email/transactional/send',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -313,46 +313,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/work': {
-      id: '/work'
-      path: '/work'
-      fullPath: '/work'
-      preLoaderRoute: typeof WorkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/unsubscribe': {
-      id: '/unsubscribe'
-      path: '/unsubscribe'
-      fullPath: '/unsubscribe'
-      preLoaderRoute: typeof UnsubscribeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/insights': {
-      id: '/insights'
-      path: '/insights'
-      fullPath: '/insights'
-      preLoaderRoute: typeof InsightsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ile-eko': {
-      id: '/ile-eko'
-      path: '/ile-eko'
-      fullPath: '/ile-eko'
-      preLoaderRoute: typeof IleEkoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -362,46 +327,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/work/vida-rosa': {
-      id: '/work/vida-rosa'
-      path: '/vida-rosa'
-      fullPath: '/work/vida-rosa'
-      preLoaderRoute: typeof WorkVidaRosaRouteImport
-      parentRoute: typeof WorkRoute
+    '/ile-eko': {
+      id: '/ile-eko'
+      path: '/ile-eko'
+      fullPath: '/ile-eko'
+      preLoaderRoute: typeof IleEkoRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/work/nelly-baradi': {
-      id: '/work/nelly-baradi'
-      path: '/nelly-baradi'
-      fullPath: '/work/nelly-baradi'
-      preLoaderRoute: typeof WorkNellyBaradiRouteImport
-      parentRoute: typeof WorkRoute
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/work/morgan-oxford': {
-      id: '/work/morgan-oxford'
-      path: '/morgan-oxford'
-      fullPath: '/work/morgan-oxford'
-      preLoaderRoute: typeof WorkMorganOxfordRouteImport
-      parentRoute: typeof WorkRoute
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/work/fly-trinity': {
-      id: '/work/fly-trinity'
-      path: '/fly-trinity'
-      fullPath: '/work/fly-trinity'
-      preLoaderRoute: typeof WorkFlyTrinityRouteImport
-      parentRoute: typeof WorkRoute
+    '/unsubscribe': {
+      id: '/unsubscribe'
+      path: '/unsubscribe'
+      fullPath: '/unsubscribe'
+      preLoaderRoute: typeof UnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/work/brillanta': {
-      id: '/work/brillanta'
-      path: '/brillanta'
-      fullPath: '/work/brillanta'
-      preLoaderRoute: typeof WorkBrillantaRouteImport
+    '/work': {
+      id: '/work'
+      path: '/work'
+      fullPath: '/work'
+      preLoaderRoute: typeof WorkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/email/unsubscribe': {
+      id: '/email/unsubscribe'
+      path: '/email/unsubscribe'
+      fullPath: '/email/unsubscribe'
+      preLoaderRoute: typeof EmailUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof InsightsRoute
+    }
+    '/work/$slug': {
+      id: '/work/$slug'
+      path: '/$slug'
+      fullPath: '/work/$slug'
+      preLoaderRoute: typeof WorkSlugRouteImport
       parentRoute: typeof WorkRoute
     }
     '/work/44db': {
@@ -411,25 +397,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Work44dbRouteImport
       parentRoute: typeof WorkRoute
     }
-    '/work/$slug': {
-      id: '/work/$slug'
-      path: '/$slug'
-      fullPath: '/work/$slug'
-      preLoaderRoute: typeof WorkSlugRouteImport
+    '/work/brillanta': {
+      id: '/work/brillanta'
+      path: '/brillanta'
+      fullPath: '/work/brillanta'
+      preLoaderRoute: typeof WorkBrillantaRouteImport
       parentRoute: typeof WorkRoute
     }
-    '/insights/$slug': {
-      id: '/insights/$slug'
-      path: '/$slug'
-      fullPath: '/insights/$slug'
-      preLoaderRoute: typeof InsightsSlugRouteImport
-      parentRoute: typeof InsightsRoute
+    '/work/fly-trinity': {
+      id: '/work/fly-trinity'
+      path: '/fly-trinity'
+      fullPath: '/work/fly-trinity'
+      preLoaderRoute: typeof WorkFlyTrinityRouteImport
+      parentRoute: typeof WorkRoute
     }
-    '/email/unsubscribe': {
-      id: '/email/unsubscribe'
-      path: '/email/unsubscribe'
-      fullPath: '/email/unsubscribe'
-      preLoaderRoute: typeof EmailUnsubscribeRouteImport
+    '/work/morgan-oxford': {
+      id: '/work/morgan-oxford'
+      path: '/morgan-oxford'
+      fullPath: '/work/morgan-oxford'
+      preLoaderRoute: typeof WorkMorganOxfordRouteImport
+      parentRoute: typeof WorkRoute
+    }
+    '/work/nelly-baradi': {
+      id: '/work/nelly-baradi'
+      path: '/nelly-baradi'
+      fullPath: '/work/nelly-baradi'
+      preLoaderRoute: typeof WorkNellyBaradiRouteImport
+      parentRoute: typeof WorkRoute
+    }
+    '/work/vida-rosa': {
+      id: '/work/vida-rosa'
+      path: '/vida-rosa'
+      fullPath: '/work/vida-rosa'
+      preLoaderRoute: typeof WorkVidaRosaRouteImport
+      parentRoute: typeof WorkRoute
+    }
+    '/api/public/contact': {
+      id: '/api/public/contact'
+      path: '/api/public/contact'
+      fullPath: '/api/public/contact'
+      preLoaderRoute: typeof ApiPublicContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lovable/email/suppression': {
@@ -439,18 +446,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailSuppressionRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/contact': {
-      id: '/api/public/contact'
-      path: '/api/public/contact'
-      fullPath: '/api/public/contact'
-      preLoaderRoute: typeof ApiPublicContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/lovable/email/transactional/send': {
-      id: '/lovable/email/transactional/send'
-      path: '/lovable/email/transactional/send'
-      fullPath: '/lovable/email/transactional/send'
-      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
+    '/lovable/email/queue/process': {
+      id: '/lovable/email/queue/process'
+      path: '/lovable/email/queue/process'
+      fullPath: '/lovable/email/queue/process'
+      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lovable/email/transactional/preview': {
@@ -460,11 +460,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LovableEmailTransactionalPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lovable/email/queue/process': {
-      id: '/lovable/email/queue/process'
-      path: '/lovable/email/queue/process'
-      fullPath: '/lovable/email/queue/process'
-      preLoaderRoute: typeof LovableEmailQueueProcessRouteImport
+    '/lovable/email/transactional/send': {
+      id: '/lovable/email/transactional/send'
+      path: '/lovable/email/transactional/send'
+      fullPath: '/lovable/email/transactional/send'
+      preLoaderRoute: typeof LovableEmailTransactionalSendRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { createFileRoute } from '@tanstack/react-router'
+import { createApiRoute } from '@/lib/create-api-route'
 
 function redactEmail(email: string | null | undefined): string {
   if (!email) return '***'
@@ -8,10 +8,8 @@ function redactEmail(email: string | null | undefined): string {
   return `${localPart[0]}***@${domain}`
 }
 
-export const Route = createFileRoute("/email/unsubscribe")({
-  server: {
-    handlers: {
-      GET: async ({ request }) => {
+export const Route = createApiRoute("/email/unsubscribe")({
+  GET: async ({ request }) => {
         const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
         const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
 
@@ -147,6 +145,4 @@ export const Route = createFileRoute("/email/unsubscribe")({
 
         return Response.json({ success: true })
       },
-    },
-  },
 })

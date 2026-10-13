@@ -4,7 +4,12 @@ import { CtaButton } from "@/components/CtaButton";
 import { PageCta } from "@/components/layout/PageCta";
 import { Prose } from "@/components/Prose";
 import { InsightCard } from "@/components/InsightCard";
-import { getPostBySlug, getRelatedPosts, formatPostDate } from "@/lib/insights-data";
+import {
+  getPostBySlug,
+  getRelatedPosts,
+  formatPostDate,
+  type Post,
+} from "@/lib/insights-data";
 
 export const Route = createFileRoute("/insights/$slug")({
   loader: ({ params }) => {
@@ -79,7 +84,10 @@ export const Route = createFileRoute("/insights/$slug")({
 });
 
 function InsightDetail() {
-  const { post, related } = Route.useLoaderData();
+  const { post, related } = Route.useLoaderData() as {
+    post: Post;
+    related: Post[];
+  };
 
   return (
     <>

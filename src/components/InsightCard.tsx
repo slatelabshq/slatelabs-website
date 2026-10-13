@@ -8,22 +8,25 @@ export function InsightCard({ post, i = 0 }: { post: Post; i?: number }) {
       <Link
         to="/insights/$slug"
         params={{ slug: post.slug }}
-        className="group block rounded-3xl bg-surface p-8 hover-lift h-full"
+        className="group block h-full border-t border-border pt-8 hover:border-foreground/20 transition-colors"
       >
-        <div className="aspect-[16/10] w-full rounded-2xl overflow-hidden mb-6 relative bg-gradient-to-br from-primary/25 via-background to-foreground/10">
-          {post.cover && (
-            <img src={post.cover} alt={post.title} className="w-full h-full object-cover" loading="lazy" />
-          )}
-          <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-background/80 backdrop-blur-sm text-[11px] font-medium tracking-wide text-foreground">
+        <div className="aspect-[16/10] w-full rounded-sm overflow-hidden mb-6 relative bg-gradient-to-br from-primary/25 via-background to-foreground/10">
+          <img
+            src={post.cover}
+            alt={post.coverAlt}
+            className="w-full h-full object-cover img-zoom"
+            loading="lazy"
+          />
+          <span className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-ink/70 backdrop-blur-sm font-mono text-[10px] uppercase tracking-[0.16em] text-ink-foreground">
             {post.tag}
           </span>
         </div>
-        <div className="flex items-center gap-3 text-xs text-muted mb-3">
+        <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.16em] text-muted mb-3">
           <span>{formatPostDate(post.date)}</span>
           <span aria-hidden>·</span>
-          <span>{post.readMinutes} min read</span>
+          <span>{post.readMinutes} min</span>
         </div>
-        <h3 className="text-xl md:text-2xl font-medium tracking-tight mb-3 group-hover:text-primary transition-colors">
+        <h3 className="font-display text-2xl md:text-3xl tracking-tight mb-3 group-hover:text-primary transition-colors">
           {post.title}
         </h3>
         <p className="text-muted leading-relaxed text-sm mb-6">{post.excerpt}</p>

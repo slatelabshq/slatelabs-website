@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
 import { Reveal } from "@/components/Reveal";
+import { PageHero } from "@/components/layout/PageHero";
+import { PageCta } from "@/components/layout/PageCta";
+import workIleEko from "@/assets/work-ileeko.jpg";
 
 export const Route = createFileRoute("/ile-eko")({
   head: () => ({
@@ -81,25 +84,26 @@ const faqs = [
 function IleEko() {
   return (
     <>
-      <header className="px-6 pt-32 pb-20">
-        <div className="max-w-3xl mx-auto text-center">
-          <Eyebrow>Ile Eko · Product</Eyebrow>
-          <h1 className="text-5xl md:text-6xl font-medium leading-[1.05] tracking-[-0.03em] mb-8">
+      <PageHero
+        section="Ile Eko · Product"
+        image={workIleEko}
+        imageAlt="Ile Eko learning platform"
+        title={
+          <>
             Modern learning management for{" "}
-            <span className="text-primary">Nigerian schools.</span>
-          </h1>
-          <p className="text-lg text-muted leading-relaxed mb-10 max-w-xl mx-auto">
-            Bridge traditional learning with digital tools. Manage students, track grades, communicate with parents, and scale your school—all in one platform.
-          </p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <CtaButton to="/contact" variant="primary">Book a demo</CtaButton>
-            <CtaButton to="/ile-eko" hash="pricing" variant="secondary">See pricing</CtaButton>
-          </div>
-        </div>
-      </header>
+            <span className="italic text-primary">Nigerian schools.</span>
+          </>
+        }
+        description="Bridge traditional learning with digital tools. Manage students, track grades, communicate with parents, and scale your school — all in one platform."
+      />
 
       {/* Problem */}
-      <Section>
+      <Section className="!pt-10 md:!pt-12">
+        <div className="relative z-10 flex flex-wrap gap-3 mb-10 md:mb-12">
+          <CtaButton to="/contact" variant="primary">Book a demo</CtaButton>
+          <CtaButton to="/ile-eko" hash="pricing" variant="secondary">See pricing</CtaButton>
+        </div>
+
         <div className="bg-foreground text-background rounded-[2.5rem] p-10 md:p-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div className="md:col-span-4">
@@ -230,17 +234,7 @@ function IleEko() {
         </div>
       </Section>
 
-      <Section>
-        <div className="text-center">
-          <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-10 text-balance">
-            Ready to modernize your <span className="text-primary">school?</span>
-          </h2>
-          <div className="flex flex-wrap justify-center gap-3">
-            <CtaButton to="/contact" variant="primary">Book a demo</CtaButton>
-            <CtaButton to="/contact" variant="secondary">Contact sales</CtaButton>
-          </div>
-        </div>
-      </Section>
+      <PageCta />
     </>
   );
 }

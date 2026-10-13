@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
-import { CtaButton } from "@/components/CtaButton";
 import { Reveal } from "@/components/Reveal";
 import { Testimonials } from "@/components/Testimonials";
-import photoJoseph from "@/assets/team-joseph.png";
-import photoKehinde from "@/assets/team-kehinde.png";
+import { PageHero } from "@/components/layout/PageHero";
+import { PageCta } from "@/components/layout/PageCta";
+import logoWordmark from "@/assets/slate-logo-wordmark.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -36,52 +36,52 @@ const founders: Member[] = [
     role: "Co-Founder & CEO",
     bio:
       "Joseph leads strategy and creative direction — translating client goals into brand systems, campaigns, and digital presence that move markets. As CEO, he steers Slate Labs's vision and client relationships from the front.",
-    photo: photoJoseph,
+    photo: "/about/Joseph.jpg",
   },
   {
     name: "Olasukanmi Adeyeye (SK)",
     role: "Co-Founder & CTO",
     bio:
       "SK architects the platforms. From SaaS products to custom CRMs and intelligent systems, he turns ambitious technical briefs into working products. As CTO, he leads the entire engineering and systems practice.",
-    initials: "SK",
+    photo: "/about/SK.jpg",
   },
 ];
 
 const team: Member[] = [
   {
-    name: "Kehinde Abiola (Kenny)",
-    role: "COO, Head of Operations",
-    bio:
-      "Kenny keeps Slate Labs operational — managing engagements, timelines, and financial health so the founders can focus on building and delivering.",
-    photo: photoKehinde,
-  },
-  {
     name: "Adeola Titilola",
-    role: "Content Strategist",
+    role: "COO & Content Strategist",
     bio:
-      "Adeola develops and executes content strategy across client accounts — building the editorial frameworks and copy that give brands a consistent voice.",
-    initials: "AT",
+      "Adeola keeps Slate Labs running day to day while developing content strategy across client accounts — editorial frameworks and copy that give brands a consistent voice.",
+    photo: "/about/Adeola.jpg",
   },
   {
     name: "Michael Ikehi",
-    role: "Full-Stack Developer",
+    role: "Full-Stack, AI/ML & Mobile Developer",
     bio:
-      "Michael builds on the frontend and backend — shipping features, fixing bugs, and keeping client platforms running at the standard they were launched at.",
-    initials: "MI",
+      "Michael builds full-stack web, mobile, and AI/ML systems — shipping features, fixing bugs, and keeping client platforms at the standard they launched with.",
+    photo: "/about/Michael.jpg",
+  },
+  {
+    name: "David Francis",
+    role: "Graphic Designer & UI/UX",
+    bio:
+      "David shapes how Slate Labs and our clients look and feel — from brand visuals and marketing assets to interfaces that are clear, polished, and on-brand.",
+    photo: "/about/David.jpg",
   },
   {
     name: "Jael Chinwe",
     role: "Brand & Social Strategist",
     bio:
       "Jael manages day-to-day social presence for Slate Labs's clients — from content scheduling to community engagement and performance tracking.",
-    initials: "JC",
+    photo: "/about/Jael.jpg",
   },
   {
     name: "Elizabeth Enoch",
     role: "Partnerships & Growth Lead",
     bio:
       "Elizabeth owns the client pipeline — prospecting, outreach, and business development that keeps Slate Labs growing and finding the right clients.",
-    initials: "EE",
+    photo: "/about/elizabeth.jpg",
   },
 ];
 
@@ -100,18 +100,27 @@ const process = [
 
 function MemberCard({ m, i }: { m: Member; i: number }) {
   return (
-    <Reveal delay={i * 90} className="rounded-3xl bg-surface p-8 hover-lift">
-      <div className="aspect-square w-full rounded-2xl overflow-hidden bg-background mb-6 flex items-center justify-center">
+    <Reveal delay={i * 90} className="group">
+      <div className="aspect-[4/5] w-full overflow-hidden rounded-sm bg-surface mb-6">
         {m.photo ? (
-          <img src={m.photo} alt={m.name} className="w-full h-full object-cover" loading="lazy" />
+          <img
+            src={m.photo}
+            alt={m.name}
+            className="w-full h-full object-cover img-zoom"
+            loading="lazy"
+          />
         ) : (
-          <span className="text-5xl font-medium tracking-tight text-muted">{m.initials}</span>
+          <div className="flex h-full w-full items-center justify-center bg-ink text-ink-foreground">
+            <span className="font-display text-6xl italic text-primary/80">{m.initials}</span>
+          </div>
         )}
       </div>
-      <div className="text-sm text-primary mb-3">{String(i + 1).padStart(2, "0")}</div>
+      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-2">
+        {String(i + 1).padStart(2, "0")}
+      </p>
       <h3 className="text-xl font-medium tracking-tight mb-1">{m.name}</h3>
-      <div className="text-sm text-muted mb-6">{m.role}</div>
-      <p className="text-muted leading-relaxed">{m.bio}</p>
+      <div className="text-sm text-muted mb-4">{m.role}</div>
+      <p className="text-muted leading-relaxed text-sm">{m.bio}</p>
     </Reveal>
   );
 }
@@ -119,36 +128,33 @@ function MemberCard({ m, i }: { m: Member; i: number }) {
 function About() {
   return (
     <>
-      <header className="px-6 pt-32 pb-20">
-        <div className="max-w-5xl mx-auto text-center">
-          <Eyebrow>About</Eyebrow>
-          <h1 className="text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-8 text-balance">
-            We're <span className="text-primary">Slate Labs.</span>
-          </h1>
-          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed">
-            A Lagos-based Creative &amp; Tech Agency. Brand, growth, platforms, and intelligent systems — under one roof.
-          </p>
-        </div>
-      </header>
+      <PageHero
+        section="About"
+        image={logoWordmark}
+        imageAlt="Slate Labs"
+        imageMode="logo"
+        title={
+          <>
+            We&apos;re <span className="italic text-primary">Slate Labs.</span>
+          </>
+        }
+        description="A Lagos-based creative & tech agency. Brand, growth, platforms, and intelligent systems — under one roof."
+      />
 
-      <Section>
-        <div className="bg-surface rounded-[2.5rem] p-10 md:p-20">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-            <div className="md:col-span-4">
-              <Eyebrow>Our mission</Eyebrow>
-            </div>
-            <p className="md:col-span-8 text-2xl md:text-3xl font-medium leading-snug tracking-tight">
-              To give businesses a clean slate—a fresh start to rebuild their brand, rethink their platforms, and reimagine their growth.
-            </p>
-          </div>
-        </div>
+      <Section className="!pt-10 md:!pt-12">
+        <Reveal className="max-w-[90rem] mx-auto border-t border-border pt-8 md:pt-10">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">Our mission</p>
+          <p className="font-display text-[clamp(1.75rem,3.5vw,3rem)] leading-[1.1] tracking-[-0.03em] max-w-4xl">
+            To give businesses a clean slate — a fresh start to rebuild their brand, rethink their platforms, and reimagine their growth.
+          </p>
+        </Reveal>
       </Section>
 
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
           <div className="md:col-span-4">
-            <Eyebrow>Our story</Eyebrow>
-            <h2 className="text-3xl md:text-4xl font-medium tracking-tight">How Slate Labs began.</h2>
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-4">Our story</p>
+            <h2 className="font-display text-3xl md:text-5xl tracking-tight">How Slate Labs began.</h2>
           </div>
           <div className="md:col-span-8 space-y-6 text-muted text-lg leading-relaxed">
             <p>Slate Labs didn't start as an agency. It started as a realization.</p>
@@ -156,7 +162,7 @@ function About() {
               We'd been working in marketing and social media, building brands and seeing real results. But clients needed more than great content—they needed cohesive branding, functional websites, scalable systems—everything working together. Most agencies couldn't offer that.
             </p>
             <p>
-              Meanwhile, SK and Kenny were building businesses on the technical side—developing platforms and SaaS products. Clients kept coming to them for websites with no brand strategy, no clear positioning, no content plan.
+              Meanwhile, SK was building on the technical side—developing platforms and SaaS products. Clients kept coming to him for websites with no brand strategy, no clear positioning, no content plan.
             </p>
             <p className="text-foreground">That's when we realized: we needed each other.</p>
           </div>
@@ -165,9 +171,9 @@ function About() {
 
       {/* The Founders */}
       <Section>
-        <Eyebrow>The team</Eyebrow>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-16">The Founders.</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-4">The team</p>
+        <h2 className="font-display text-3xl md:text-5xl tracking-tight mb-10">The founders.</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {founders.map((m, i) => (
             <MemberCard key={m.name} m={m} i={i} />
           ))}
@@ -176,8 +182,8 @@ function About() {
 
       {/* The Team */}
       <Section>
-        <Eyebrow>The team</Eyebrow>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-16">Meet the rest of the team.</h2>
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-4">The team</p>
+        <h2 className="font-display text-3xl md:text-5xl tracking-tight mb-10">Meet the rest of the studio.</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {team.map((m, i) => (
             <MemberCard key={m.name} m={m} i={i} />
@@ -186,12 +192,12 @@ function About() {
       </Section>
 
       <Section>
-        <Eyebrow>How we work</Eyebrow>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-16">Our process.</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-4">How we work</p>
+        <h2 className="font-display text-3xl md:text-5xl tracking-tight mb-10">Our process.</h2>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-px bg-border">
           {process.map((p, i) => (
-            <Reveal key={p.n} delay={i * 80} className="rounded-3xl bg-surface p-8 hover-lift">
-              <div className="text-sm text-primary mb-4">{p.n}</div>
+            <Reveal key={p.n} delay={i * 80} className="bg-background p-8 md:p-10">
+              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary mb-4">{p.n}</div>
               <h3 className="text-lg font-medium tracking-tight mb-3">{p.title}</h3>
               <p className="text-muted leading-relaxed text-sm">{p.body}</p>
             </Reveal>
@@ -200,7 +206,9 @@ function About() {
       </Section>
 
       <Section>
-        <div className="bg-foreground text-background rounded-[2.5rem] p-10 md:p-20">
+        <div className="bg-ink text-ink-foreground rounded-sm p-10 md:p-20 relative overflow-hidden">
+          <div className="grain-overlay absolute inset-0 opacity-25" />
+          <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div className="md:col-span-4">
               <div className="inline-flex items-center gap-2 text-xs text-primary mb-6">
@@ -213,10 +221,11 @@ function About() {
               {philosophy.map((p) => (
                 <div key={p.title}>
                   <h3 className="text-xl font-medium tracking-tight mb-2">{p.title}</h3>
-                  <p className="text-background/70 leading-relaxed">{p.body}</p>
+                  <p className="text-ink-foreground/70 leading-relaxed">{p.body}</p>
                 </div>
               ))}
             </div>
+          </div>
           </div>
         </div>
       </Section>
@@ -247,14 +256,7 @@ function About() {
 
       <Testimonials heading="What it's like to work with us." />
 
-      <Section>
-        <div className="text-center">
-          <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-10 text-balance">
-            Want to <span className="text-primary">work with us?</span>
-          </h2>
-          <CtaButton to="/contact" variant="primary">Let's talk</CtaButton>
-        </div>
-      </Section>
+      <PageCta />
     </>
   );
 }

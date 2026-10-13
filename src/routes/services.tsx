@@ -1,7 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
 import { CtaButton } from "@/components/CtaButton";
+import { Reveal } from "@/components/Reveal";
+import { PageHero } from "@/components/layout/PageHero";
+import { PageCta } from "@/components/layout/PageCta";
 import { CALENDLY_URL } from "@/lib/calendly";
+import work44db from "@/assets/work-44db.jpg";
+import workVida from "@/assets/work-vidarosa.jpg";
+import workIleEko from "@/assets/work-ileeko.jpg";
+import workMorgan from "@/assets/work-morgan-oxford.jpg";
+
+const practiceImages: Record<string, string> = {
+  "brand-strategy": work44db,
+  "growth-marketing": workVida,
+  "digital-platforms": workIleEko,
+  "intelligent-systems": workMorgan,
+};
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -204,32 +218,42 @@ const faqs = [
 function Services() {
   return (
     <>
-      <header className="px-6 pt-32 pb-20">
-        <div className="max-w-5xl mx-auto text-center">
-          <Eyebrow>Services</Eyebrow>
-          <h1 className="text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-8 text-balance">
-            Four practices. One team. Everything you need to <span className="text-primary">build and grow.</span>
-          </h1>
-          <p className="max-w-2xl mx-auto text-lg text-muted leading-relaxed">
-            Brand strategy and growth marketing. Digital platforms and intelligent systems. We don't hand you to a department, you work with the people who built this.
-          </p>
-        </div>
-      </header>
+      <PageHero
+        section="Services"
+        image={workVida}
+        imageAlt="Vida Rosa luxury automotive marketing"
+        title={
+          <>
+            Four practices. One team. Everything you need to{" "}
+            <span className="italic text-primary">build and grow.</span>
+          </>
+        }
+        description="Brand strategy and growth marketing. Digital platforms and intelligent systems. You work with the people who built this — not a handoff chain."
+      />
 
-      {practices.map((s) => (
-        <Section key={s.id}>
-          <div id={s.id} className="scroll-mt-24 bg-surface rounded-[2.5rem] p-10 md:p-16">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-              <div className="md:col-span-4">
-                <div className="text-sm font-mono text-primary mb-4">{s.n}</div>
-                <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-6">{s.title}</h2>
+      {practices.map((s, idx) => (
+        <Section key={s.id} className={idx === 0 ? "!pt-12" : ""}>
+          <div id={s.id} className="scroll-mt-28 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <Reveal className="lg:col-span-5 lg:sticky lg:top-28">
+              <div className="overflow-hidden rounded-sm aspect-[4/5] bg-surface mb-8 lg:mb-0">
+                <img
+                  src={practiceImages[s.id]}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </Reveal>
+            <div className="lg:col-span-7 space-y-10">
+              <Reveal>
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary mb-4">{s.n}</p>
+                <h2 className="font-display text-4xl md:text-5xl tracking-[-0.03em] mb-6">{s.title}</h2>
                 <div className="space-y-4 text-muted leading-relaxed">
                   {s.lead.map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
                 </div>
-              </div>
-              <div className="md:col-span-8 space-y-10">
+              </Reveal>
+              <div className="space-y-10">
                 <div>
                   <h3 className="text-sm font-medium text-primary mb-4 uppercase tracking-[0.15em]">What's included</h3>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -259,11 +283,11 @@ function Services() {
 
       {/* Comparison */}
       <Section>
-        <Eyebrow>How we're different</Eyebrow>
-        <h2 className="text-3xl md:text-4xl font-medium tracking-tight mb-12">Why choose Slate Labs.</h2>
-        <div className="rounded-3xl border border-border overflow-x-auto">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-4">Compare</p>
+        <h2 className="font-display text-3xl md:text-5xl tracking-tight mb-12">Why choose Slate Labs.</h2>
+        <div className="rounded-sm border border-border overflow-x-auto">
           <div className="min-w-[720px]">
-            <div className="grid grid-cols-5 bg-foreground text-background text-xs font-medium">
+            <div className="grid grid-cols-5 bg-ink text-ink-foreground text-xs font-medium">
               <div className="p-5" />
               <div className="p-5 text-primary">Slate Labs</div>
               <div className="p-5">Traditional Agencies</div>
@@ -308,10 +332,8 @@ function Services() {
       </Section>
 
       <Section>
-        <div className="text-center">
-          <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-10 text-balance">
-            Ready to <span className="text-primary">get started?</span>
-          </h2>
+        <div className="text-center max-w-2xl mx-auto">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted mb-6">Next step</p>
           <div className="flex flex-wrap justify-center gap-3">
             <CtaButton to="/contact" variant="primary">Book a consultation</CtaButton>
             <CtaButton href={CALENDLY_URL} external variant="secondary">Book a 20-min call</CtaButton>
@@ -319,6 +341,8 @@ function Services() {
           </div>
         </div>
       </Section>
+
+      <PageCta />
     </>
   );
 }

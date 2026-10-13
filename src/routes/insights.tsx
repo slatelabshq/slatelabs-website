@@ -1,7 +1,9 @@
 import { createFileRoute, Outlet, useLocation } from "@tanstack/react-router";
-import { Section, Eyebrow } from "@/components/Section";
+import { Section } from "@/components/Section";
 import { InsightCard } from "@/components/InsightCard";
+import { PageHero } from "@/components/layout/PageHero";
 import { posts } from "@/lib/insights-data";
+import workMorgan from "@/assets/work-morgan-oxford.jpg";
 
 export const Route = createFileRoute("/insights")({
   head: () => ({
@@ -34,19 +36,19 @@ function Insights() {
 
   return (
     <>
-      <header className="px-6 pt-32 pb-16">
-        <div className="max-w-5xl mx-auto text-center">
-          <Eyebrow>Insights</Eyebrow>
-          <h1 className="text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-8 text-balance">
-            Field notes from a <span className="text-primary">clean slate.</span>
-          </h1>
-          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed">
-            Essays on brand, growth, platforms, and systems — written by the team building them.
-          </p>
-        </div>
-      </header>
+      <PageHero
+        section="Insights"
+        image={workMorgan}
+        imageAlt="Slate Labs studio work"
+        title={
+          <>
+            Field notes from a <span className="italic text-primary">clean slate.</span>
+          </>
+        }
+        description="Essays on brand, growth, platforms, and systems — written by the team building them."
+      />
 
-      <Section>
+      <Section className="!pt-12">
         {sorted.length === 0 ? (
           <p className="text-center text-muted">No insights yet. Check back soon.</p>
         ) : (

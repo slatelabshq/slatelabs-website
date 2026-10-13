@@ -2,7 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Section, Eyebrow } from "@/components/Section";
+import { PageHero } from "@/components/layout/PageHero";
 import { CALENDLY_URL } from "@/lib/calendly";
+import workBrillanta from "@/assets/work-brillanta.jpg";
 import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/contact")({
@@ -89,20 +91,20 @@ function Contact() {
 
   return (
     <>
-      <header className="px-6 pt-32 pb-20">
-        <div className="max-w-5xl mx-auto text-center">
-          <Eyebrow>Contact</Eyebrow>
-          <h1 className="text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-8 text-balance">
-            Let's build on a <span className="text-primary">clean slate.</span>
-          </h1>
-          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed">
-            Ready to transform your brand, build your platform, or scale your business? Let's talk.
-          </p>
-        </div>
-      </header>
+      <PageHero
+        section="Contact"
+        image={workBrillanta}
+        imageAlt="Slate Labs creative work"
+        title={
+          <>
+            Let&apos;s build on a <span className="italic text-primary">clean slate.</span>
+          </>
+        }
+        description="Ready to transform your brand, build your platform, or scale your business? Tell us what you're working on."
+      />
 
-      <Section>
-        <div className="bg-surface rounded-[2.5rem] p-8 md:p-12">
+      <Section className="!pt-12">
+        <div className="max-w-[90rem] mx-auto border border-border rounded-sm p-8 md:p-12 bg-surface/50">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div className="md:col-span-7">
               <Eyebrow>Send a message</Eyebrow>

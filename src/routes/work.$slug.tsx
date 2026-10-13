@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Section, Eyebrow } from "@/components/Section";
-import { CtaButton } from "@/components/CtaButton";
+import { Reveal } from "@/components/Reveal";
+import { PageCta } from "@/components/layout/PageCta";
 import { projects, type CaseStudyDetail } from "@/lib/work-data";
 
 
@@ -37,31 +38,33 @@ function CaseStudy() {
 
   return (
     <>
-      <header className="px-6 pt-32 pb-12">
-        <div className="max-w-7xl mx-auto">
-          <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
-          <div className="mt-8 inline-flex items-center gap-2 text-sm text-primary">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            {project.category}
-          </div>
-          <h1 className="mt-4 text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-12 text-balance">
+      <header className="relative isolate min-h-[72vh] flex flex-col justify-end overflow-hidden bg-ink text-ink-foreground -mt-px">
+        <img
+          src={project.image}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/30" />
+        <div className="grain-overlay absolute inset-0 opacity-30" />
+        <div className="relative z-10 max-w-[90rem] mx-auto w-full px-6 lg:px-10 pt-[7.5rem] pb-12 md:pb-16">
+          <Link
+            to="/work"
+            className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink-foreground/60 hover:text-primary"
+          >
+            ← All work
+          </Link>
+          <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.22em] text-primary">{project.category}</p>
+          <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,5.5rem)] leading-[0.92] tracking-[-0.04em] max-w-4xl text-balance">
             {project.title}
           </h1>
+          <p className="mt-6 max-w-xl text-ink-foreground/70 leading-relaxed">{project.oneLiner}</p>
         </div>
       </header>
 
-      <div className="px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="aspect-[16/9] overflow-hidden rounded-[2.5rem]">
-            <img src={project.image} alt={project.client} width={1280} height={960} className="w-full h-full object-cover" />
-          </div>
-        </div>
-      </div>
-
       {/* Quick facts + metrics */}
-      <Section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-surface rounded-3xl p-10">
+      <Section className="!pt-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <Reveal className="border border-border rounded-sm p-8 md:p-10">
             <Eyebrow>Quick facts</Eyebrow>
             <dl className="space-y-4 text-base">
               <div className="flex justify-between border-b border-border pb-3">
@@ -81,8 +84,8 @@ function CaseStudy() {
                 <dd className="font-medium">{d.services.join(" · ")}</dd>
               </div>
             </dl>
-          </div>
-          <div className="bg-surface rounded-3xl p-10">
+          </Reveal>
+          <Reveal delay={90} className="border border-border rounded-sm p-8 md:p-10">
             <Eyebrow>Key results</Eyebrow>
             <div className="space-y-6">
               {d.metrics.map((m) => (
@@ -92,7 +95,7 @@ function CaseStudy() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </Section>
 
@@ -127,7 +130,9 @@ function CaseStudy() {
 
       {/* Results */}
       <Section>
-        <div className="bg-foreground text-background rounded-[2.5rem] p-10 md:p-20">
+        <div className="bg-ink text-ink-foreground rounded-sm p-10 md:p-20 relative overflow-hidden">
+          <div className="grain-overlay absolute inset-0 opacity-25" />
+          <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
             <div className="md:col-span-4">
               <div className="inline-flex items-center gap-2 text-sm text-primary mb-6">
@@ -140,13 +145,14 @@ function CaseStudy() {
               <p className="text-xl md:text-2xl font-medium leading-snug tracking-tight">{d.results}</p>
               <ul className="space-y-3">
                 {d.numbers.map((n) => (
-                  <li key={n} className="flex gap-3 text-background/80">
+                  <li key={n} className="flex gap-3 text-ink-foreground/80">
                     <span className="text-primary">→</span>
                     <span>{n}</span>
                   </li>
                 ))}
               </ul>
             </div>
+          </div>
           </div>
         </div>
       </Section>
@@ -176,7 +182,7 @@ function CaseStudy() {
               params={{ slug: p.slug }}
               className="group block"
             >
-              <div className="aspect-[4/3] overflow-hidden rounded-[2rem] mb-6">
+              <div className="aspect-[4/3] overflow-hidden rounded-sm mb-6">
                 <img
                   src={p.image}
                   alt={p.client}
@@ -194,14 +200,7 @@ function CaseStudy() {
       </Section>
 
 
-      <Section>
-        <div className="text-center">
-          <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-10 text-balance">
-            Ready for your <span className="text-primary">clean slate?</span>
-          </h2>
-          <CtaButton to="/contact" variant="primary">Let's talk</CtaButton>
-        </div>
-      </Section>
+      <PageCta />
     </>
   );
 }

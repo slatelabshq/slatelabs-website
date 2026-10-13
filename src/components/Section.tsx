@@ -10,7 +10,7 @@ export function Section({
   as?: "section" | "div" | "header" | "footer";
 }) {
   return (
-    <As className={`px-6 py-28 ${className}`}>
+    <As className={`px-6 py-14 md:py-16 ${className}`}>
       <div className="max-w-7xl mx-auto">{children}</div>
     </As>
   );

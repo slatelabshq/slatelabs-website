@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { PageTransition } from "@/components/PageTransition";
+import { ScrollProgress } from "@/components/home/ScrollProgress";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { initGA, trackPageview } from "@/lib/analytics";
 import { Toaster } from "@/components/ui/sonner";
@@ -66,7 +67,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   return (
@@ -122,7 +123,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
     scripts: [
@@ -212,6 +213,7 @@ function RootComponent() {
         >
           Skip to content
         </a>
+        <ScrollProgress />
         <SiteHeader />
         <main id="main" className="flex-1">
           <PageTransition>

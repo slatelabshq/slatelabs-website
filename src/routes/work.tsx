@@ -1,35 +1,35 @@
 import { createFileRoute, Link, Outlet, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
-import { Section, Eyebrow } from "@/components/Section";
-import { CtaButton } from "@/components/CtaButton";
+import { ArrowUpRight } from "lucide-react";
+import { Section } from "@/components/Section";
 import { Reveal } from "@/components/Reveal";
+import { PageHero } from "@/components/layout/PageHero";
+import { PageCta } from "@/components/layout/PageCta";
 import { projects, type Project } from "@/lib/work-data";
+import workFly from "@/assets/work-fly-trinity.jpg";
 
 function WorkCard({ p }: { p: Project }) {
+  const title = p.title.includes("—") ? p.title.split("—")[1].trim() : p.title;
   return (
-    <div className="relative overflow-hidden rounded-[2rem] p-8 md:p-10 min-h-[420px] md:min-h-[480px] flex flex-col justify-end text-white transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 bg-[#0A0A0A] shadow-[0_0_0_0_rgba(0,217,255,0)] group-hover:shadow-[0_0_60px_-5px_rgba(0,217,255,0.45)]">
-      {p.badge && (
-        <span className="absolute top-6 right-6 z-10 px-3 py-1.5 rounded-full bg-primary/15 border border-primary/40 text-primary text-[11px] font-medium tracking-wide backdrop-blur-sm">
+    <div className="relative isolate flex min-h-[420px] md:min-h-[520px] flex-col justify-end overflow-hidden rounded-sm p-8 md:p-10 text-white">
+      <img src={p.image} alt="" className="absolute inset-0 h-full w-full object-cover img-zoom" />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/25"
+        style={{ backgroundColor: `${p.color}22` }}
+      />
+      {p.badge ? (
+        <span className="absolute top-6 right-6 z-10 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] backdrop-blur-sm">
           {p.badge}
         </span>
-      )}
-      <svg className="absolute top-8 left-8 w-8 h-8 text-primary/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M12 2l2 8 8 2-8 2-2 8-2-8-8-2 8-2z" />
-      </svg>
-      <svg className="absolute top-10 right-10 w-10 h-10 text-primary/25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M4 15a4 4 0 014-4 5 5 0 019.9 1A3 3 0 0119 18H7a3 3 0 01-3-3z" />
-      </svg>
-      <svg className="absolute bottom-24 right-12 w-8 h-8 text-primary/25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 3v18M3 12h18" />
-      </svg>
-      <div className="relative">
-        <div className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-6">{p.category}</div>
-        <h2 className="text-5xl md:text-7xl font-semibold tracking-[-0.03em] leading-[0.95] mb-4">{p.client}</h2>
-        <p className="text-white/60 text-base md:text-lg max-w-md mb-8">{p.oneLiner}</p>
-        <span className="inline-flex items-center gap-2 text-sm font-medium text-primary group-hover:gap-3 transition-all">
+      ) : null}
+      <div className="relative z-10">
+        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/65 mb-4">{p.category}</p>
+        <h2 className="font-display text-4xl md:text-6xl tracking-[-0.03em] leading-[0.95] mb-3">{p.client}</h2>
+        <p className="text-sm md:text-base text-white/75 max-w-md mb-2">{title}</p>
+        <p className="text-white/60 text-sm max-w-md mb-8">{p.oneLiner}</p>
+        <span className="inline-flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all">
           {p.slug === "ile-eko" ? "Learn more" : "View case study"}
-          <span aria-hidden>→</span>
+          <ArrowUpRight className="h-4 w-4" />
         </span>
       </div>
     </div>
@@ -58,7 +58,6 @@ export const Route = createFileRoute("/work")({
   component: Work,
 });
 
-
 const filters = ["All", "Brand Foundations", "Digital Platforms", "Intelligent Systems"] as const;
 
 function Work() {
@@ -69,43 +68,41 @@ function Work() {
 
   if (!isIndex) return <Outlet />;
 
-
   return (
     <>
-      <header className="px-6 pt-32 pb-16">
-        <div className="max-w-5xl mx-auto text-center">
-          <Eyebrow>Portfolio</Eyebrow>
-          <h1 className="text-5xl md:text-7xl font-medium leading-[1.05] tracking-[-0.03em] mb-8 text-balance">
-            Our <span className="text-primary">work.</span>
-          </h1>
-          <p className="max-w-xl mx-auto text-lg text-muted leading-relaxed">
-            Building brands and platforms on a clean slate—one successful project at a time.
-          </p>
-        </div>
-      </header>
+      <PageHero
+        section="Portfolio"
+        image={workFly}
+        imageAlt="Fly Trinity Airways brand work"
+        title={
+          <>
+            Our <span className="italic text-primary">work.</span>
+          </>
+        }
+        description="Building brands and platforms on a clean slate — one successful project at a time."
+      />
 
-      <div className="px-6 pb-8">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-2">
+      <Section className="!pt-10 md:!pt-12">
+        <div className="relative z-10 flex flex-wrap gap-2 mb-10 md:mb-12">
           {filters.map((f) => (
             <button
               key={f}
+              type="button"
               onClick={() => setActive(f)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`cursor-pointer rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                 active === f
                   ? "bg-foreground text-background"
-                  : "bg-surface text-muted hover:text-foreground"
+                  : "border border-border bg-background text-muted hover:text-foreground hover:bg-surface"
               }`}
             >
               {f}
             </button>
           ))}
         </div>
-      </div>
 
-      <Section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {visible.map((p, i) => (
-            <Reveal key={p.slug} delay={(i % 2) * 120}>
+            <Reveal key={p.slug} delay={(i % 2) * 100}>
               {p.slug === "ile-eko" ? (
                 <Link to="/ile-eko" className="group block">
                   <WorkCard p={p} />
@@ -136,14 +133,7 @@ function Work() {
         </div>
       </Section>
 
-      <Section>
-        <div className="bg-foreground text-background rounded-[2.5rem] p-10 md:p-20 text-center">
-          <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-10 text-balance">
-            Want to be our next <span className="text-primary">success story?</span>
-          </h2>
-          <CtaButton to="/contact" variant="primary">Let's build together</CtaButton>
-        </div>
-      </Section>
+      <PageCta />
     </>
   );
 }

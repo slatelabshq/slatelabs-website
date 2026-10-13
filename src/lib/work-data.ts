@@ -1,4 +1,4 @@
-import work44db from "@/assets/44db-logo.png";
+import work44db from "@/assets/work-44db.jpg";
 import workVidaRosa from "@/assets/work-vidarosa.jpg";
 import workIleEko from "@/assets/work-ileeko.jpg";
 import workMorganOxford from "@/assets/work-morgan-oxford.jpg";
@@ -254,7 +254,7 @@ export const projects: Project[] = [
   },
 ];
 
-const featuredSlugs: Project["slug"][] = ["44db", "nelly-baradi", "morgan-oxford"];
+const featuredSlugs: Project["slug"][] = ["nelly-baradi", "44db", "vida-rosa", "fly-trinity"];
 export const featuredProjects = featuredSlugs
   .map((slug) => projects.find((p) => p.slug === slug)!)
   .filter(Boolean);

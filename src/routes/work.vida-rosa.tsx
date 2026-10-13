@@ -53,7 +53,7 @@ function VidaRosa() {
       <header className="px-6 pt-32 pb-12">
         <div className="max-w-5xl mx-auto text-center">
           <Link to="/work" className="text-sm text-muted hover:text-primary">← All work</Link>
-          <div className="mt-12 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5">
+          <div className="mt-12 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 md:ml-8 ml-4">
             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             <span className="text-xs font-medium tracking-[0.2em] text-primary uppercase">Featured Engagement</span>
           </div>
@@ -65,6 +65,8 @@ function VidaRosa() {
           </p>
         </div>
       </header>
+ 
+ 
 
       {/* Hero image */}
       <div className="px-6">

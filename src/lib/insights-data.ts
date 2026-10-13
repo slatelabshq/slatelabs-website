@@ -13,7 +13,8 @@ export type Post = {
   date: string; // ISO
   readMinutes: number;
   author: Author;
-  cover?: string;
+  cover: string;
+  coverAlt: string;
   tag: "Brand" | "Growth" | "Platforms" | "Systems" | "Culture";
   body: Block[];
 };
@@ -28,6 +29,9 @@ export const posts: Post[] = [
     date: "2026-05-12",
     readMinutes: 4,
     author: { name: "Joseph Awujoola-Kalohun", role: "Co-Founder & CEO" },
+    cover:
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1600&q=80",
+    coverAlt: "Brand designer working with color swatches and typography samples",
     tag: "Brand",
     body: [
       {
@@ -70,6 +74,9 @@ export const posts: Post[] = [
     date: "2026-04-22",
     readMinutes: 5,
     author: { name: "Olasukanmi Adeyeye (SK)", role: "Co-Founder & CTO" },
+    cover:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
+    coverAlt: "Team reviewing analytics and workflow data on a large display",
     tag: "Systems",
     body: [
       {

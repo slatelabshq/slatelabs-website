@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite dev",
     "typecheck": "tsc --noEmit",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && node scripts/install-vercel-function-deps.mjs",
     "build:dev": "tsc --noEmit && vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",

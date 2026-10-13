@@ -10,11 +10,11 @@ if (!existsSync(packageJsonPath)) {
   process.exit(0);
 }
 
-const bun = spawnSync("bun", ["install", "--production"], {
+const npmInstall = spawnSync("npm", ["install", "--omit=dev"], {
   cwd: funcDir,
   stdio: "inherit",
 });
 
-if (bun.status !== 0) {
-  process.exit(bun.status ?? 1);
+if (npmInstall.status !== 0) {
+  process.exit(npmInstall.status ?? 1);
 }

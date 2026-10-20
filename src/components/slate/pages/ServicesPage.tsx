@@ -16,10 +16,10 @@ export function ServicesPage() {
             <p className="lead page-head__lead">Brand strategy and growth marketing. Digital platforms and intelligent systems. You work with the people who built this — not a handoff chain.</p>
 
             <ul className="chips">
-              <li><a className="chip" href="/brand-strategy">Brand Strategy</a></li>
-              <li><a className="chip" href="/growth-marketing">Growth Marketing</a></li>
-              <li><a className="chip" href="/digital-platforms">Digital Platforms</a></li>
-              <li><a className="chip" href="/intelligent-systems">Intelligent Systems</a></li>
+              <li><a className="chip" href="#brand-strategy">Brand Strategy</a></li>
+              <li><a className="chip" href="#growth-marketing">Growth Marketing</a></li>
+              <li><a className="chip" href="#digital-platforms">Digital Platforms</a></li>
+              <li><a className="chip" href="#intelligent-systems">Intelligent Systems</a></li>
             </ul>
           </div>
         </section>

@@ -1,5 +1,6 @@
 import { useRouter } from "@tanstack/react-router";
 import { useEffect, useLayoutEffect, useRef } from "react";
+import { closeMobileNavSheet } from "@/lib/slate-mobile-nav";
 import {
   isInternalNavAnchor,
   pathFromAnchor,
@@ -44,6 +45,7 @@ export function useSlateRouteTransition() {
 
       void (async () => {
         try {
+          closeMobileNavSheet();
           await slateCurtainDown();
           await router.navigate({ to });
         } finally {

@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
+import { closeMobileNavSheet } from "@/lib/slate-mobile-nav";
 
 const navItems = [
   { to: "/about", label: "About" },
@@ -213,13 +214,7 @@ export function NavSheet() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
-    const sheet = document.querySelector<HTMLElement>("[data-nav-sheet]");
-    if (sheet?.dataset.open === "true") {
-      sheet.dataset.open = "false";
-      document.documentElement.classList.remove("sheet-open");
-      const toggle = document.querySelector<HTMLElement>("[data-nav-toggle]");
-      toggle?.setAttribute("aria-expanded", "false");
-    }
+    closeMobileNavSheet();
   }, [pathname]);
 
   return (

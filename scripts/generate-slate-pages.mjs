@@ -34,6 +34,7 @@ function extractMain(html) {
 function rewriteHref(raw) {
   if (
     !raw ||
+    raw.startsWith("#") ||
     raw.startsWith("http") ||
     raw.startsWith("mailto:") ||
     raw.startsWith("tel:") ||
@@ -43,7 +44,7 @@ function rewriteHref(raw) {
   }
   const [pathPart, hash = ""] = raw.split("#");
   let p = pathPart.replace(/^\.\//, "");
-  if (p === "index.html" || p === "") return hash ? `/${hash}` : "/";
+  if (p === "index.html" || p === "") return hash ? `#${hash}` : "/";
   p = p.replace(/\.html$/, "");
   if (!p.startsWith("/")) p = `/${p}`;
   return hash ? `${p}#${hash}` : p;

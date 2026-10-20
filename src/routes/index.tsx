@@ -1,12 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { HomeHero } from "@/components/home/HomeHero";
-import { HomeWork } from "@/components/home/HomeWork";
-import { HomeServices } from "@/components/home/HomeServices";
-import { HomeProof } from "@/components/home/HomeProof";
-import { HomePhilosophy } from "@/components/home/HomePhilosophy";
-import { HomeQuotes } from "@/components/home/HomeQuotes";
-import { HomeInsights } from "@/components/home/HomeInsights";
-import { HomeCta } from "@/components/home/HomeCta";
+import { HomePage } from "@/components/slate/pages/HomePage";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,6 +10,7 @@ export const Route = createFileRoute("/")({
         content:
           "Slate Labs is a Lagos-based Creative & Tech Agency. We build brands, digital platforms, and AI systems for businesses ready to grow.",
       },
+      { name: "theme-color", content: "#FFFFFF" },
       { property: "og:title", content: "Slate Labs — Lagos Creative & Tech Agency" },
       {
         property: "og:description",
@@ -24,23 +18,16 @@ export const Route = createFileRoute("/")({
           "Slate Labs is a Lagos-based Creative & Tech Agency. We build brands, digital platforms, and AI systems for businesses ready to grow.",
       },
       { property: "og:url", content: "/" },
+      {
+        property: "og:image",
+        content: "https://www.slatelabshq.com.ng/assets/img/work-brillanta.jpg",
+      },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      { rel: "canonical", href: "https://www.slatelabshq.com.ng/" },
+      { rel: "icon", type: "image/png", href: "/assets/img/logo/mark-teal.png" },
+      { rel: "apple-touch-icon", href: "/assets/img/logo/mark-teal.png" },
+    ],
   }),
-  component: Home,
+  component: HomePage,
 });
-
-function Home() {
-  return (
-    <div className="overflow-x-hidden">
-      <HomeHero />
-      <HomeWork />
-      <HomeServices />
-      <HomeProof />
-      <HomePhilosophy />
-      <HomeQuotes />
-      <HomeInsights />
-      <HomeCta />
-    </div>
-  );
-}

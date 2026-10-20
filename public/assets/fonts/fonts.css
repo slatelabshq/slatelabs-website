@@ -1,0 +1,25 @@
+/* Slate Labs — self-hosted webfonts.
+   Latin subset, woff2, served from /assets/fonts/ (no third-party DNS, no
+   render-blocking request to Google for an audience on metered mobile data).
+   Manrope is one variable file covering 400–800; Space Mono needs two statics. */
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('Manrope-var.woff2') format('woff2') tech(variations);
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('SpaceMono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('SpaceMono-700.woff2') format('woff2');
+}
